@@ -21,7 +21,6 @@ client.on("message", (message) => {
   var commandi = JSON.parse(fs.readFileSync("./commands.json", "utf8"));
   var warnings = JSON.parse(fs.readFileSync("./warnings.json", "utf8"));
   var kicks = JSON.parse(fs.readFileSync("./kicks.json", "utf8"));
-  var reasons = JSON.parse(fs.readFileSync("./reasons.json", "utf8"));
   if (message.isMentioned("464042836032225281")) {
     var hello = config.hello[Math.floor(Math.random()*config.hello.length)];
     message.channel.send(hello);
@@ -237,11 +236,6 @@ search(argu, opts, function(err, results) {
     fs.writeFile("./warnings.json", JSON.stringify(warnings), (err) => {
     if (err) console.error(err)
   });
-   var userWarns = warnings[message.mentions.members.first()] ? warnings[message.mentions.members.first()].points : 0;
-     message.channel.send(`${message.mentions.members.first()} now has ${userWarns} warnings!`);
-      if (!reasons[message.mentions.members.first()]) reasons[message.mentions.members.first()] = {
-    points: 0,
-  };
    } else {
     message.channel.send("Nope!"); 
    }
