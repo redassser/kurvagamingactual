@@ -20,7 +20,6 @@ client.on("message", (message) => {
   var num = parseInt(command.replace("scp-", ""), 10);
   var commandi = JSON.parse(fs.readFileSync("./commands.json", "utf8"));
   var warnings = JSON.parse(fs.readFileSync("./warnings.json", "utf8"));
-  var kicks = JSON.parse(fs.readFileSync("./kicks.json", "utf8"));
   if (message.isMentioned("464042836032225281")) {
     var hello = config.hello[Math.floor(Math.random()*config.hello.length)];
     message.channel.send(hello);
@@ -208,17 +207,7 @@ search(argu, opts, function(err, results) {
      if (message.member.permissions.has('ADMINISTRATOR')) {
        var mention = message.mentions.members.first();
     if (message.isMentioned(mention)) {
-      if (!kicks[message.mentions.members.first()]) kicks[message.mentions.members.first()] = {
-    points: 0,
-  };
-  kicks[message.mentions.members.first()].points++;
-    fs.writeFile("./kicks.json", JSON.stringify(kicks), (err) => {
-    if (err) console.error(err)
-  });
-   var userKicks = kicks[message.mentions.members.first()] ? kicks[message.mentions.members.first()].points : 0;
-   
-      mention.kick();
-    message.channel.send(`${mention} has been kicked.\n They have ${userKicks} kicks.`);
+    message.channel.send(`${mention} has been kicked.`);
   }
     else {
       message.channel.send(`You have to mention someone!`);
