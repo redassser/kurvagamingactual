@@ -102,6 +102,7 @@ search(argu, opts, function(err, results) {
     }
     })
     message.delete();
+    console.log(`${message.author} in ${message.channel.name} used the cah command.`);
   }
   //build-a-b̶e̶a̶r̶ command
   function checkexist(x) {
@@ -379,6 +380,7 @@ resetBot(message.channel);
   if (command === "kgmeme") {
     var embedPic = config.ourArray[Math.floor(Math.random()*config.ourArray.length)];
    message.channel.send(embedPic); 
+    
   }
   if (command === "status") {
       if (message.member.permissions.has('ADMINISTRATOR')) {
