@@ -102,7 +102,7 @@ search(argu, opts, function(err, results) {
     }
     })
     message.delete();
-    console.log(`${message.author} in ${message.channel.name} used the cah command.`);
+    console.log(`${message.author.username} in ${message.channel.name} used the cah command.`);
   }
   //build-a-b̶e̶a̶r̶ command
   function checkexist(x) {
@@ -269,7 +269,7 @@ resetBot(message.channel);
     var gsg = args[0].slice(2, 20);
     var argo = argu.replace(`${args[0]}`, "");
      message.guild.channels.get(`${gsg}`).send(`${argo}`);
-     console.log(`${gsg}`);
+     console.log(`${message.author.username} said ${argo} in ${gsg}.`);
   }
   else {
   message.channel.send("Nope.");
@@ -380,7 +380,7 @@ resetBot(message.channel);
   if (command === "kgmeme") {
     var embedPic = config.ourArray[Math.floor(Math.random()*config.ourArray.length)];
    message.channel.send(embedPic); 
-    
+    console.log(`${message.author.username} in ${message.channel.name} used the kgmeme command.`);
   }
   if (command === "status") {
       if (message.member.permissions.has('ADMINISTRATOR')) {
@@ -393,15 +393,13 @@ resetBot(message.channel);
   }
  
    if (command === "8ball" && argu != "") {
-    
+    console.log(`${message.author.username} in ${message.channel.name} used the 8ball command.`);
     var randomResponse = config.myArray[Math.floor(Math.random()*config.myArray.length)];
     message.channel.send(`${message.author}'s question was '${argu}' \nThe magic 8 ball says... '` + randomResponse + `'`);
     message.delete();
   }
  
 if (command === "ping" && !isNaN(args[1]) && message.isMentioned(message.mentions.members.first())) {
-  console.log(`${message.mentions.members}`);
-  console.log(message.guild.ownerID);
   if (message.guild.ownerID === message.author.id) {
   var step;
   if (args[1] <= 5) {
