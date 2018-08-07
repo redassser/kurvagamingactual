@@ -28,7 +28,7 @@ client.on("message", (message) => {
     if (command === "sea") {
     var opts = {
   maxResults: 3,
-  key: 'AIzaSyC2efcl-SW2seAbKIszQMA2jjPcu65giiY',
+  key: process.env.YT_TOKEN,
   type: "video"
 };
  
