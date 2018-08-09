@@ -554,7 +554,7 @@ for (step = 0; step < args[1]; step++) {
         }
         }); 
  }
- if (command === "ss1" || command === "ss2" || command === "ss3" || command === "ss4") {
+ if (command === "ss1" || command === "ss2" || command === "ss3" || command === "ss4" || command === "ss5") {
 if (command === "ss1") {
   var title = "Kurva Gaming Dedicated Server #1";
   var portEnd = "7777"; 
