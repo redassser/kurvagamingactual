@@ -357,19 +357,49 @@ resetBot(message.channel);
      }); 
   }
   if (command === "offline") {
+    //mod
     if (message.member.roles.has("432337866493001740")) {
       message.member.removeRole("432337866493001740");
       message.member.addRole("471095786554523658");
       message.channel.send(`${message.author} is now offline.`);
       message.delete();
-    } else {
+    } 
+    //senior
+        if (message.member.roles.has("432355512584110113")) {
+      message.member.removeRole("432355512584110113");
+      message.member.addRole("477195100867526689");
+      message.channel.send(`${message.author} is now offline.`);
+      message.delete();
+    } 
+    //admin
+        if (message.member.roles.has("432337534794727425")) {
+      message.member.removeRole("432337534794727425");
+      message.member.addRole("477195674421821451");
+      message.channel.send(`${message.author} is now offline.`);
+      message.delete();
+    }else {
       message.channel.send("Nope!");
     }
   }
     if (command === "online") {
+      //mod
     if (message.member.roles.has("471095786554523658")) {
       message.member.addRole("432337866493001740");
       message.member.removeRole("471095786554523658");
+      message.channel.send(`${message.author} is now online.`);
+      message.delete();
+    } 
+      //senior
+      if (message.member.roles.has("477195100867526689")) {
+      message.member.addRole("432355512584110113");
+      message.member.removeRole("477195100867526689");
+      message.channel.send(`${message.author} is now online.`);
+      message.delete();
+    }
+      //admin
+      if (message.member.roles.has("477195674421821451")) {
+      message.member.addRole("432337534794727425");
+      message.member.removeRole("477195674421821451");
       message.channel.send(`${message.author} is now online.`);
       message.delete();
     } else {
