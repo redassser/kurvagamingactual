@@ -344,10 +344,20 @@ resetBot(message.channel);
         },
         {
           name: "Senior mods",
+          value: `All: ${allsenior}`,
+          inline: true
+        },
+                         {
+          name: "Senior mods",
           value: `In-game: ${onseniors.join(', ')}`,
           inline: true
         },
         {
+          name: "Admins",
+          value: `All: ${alladmin}`,
+          inline: true
+        },
+                 {
           name: "Admins",
           value: `In-game: ${onadmins.join(', ')}`,
           inline: true
