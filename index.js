@@ -393,14 +393,14 @@ resetBot(message.channel);
   }
     if (command === "online") {
       //mod
-    if (message.member.roles.has("471095786554523658")) {
+      if (message.member.roles.has("471095786554523658")) {
       message.member.addRole("432337866493001740");
       message.member.removeRole("471095786554523658");
       message.channel.send(`${message.author} is now online.`);
       message.delete();
     } 
       //senior
-     else if (message.member.roles.has("477195100867526689")) {
+      else if (message.member.roles.has("477195100867526689")) {
       message.member.addRole("432355512584110113");
       message.member.removeRole("477195100867526689");
       message.channel.send(`${message.author} is now online.`);
@@ -538,26 +538,40 @@ for (step = 0; step < args[1]; step++) {
      }
                       }
         }
-        });     
+        });  
+   request(`https://kigen.co/scpsl/getinfo.php?ip=192.223.31.157&port=7781`, function(err, resp, html) {
+        if (!err){
+          var $ = cheerio.load(html); 
+                      if (html != '{"error":"Server not found"}') {
+                        var json = JSON.parse(html);    
+     if ("error" in json) {
+     console.log("wtf0");
+     } else {
+          var playerCount = json.players;
+           message.channel.send(`Server 5 : ${playerCount}`);
+     }
+                      }
+        }
+        }); 
  }
  if (command === "ss1" || command === "ss2" || command === "ss3" || command === "ss4") {
-   if (command === "ss1") {
+if (command === "ss1") {
   var title = "Kurva Gaming Dedicated Server #1";
   var portEnd = "7777"; 
 }
-if (command === "ss2") {
+else if (command === "ss2") {
   var title = "Kurva Gaming Dedicated Server #2";
   var portEnd = "7778";
 }
-if (command === "ss3") {
+else if (command === "ss3") {
   var title = "Kurva Gaming Dedicated Server #3";
   var portEnd = "7779";
 }
-if (command === "ss4") {
+else if (command === "ss4") {
   var title = "Kurva Gaming Dedicated Server #4";
   var portEnd = "7780";
 }
-   if (command === "ss5") {
+else if (command === "ss5") {
   var title = "Kurva Gaming Dedicated Server #5";
   var portEnd = "7781";
 }
