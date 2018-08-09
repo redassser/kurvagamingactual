@@ -543,8 +543,7 @@ for (step = 0; step < args[1]; step++) {
  if (command === "ss1" || command === "ss2" || command === "ss3" || command === "ss4") {
    if (command === "ss1") {
   var title = "Kurva Gaming Dedicated Server #1";
-  var portEnd = "7777";
-  
+  var portEnd = "7777"; 
 }
 if (command === "ss2") {
   var title = "Kurva Gaming Dedicated Server #2";
@@ -557,6 +556,10 @@ if (command === "ss3") {
 if (command === "ss4") {
   var title = "Kurva Gaming Dedicated Server #4";
   var portEnd = "7780";
+}
+   if (command === "ss5") {
+  var title = "Kurva Gaming Dedicated Server #5";
+  var portEnd = "7781";
 }
  request(`https://kigen.co/scpsl/getinfo.php?ip=192.223.31.157&port=${portEnd}`, function(err, resp, html) {
         if (!err){
