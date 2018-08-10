@@ -24,8 +24,7 @@ client.on("message", (message) => {
     var hello = config.hello[Math.floor(Math.random()*config.hello.length)];
     message.channel.send(hello);
   }
-  if (message.channel.id === "442739266909503489" || message.channel.id === "444670578784337920" || message.channel.id === "464091801331040297") {
-  if (!message.content.startsWith(prefix) || message.author.bot) return;
+ if (!message.content.startsWith(prefix) || message.author.bot) return;
     if (command === "sea") {
     var opts = {
   maxResults: 3,
@@ -480,6 +479,8 @@ for (step = 0; step < args[1]; step++) {
   message.channel.send("Nope.");
   }
   }
+  //oh look the servers isnt that neat
+   if (message.channel.id === "442739266909503489" || message.channel.id === "444670578784337920" || message.channel.id === "464091801331040297") {
  var theip = 6;
  var title = 6;
  var portEnd = 6;
