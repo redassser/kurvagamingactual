@@ -556,7 +556,7 @@ for (step = 0; step < args[1]; step++) {
         }
         }); 
  }
- if (command === "ss1" || command === "ss2" || command === "ss3" || command === "ss4" || command === "ss5" || command === "ssb") {
+ if (command === "ss1" || command === "ss2" || command === "ss3" || command === "ss4" || command === "ss5" || command === "ssd") {
 if (command === "ss1") {
   var title = "Kurva Gaming Dedicated Server #1";
   var portEnd = "7777"; 
@@ -582,7 +582,7 @@ else if (command === "ss5") {
   var portEnd = "7781";
   var theip = "192.223.31.157"
 }
- else if (command === "ssb") {
+ else if (command === "ssd") {
   var title = "Kurva Gaming Dedicated Server but different";
   var portEnd = "7778"
   var theip = "192.223.27.212";
