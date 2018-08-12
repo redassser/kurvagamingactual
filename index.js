@@ -556,28 +556,38 @@ for (step = 0; step < args[1]; step++) {
         }
         }); 
  }
- if (command === "ss1" || command === "ss2" || command === "ss3" || command === "ss4" || command === "ss5") {
+ if (command === "ss1" || command === "ss2" || command === "ss3" || command === "ss4" || command === "ss5" || command === "ssb") {
 if (command === "ss1") {
   var title = "Kurva Gaming Dedicated Server #1";
   var portEnd = "7777"; 
+  var theip = "192.223.31.157"
 }
 else if (command === "ss2") {
   var title = "Kurva Gaming Dedicated Server #2";
   var portEnd = "7778";
+  var theip = "192.223.31.157"
 }
 else if (command === "ss3") {
   var title = "Kurva Gaming Dedicated Server #3";
   var portEnd = "7779";
+  var theip = "192.223.31.157"
 }
 else if (command === "ss4") {
   var title = "Kurva Gaming Dedicated Server #4";
   var portEnd = "7780";
+  var theip = "192.223.31.157"
 }
 else if (command === "ss5") {
   var title = "Kurva Gaming Dedicated Server #5";
   var portEnd = "7781";
+  var theip = "192.223.31.157"
 }
- request(`https://kigen.co/scpsl/getinfo.php?ip=192.223.31.157&port=${portEnd}`, function(err, resp, html) {
+ else if (command === "ssb") {
+  var title = "Kurva Gaming Dedicated Server but different";
+  var portEnd = "7778"
+  var theip = "192.223.27.212";
+}
+ request(`https://kigen.co/scpsl/getinfo.php?ip=${theip}&port=${portEnd}`, function(err, resp, html) {
         if (!err){
           var $ = cheerio.load(html); 
                       if (html === '{"error":"Server not found"}') {
@@ -591,7 +601,7 @@ else if (command === "ss5") {
      },
         fields: [{
           name: "IP:",
-          value: `192.223.31.157`,
+          value: `${theip}`,
           inline: true
         },
         {
@@ -626,7 +636,7 @@ else if (command === "ss5") {
      },
         fields: [{
           name: "IP:",
-          value: `192.223.31.157`,
+          value: `${theip}`,
           inline: true
         },
         {
