@@ -657,14 +657,21 @@ else if (command === "ss5") {
 });
       if(command === "s1") {
        request(`https://api.scpslgame.com/lobbylist.php?format=json`, function(err, resp, html) {
-        if (!err){
+        if (!err) {
           var $ = cheerio.load(html); 
-                      console.log(html.ip)
-                        
-                         } else {
-              var json = JSON.parse(html);   
-      }
-        });
+          
+            if (html === '{"error":"Server not found"}') {
+          
+            }
+            else {
+            var json = JSON.parse(html);
+     
+     if ("error" in json) {
+     console.log("wtf0");
+     } else {
+          console.log(html.ip)
+          
+     }
  }
   if (command === "ss0"||command === "ssk") {
 if (command === "ss0") {
