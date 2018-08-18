@@ -655,7 +655,16 @@ else if (command === "ss5") {
             }
       }    
 });
-           
+      if(command === "s1") {
+       request(`https://api.scpslgame.com/lobbylist.php?format=json`, function(err, resp, html) {
+        if (!err){
+          var $ = cheerio.load(html); 
+                      console.log(html.ip)
+                        
+                         } else {
+              var json = JSON.parse(html);   
+      }
+        });
  }
   if (command === "ss0"||command === "ssk") {
 if (command === "ss0") {
