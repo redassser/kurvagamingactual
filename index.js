@@ -498,81 +498,45 @@ for (step = 0; step < args[1]; step++) {
    var arra = [];
     request('https://api.scpslgame.com/lobbylist.php?format=json', function(err, resp, html) {
         if (!err){
+          var arra = [];
               var json = JSON.parse(html);
      if ("error" in json) {
      console.log("Someone help me!");
      } else {
-       var obj = json.find(o => o.ip === "192.223.31.157" && o.port === '7777');
+       var ser1 = json.find(o => o.ip === "192.223.31.157" && o.port === '7777');
           if(!obj) {
-           message.channel.send("Server 1 - Offline"); 
+           arra.push("Server 1 - Offline"); 
           } else {
-            message.channel.send("Server 1 - "+obj.players);
+            arra.push("Server 1 - "+obj.players);
           }
+       var ser2 = json.find(o => o.ip === "192.223.31.157" && o.port === '7778');
+          if(!obj) {
+           arra.push("Server 2 - Offline"); 
+          } else {
+            arra.push("Server 2 - "+obj.players);
+          }
+       var ser3 = json.find(o => o.ip === "192.223.31.157" && o.port === '7779');
+          if(!obj) {
+           arra.push("Server 3 - Offline"); 
+          } else {
+            arra.push("Server 3 - "+obj.players);
+          }
+       var ser4 = json.find(o => o.ip === "192.223.31.157" && o.port === '7780');
+          if(!obj) {
+           arra.push("Server 4 - Offline"); 
+          } else {
+            arra.push("Server 4 - "+obj.players);
+          }
+       var ser5 = json.find(o => o.ip === "192.223.31.157" && o.port === '77781');
+          if(!obj) {
+           arra.push("Server 5 - Offline"); 
+          } else {
+            arra.push("Server 5 - "+obj.players);
+          }
+       message.channel.send(arra)
      } 
             }  
 });
-   request('https://api.scpslgame.com/lobbylist.php?format=json', function(err, resp, html) {
-        if (!err){
-              var json = JSON.parse(html);
-     if ("error" in json) {
-     console.log("Someone help me!");
-     } else {
-       var obj = json.find(o => o.ip === "192.223.31.157" && o.port === '7778');
-          if(!obj) {
-           message.channel.send("Server 2 - Offline"); 
-          } else {
-            message.channel.send("Server 2 -  "+obj.players);
-          }
-     } 
-            }  
-});
-   request('https://api.scpslgame.com/lobbylist.php?format=json', function(err, resp, html) {
-        if (!err){
-              var json = JSON.parse(html);
-     if ("error" in json) {
-     console.log("Someone help me!");
-     } else {
-       var obj = json.find(o => o.ip === "192.223.31.157" && o.port === '7779');
-          if(!obj) {
-           message.channel.send("Server 3 - Offline"); 
-          } else {
-            message.channel.send("Server 3 - "+obj.players);
-          }
-     } 
-            }  
-});
-   request('https://api.scpslgame.com/lobbylist.php?format=json', function(err, resp, html) {
-        if (!err){
-              var json = JSON.parse(html);
-     if ("error" in json) {
-     console.log("Someone help me!");
-     } else {
-       var obj = json.find(o => o.ip === "192.223.31.157" && o.port === '7780');
-          if(!obj) {
-           message.channel.send("Server 4 - Offline"); 
-          } else {
-            message.channel.send("Server 4 - "+obj.players);
-          }
-     } 
-            }  
-});
-   request('https://api.scpslgame.com/lobbylist.php?format=json', function(err, resp, html) {
-     console.log(err)   
-     if (!err){
-              var json = JSON.parse(html);
-     if ("error" in json) {
-     console.log("Someone help me!");
-     } else {
-       var obj = json.find(o => o.ip === "192.223.31.157" && o.port === '7781');
-          if(!obj) {
-           message.channel.send("Server 5 - Offline"); 
-          } else {
-            message.channel.send("Server 5 - "+obj.players);
-          }
-     } 
-            }  
-});
-   message.channel.send(arra.join("\n"))
  }
 if (command === "ss1" || command === "ss2" || command === "ss3" || command === "ss4" || command === "ss5" || command === "ssd") {
   if (command === "ss1") {
