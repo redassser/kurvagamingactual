@@ -496,25 +496,8 @@ for (step = 0; step < args[1]; step++) {
 
  if (command === "players") {
   for (x = 0; x < 6; x++) { 
-    request('https://api.scpslgame.com/lobbylist.php?format=json', function(err, resp, html) {
-        if (!err){
-              var json = JSON.parse(html);
-     if ("error" in json) {
-     console.log("Someone help me!");
-     } else {
-       var potr = +7776 + +x
-        console.log(potr)
-       var obj = json.find(o => o.ip === "192.223.31.157" && o.port === "7776"+potr);
-          if(!obj) {
-           message.channel.send("Server "+x+" "+"Offline"); 
-          } else {
-            console.log("Server "+x+" "+obj.players);
-            message.channel.send("Server "+x+" "+obj.players);
-          }
-     } 
-            }
-         
-});
+    console.log(x);
+    
    }
  }
 if (command === "ss1" || command === "ss2" || command === "ss3" || command === "ss4" || command === "ss5" || command === "ssd") {
