@@ -527,7 +527,7 @@ for (step = 0; step < args[1]; step++) {
           } else {
             arra.push("Server 4 - "+ser4.players);
           }
-       var ser5 = json.find(o => o.ip === "192.223.31.157" && o.port === '77781');
+       var ser5 = json.find(o => o.ip === "192.223.31.157" && o.port === '7781');
           if(!ser5) {
            arra.push("Server 5 - Offline"); 
           } else {
