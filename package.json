@@ -8,7 +8,7 @@
     "start": "node index.js"
   },
   "engines": {
-    "node": "8.9.4"
+    "node": "8.4.0"
   },
   "keywords": [],
   "author": "",
@@ -22,6 +22,6 @@
     "jquery": "^1.12.4",
     "jsdom": "^11.11.0",
     "parser": "^0.1.4",
-    "youtube-search": "^1.1.1"
+    "request": "^2.88.0"
   }
 }
