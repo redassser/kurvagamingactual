@@ -495,10 +495,98 @@ for (step = 0; step < args[1]; step++) {
  var portEnd = 7;
 
  if (command === "players") {
-  for (x = 0; x < 6; x++) { 
-    console.log(x);
-    
-   }
+   var arra = [];
+    request('https://api.scpslgame.com/lobbylist.php?format=json', function(err, resp, html) {
+        if (!err){
+              var json = JSON.parse(html);
+     if ("error" in json) {
+     console.log("Someone help me!");
+     } else {
+       var potr = +7776 + +1
+        console.log(potr)
+       var obj = json.find(o => o.ip === "192.223.31.157" && o.port === potr);
+          if(!obj) {
+           message.channel.send("Server "+1+" "+"Offline"); 
+          } else {
+            console.log("Server "+1+" "+obj.players);
+            arra.push("Server "+1+" "+obj.players);
+          }
+     } 
+            }  
+});
+   request('https://api.scpslgame.com/lobbylist.php?format=json', function(err, resp, html) {
+        if (!err){
+              var json = JSON.parse(html);
+     if ("error" in json) {
+     console.log("Someone help me!");
+     } else {
+       var potr = +7776 + +2
+        console.log(potr)
+       var obj = json.find(o => o.ip === "192.223.31.157" && o.port === potr);
+          if(!obj) {
+           message.channel.send("Server "+2+" "+"Offline"); 
+          } else {
+            console.log("Server "+2+" "+obj.players);
+            arra.push("Server "+2+" "+obj.players);
+          }
+     } 
+            }  
+});
+   request('https://api.scpslgame.com/lobbylist.php?format=json', function(err, resp, html) {
+        if (!err){
+              var json = JSON.parse(html);
+     if ("error" in json) {
+     console.log("Someone help me!");
+     } else {
+       var potr = +7776 + +3
+        console.log(potr)
+       var obj = json.find(o => o.ip === "192.223.31.157" && o.port === potr);
+          if(!obj) {
+           message.channel.send("Server "+3+" "+"Offline"); 
+          } else {
+            console.log("Server "+3+" "+obj.players);
+            arra.push("Server "+3+" "+obj.players);
+          }
+     } 
+            }  
+});
+   request('https://api.scpslgame.com/lobbylist.php?format=json', function(err, resp, html) {
+        if (!err){
+              var json = JSON.parse(html);
+     if ("error" in json) {
+     console.log("Someone help me!");
+     } else {
+       var potr = +7776 + +4
+        console.log(potr)
+       var obj = json.find(o => o.ip === "192.223.31.157" && o.port === potr);
+          if(!obj) {
+           message.channel.send("Server "+4+" "+"Offline"); 
+          } else {
+            console.log("Server "+4+" "+obj.players);
+            arra.push("Server "+4+" "+obj.players);
+          }
+     } 
+            }  
+});
+   request('https://api.scpslgame.com/lobbylist.php?format=json', function(err, resp, html) {
+        if (!err){
+              var json = JSON.parse(html);
+     if ("error" in json) {
+     console.log("Someone help me!");
+     } else {
+       var potr = +7776 + +5
+        console.log(potr)
+       var obj = json.find(o => o.ip === "192.223.31.157" && o.port === potr);
+          if(!obj) {
+           message.channel.send("Server "+5+" "+"Offline"); 
+          } else {
+            console.log("Server "+5+" "+obj.players);
+            arra.push("Server "+5+" "+obj.players);
+          }
+     } 
+            }  
+});
+   message.channel.send(arra.join("\n"))
  }
 if (command === "ss1" || command === "ss2" || command === "ss3" || command === "ss4" || command === "ss5" || command === "ssd") {
   if (command === "ss1") {
