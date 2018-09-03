@@ -689,7 +689,9 @@ if (command === "ss1" || command === "ss2" || command === "ss3" || command === "
     var portEnd = "7778"
     var theip = "192.223.27.212";
   }
-                   request(`https://api.scpslgame.com/lobbylist.php?format=json`, function(err, resp, html) {
+  console.log('comm')
+      request(`https://api.scpslgame.com/lobbylist.php?format=json`, function(err, resp, html) {
+        console.log('req')
         if (!err){
           console.log('0')
     {
@@ -761,6 +763,7 @@ if (command === "ss1" || command === "ss2" || command === "ss3" || command === "
             }
       }    
 });
+  console.log('err')
  }
   if (command === "ss0"||command === "ssk") {
 if (command === "ss0") {
