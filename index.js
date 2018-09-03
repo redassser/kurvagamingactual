@@ -506,9 +506,8 @@ for (step = 0; step < args[1]; step++) {
           if(!obj) {
            return "Offline" 
           } else {
-            var playerCount = obj.players
-           return playerCount;
-            console.log playerCount;
+            console.log(obj.players);
+            return obj.players;
           }
      } 
             }
