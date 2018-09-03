@@ -697,10 +697,9 @@ else if (command === "ss5") {
       request(`https://api.scpslgame.com/lobbylist.php?format=json`, function(err, resp, html) {
         if (!err){
           {
-              var json = JSON.parse(html);
-     
+        var json = JSON.parse(html);   
      if ("error" in json) {
-     console.log("wtf0");
+     console.log("Something is wrong!");
      } else {
  var obj = json.find(o => o.ip === theip && o.port === portEnd);
        if (!obj) {
@@ -761,6 +760,7 @@ else if (command === "ss5") {
      }
             }
       }    
+        }
  });
  }
   if (command === "ss0"||command === "ssk") {
