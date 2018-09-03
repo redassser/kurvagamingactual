@@ -691,13 +691,16 @@ if (command === "ss1" || command === "ss2" || command === "ss3" || command === "
   }
                    request(`https://api.scpslgame.com/lobbylist.php?format=json`, function(err, resp, html) {
         if (!err){
+          console.log('0')
     {
               var json = JSON.parse(html);
      if ("error" in json) {
      console.log("Someone help me!");
      } else {
        var obj = json.find(o => o.ip === theip && o.port === portEnd);
+       console.log("1")
           if(!obj) {
+            console.log("off")
            message.channel.send({"embed": {
     "color": 9245716,
     timestamp: new Date(),
@@ -726,6 +729,7 @@ if (command === "ss1" || command === "ss2" || command === "ss3" || command === "
      }); 
           } else {
             var playerCount = obj.players
+            console.log('on')
                      message.channel.send({"embed": {
     "color": 3498293,
     timestamp: new Date(),
