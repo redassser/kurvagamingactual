@@ -495,9 +495,10 @@ for (step = 0; step < args[1]; step++) {
  var portEnd = 6;
 
  if (command === "players") {
-     var serverArray = [];
-  for (i = 1; i < 6; i++) { 
+     var serverArray = []
+  for (var i = 1; i < 6; i++) { 
     request('https://api.scpslgame.com/lobbylist.php?format=json', function(err, resp, html) {
+      console.log(err)
         if (!err){
     {
               var json = JSON.parse(html);
