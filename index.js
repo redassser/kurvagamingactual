@@ -508,13 +508,14 @@ for (step = 0; step < args[1]; step++) {
           } else {
             var playerCount = obj.players
            return playerCount;
+            console.log playerCount;
           }
      } 
             }
       }    
 });
    }
- message.channel.send("Server 1- "+status('192.223.31.157', '7777'));
+ message.channel.send("Server 1- "+status("192.223.31.157",'7777'));
  }
 if (command === "ss1" || command === "ss2" || command === "ss3" || command === "ss4" || command === "ss5" || command === "ssd") {
   if (command === "ss1") {
