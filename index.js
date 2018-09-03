@@ -502,14 +502,12 @@ for (step = 0; step < args[1]; step++) {
      if ("error" in json) {
      console.log("Someone help me!");
      } else {
-       var potr = +7776 + +1
-        console.log(potr)
-       var obj = json.find(o => o.ip === "192.223.31.157" && o.port === potr);
+       var obj = json.find(o => o.ip === "192.223.31.157" && o.port === '7777');
           if(!obj) {
-           message.channel.send("Server "+1+" "+"Offline"); 
+           message.channel.send("Server 1 - Offline"); 
           } else {
-            console.log("Server "+1+" "+obj.players);
-            arra.push("Server "+1+" "+obj.players);
+            console.log("Server 1 - "+obj.players);
+            arra.push("Server 1 - "+obj.players);
           }
      } 
             }  
@@ -520,14 +518,12 @@ for (step = 0; step < args[1]; step++) {
      if ("error" in json) {
      console.log("Someone help me!");
      } else {
-       var potr = +7776 + +2
-        console.log(potr)
-       var obj = json.find(o => o.ip === "192.223.31.157" && o.port === potr);
+       var obj = json.find(o => o.ip === "192.223.31.157" && o.port === '7778');
           if(!obj) {
-           message.channel.send("Server "+2+" "+"Offline"); 
+           message.channel.send("Server 2 - Offline"); 
           } else {
-            console.log("Server "+2+" "+obj.players);
-            arra.push("Server "+2+" "+obj.players);
+            console.log("Server 2 - "+obj.players);
+            arra.push("Server 2 -  "+obj.players);
           }
      } 
             }  
@@ -538,14 +534,12 @@ for (step = 0; step < args[1]; step++) {
      if ("error" in json) {
      console.log("Someone help me!");
      } else {
-       var potr = +7776 + +3
-        console.log(potr)
-       var obj = json.find(o => o.ip === "192.223.31.157" && o.port === potr);
+       var obj = json.find(o => o.ip === "192.223.31.157" && o.port === '7779');
           if(!obj) {
-           message.channel.send("Server "+3+" "+"Offline"); 
+           message.channel.send("Server 3 - Offline"); 
           } else {
-            console.log("Server "+3+" "+obj.players);
-            arra.push("Server "+3+" "+obj.players);
+            console.log("Server 3 - "+obj.players);
+            arra.push("Server 3 - "+obj.players);
           }
      } 
             }  
@@ -556,32 +550,29 @@ for (step = 0; step < args[1]; step++) {
      if ("error" in json) {
      console.log("Someone help me!");
      } else {
-       var potr = +7776 + +4
-        console.log(potr)
-       var obj = json.find(o => o.ip === "192.223.31.157" && o.port === potr);
+       var obj = json.find(o => o.ip === "192.223.31.157" && o.port === '7780');
           if(!obj) {
-           message.channel.send("Server "+4+" "+"Offline"); 
+           message.channel.send("Server 4 - Offline"); 
           } else {
-            console.log("Server "+4+" "+obj.players);
-            arra.push("Server "+4+" "+obj.players);
+            console.log("Server 4 - "+obj.players);
+            arra.push("Server 4 - "+obj.players);
           }
      } 
             }  
 });
    request('https://api.scpslgame.com/lobbylist.php?format=json', function(err, resp, html) {
-        if (!err){
+     console.log(err)   
+     if (!err){
               var json = JSON.parse(html);
      if ("error" in json) {
      console.log("Someone help me!");
      } else {
-       var potr = +7776 + +5
-        console.log(potr)
-       var obj = json.find(o => o.ip === "192.223.31.157" && o.port === potr);
+       var obj = json.find(o => o.ip === "192.223.31.157" && o.port === '7781');
           if(!obj) {
-           message.channel.send("Server "+5+" "+"Offline"); 
+           message.channel.send("Server 5 - Offline"); 
           } else {
-            console.log("Server "+5+" "+obj.players);
-            arra.push("Server "+5+" "+obj.players);
+            console.log("Server 5 - "+obj.players);
+            arra.push("Server 5 - "+obj.players);
           }
      } 
             }  
