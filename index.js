@@ -506,8 +506,7 @@ for (step = 0; step < args[1]; step++) {
           if(!obj) {
            message.channel.send("Server 1 - Offline"); 
           } else {
-            console.log("Server 1 - "+obj.players);
-            arra.push("Server 1 - "+obj.players);
+            message.channel.send("Server 1 - "+obj.players);
           }
      } 
             }  
@@ -522,8 +521,7 @@ for (step = 0; step < args[1]; step++) {
           if(!obj) {
            message.channel.send("Server 2 - Offline"); 
           } else {
-            console.log("Server 2 - "+obj.players);
-            arra.push("Server 2 -  "+obj.players);
+            message.channel.send("Server 2 -  "+obj.players);
           }
      } 
             }  
@@ -538,8 +536,7 @@ for (step = 0; step < args[1]; step++) {
           if(!obj) {
            message.channel.send("Server 3 - Offline"); 
           } else {
-            console.log("Server 3 - "+obj.players);
-            arra.push("Server 3 - "+obj.players);
+            message.channel.send("Server 3 - "+obj.players);
           }
      } 
             }  
@@ -554,8 +551,7 @@ for (step = 0; step < args[1]; step++) {
           if(!obj) {
            message.channel.send("Server 4 - Offline"); 
           } else {
-            console.log("Server 4 - "+obj.players);
-            arra.push("Server 4 - "+obj.players);
+            message.channel.send("Server 4 - "+obj.players);
           }
      } 
             }  
@@ -571,8 +567,7 @@ for (step = 0; step < args[1]; step++) {
           if(!obj) {
            message.channel.send("Server 5 - Offline"); 
           } else {
-            console.log("Server 5 - "+obj.players);
-            arra.push("Server 5 - "+obj.players);
+            message.channel.send("Server 5 - "+obj.players);
           }
      } 
             }  
