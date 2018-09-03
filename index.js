@@ -692,6 +692,7 @@ if (command === "ss1" || command === "ss2" || command === "ss3" || command === "
   console.log('comm')
       request(`https://api.scpslgame.com/lobbylist.php?format=json`, function(err, resp, html) {
         console.log('req')
+          console.log(err)
         if (!err){
           console.log('0')
     {
@@ -763,7 +764,7 @@ if (command === "ss1" || command === "ss2" || command === "ss3" || command === "
             }
       }    
 });
-  console.log('err')
+
  }
   if (command === "ss0"||command === "ssk") {
 if (command === "ss0") {
