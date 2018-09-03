@@ -507,6 +507,7 @@ for (step = 0; step < args[1]; step++) {
           if(!obj) {
            serverArray.push("Server "+i+" "+"Offline"); 
           } else {
+            console.log("Server "+i+" "+obj.players);
             serverArray.push("Server "+i+" "+obj.players);
           }
      } 
