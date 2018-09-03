@@ -6,7 +6,6 @@ const prefix = "!";
 const request = require('request');
 const cheerio = require('cheerio');
 const fs = require("fs");
-const search = require('youtube-search');
 client.on("ready", () => {
   console.log("I am ready!");
   client.user.setActivity("!commands");
@@ -25,56 +24,6 @@ client.on("message", (message) => {
     message.channel.send(hello);
   }
  if (!message.content.startsWith(prefix) || message.author.bot) return;
-    if (command === "sea") {
-    var opts = {
-  maxResults: 3,
-  key: process.env.YT_TOKEN,
-  type: "video"
-};
- 
-search(argu, opts, function(err, results) {
-  if(err) return console.log(err);
-  message.channel.send({"embed": {
-    "color": 9245716,
-    "footer": {
-      "text": "Please respond with 1, 2, or 3 in 15 seconds!"
-    },
-    timestamp: new Date(),
-    "title": `Youtube results for '${argu}'`,
-     "author": {
-      "icon_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/YouTube_social_white_circle_%282017%29.svg/1000px-YouTube_social_white_circle_%282017%29.svg.png"
-     },
-        fields: [{
-          name: "1",
-          value: `${results[0]['title']}`,
-        },
-        {
-          name: "2",
-          value: `${results[1]['title']}`,
-        },
-        {
-          name: "3",
-          value: `${results[2]['title']}`,
-        }
-          ],
-      }
-     })    
-     .then(function(){
-        message.channel.awaitMessages(response => message.content, {
-          max: 1,
-          time: 15000,
-          errors: ['time'],
-        })
-        .then((collected) => {
-            message.channel.send(`${results[collected.first().content-1]['link']}`);
-          })
-          .catch(function(){
-            message.channel.send('You didn\'t write 1, 2 or 3');
-          });
-      });
-});
-  }
-
     if (command === "ban") {
       if (message.member.permissions.has('ADMINISTRATOR')) {
        var mention = message.mentions.members.first();
@@ -170,40 +119,6 @@ search(argu, opts, function(err, results) {
   }
   }
   //no more building!
-  var remindtime = args[0]
-  if (command === "remindpls" ) { 
-    if (!isNaN(args[0])) {
-      if (args[1] != undefined) {
-        console.log(args[1]);
-      if (args[1].toLowerCase() === "s" ||args[1].toLowerCase() ===  "m" || args[1].toLowerCase() === "h" ||args[1].toLowerCase() ===  "d" ) {
-       if (args[1].toLowerCase() === "s") {
-         var remindtime = remindtime * 1000;
-       }
-       if (args[1].toLowerCase() === "m") {
-         var remindtime = remindtime * 1000 * 60;
-       }
-       if (args[1].toLowerCase() === "h") {
-         var remindtime = remindtime * 1000 * 3600;
-       }
-       if (args[1].toLowerCase() === "d") {
-         var remindtime = remindtime * 1000 * 3600 * 24;
-       }
-       client.setTimeout(function() {
-
-           message.channel.send(message.author + " Hey, ***listen***!");
-         
-       }, remindtime);
-        
-      } else {
-        message.channel.send("Improper time measurement!");
-      }
-      } else {
-        message.channel.send("Please write \n``'s' for seconds\n'm' for minutes\n'h' for hours\n'd' for days``");
-      } 
-    } else {
-      message.channel.send("please type a number!");
-    }
-  }  
   if (command === "kick") {
      if (message.member.permissions.has('ADMINISTRATOR')) {
        var mention = message.mentions.members.first();
@@ -217,19 +132,6 @@ search(argu, opts, function(err, results) {
        message.channel.send("Nope!");
      }
   }
-   if (command === "warn") {
-      if (message.member.permissions.has('ADMINISTRATOR')) {
-     if (!warnings[message.mentions.members.first()]) warnings[message.mentions.members.first()] = {
-    points: 0,
-  };
-  warnings[message.mentions.members.first()].points++;
-    fs.writeFile("./warnings.json", JSON.stringify(warnings), (err) => {
-    if (err) console.error(err)
-  });
-   } else {
-    message.channel.send("Nope!"); 
-   }
-   }
    if (command === "restart"){
      function resetBot(channel) {
     channel.send("I'll be back shortly!")
