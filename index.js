@@ -494,76 +494,27 @@ for (step = 0; step < args[1]; step++) {
  var title = 6;
  var portEnd = 6;
  if (command === "players") {
-   request(`https://api.scpslgame.com/lobbylist.php?format=json`, function(err, resp, html) {
-        if (!err){       
-                        var json = JSON.parse(html);    
+   function status(theip, portEnd) {
+    request('https://api.scpslgame.com/lobbylist.php?format=json', function(err, resp, html) {
+        if (!err){
+    {
+              var json = JSON.parse(html);
      if ("error" in json) {
-     console.log("wtf0");
+     console.log("Someone help me!");
      } else {
-        var obj = json.find(o => o.ip === theip && o.port === portEnd);
+       var obj = json.find(o => o.ip === theip && o.port === portEnd);
           if(!obj) {
-          var playerCount = obj.players;
-           message.channel.send(`Server 1: ${playerCount}`);
+           return "Offline" 
+          } else {
+            var playerCount = obj.players
+           return playerCount;
           }
-     }                
-        }
-        });
-    request(`https://kigen.co/scpsl/getinfo.php?ip=192.223.31.157&port=7778`, function(err, resp, html) {
-        if (!err){
-          var $ = cheerio.load(html); 
-                      if (html != '{"error":"Server not found"}') {
-                        var json = JSON.parse(html);    
-     if ("error" in json) {
-     console.log("wtf0");
-     } else {
-          var playerCount = json.players;
-           message.channel.send(`Server 2 : ${playerCount}`);
-     }
-                      }
-        }
-        });   
-        request(`https://kigen.co/scpsl/getinfo.php?ip=192.223.31.157&port=7779`, function(err, resp, html) {
-        if (!err){
-          var $ = cheerio.load(html); 
-                      if (html != '{"error":"Server not found"}') {
-                        var json = JSON.parse(html);    
-     if ("error" in json) {
-     console.log("wtf0");
-     } else {
-          var playerCount = json.players;
-           message.channel.send(`Server 3 : ${playerCount}`);
-     }
-                      }
-        }
-        }); 
-        request(`https://kigen.co/scpsl/getinfo.php?ip=192.223.31.157&port=7780`, function(err, resp, html) {
-        if (!err){
-          var $ = cheerio.load(html); 
-                      if (html != '{"error":"Server not found"}') {
-                        var json = JSON.parse(html);    
-     if ("error" in json) {
-     console.log("wtf0");
-     } else {
-          var playerCount = json.players;
-           message.channel.send(`Server 4 : ${playerCount}`);
-     }
-                      }
-        }
-        });  
-   request(`https://kigen.co/scpsl/getinfo.php?ip=192.223.31.157&port=7781`, function(err, resp, html) {
-        if (!err){
-          var $ = cheerio.load(html); 
-                      if (html != '{"error":"Server not found"}') {
-                        var json = JSON.parse(html);    
-     if ("error" in json) {
-     console.log("wtf0");
-     } else {
-          var playerCount = json.players;
-           message.channel.send(`Server 5 : ${playerCount}`);
-     }
-                      }
-        }
-        }); 
+     } 
+            }
+      }    
+});
+   }
+   message.channel.send(`Server1: ${status(192.223.31.157, 7777)}, \nServer2: ${status(192.223.31.157, 7778)}, \nServer3: ${status(192.223.31.157, 7779)}, \nServer4: ${status(192.223.31.157, 7780)}, \nServer5: ${status(192.223.31.157, 7781)}`);
  }
 if (command === "ss1" || command === "ss2" || command === "ss3" || command === "ss4" || command === "ss5" || command === "ssd") {
   if (command === "ss1") {
@@ -591,21 +542,15 @@ if (command === "ss1" || command === "ss2" || command === "ss3" || command === "
     var portEnd = "7778"
     var theip = "192.223.27.212";
   }
-  console.log('comm')
       request('https://api.scpslgame.com/lobbylist.php?format=json', function(err, resp, html) {
-        console.log('req')
-          console.log(err)
         if (!err){
-          console.log('0')
     {
               var json = JSON.parse(html);
      if ("error" in json) {
      console.log("Someone help me!");
      } else {
        var obj = json.find(o => o.ip === theip && o.port === portEnd);
-       console.log("1")
           if(!obj) {
-            console.log("off")
            message.channel.send({"embed": {
     "color": 9245716,
     timestamp: new Date(),
@@ -634,7 +579,6 @@ if (command === "ss1" || command === "ss2" || command === "ss3" || command === "
      }); 
           } else {
             var playerCount = obj.players
-            console.log('on')
                      message.channel.send({"embed": {
     "color": 3498293,
     timestamp: new Date(),
