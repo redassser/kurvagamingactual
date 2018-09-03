@@ -495,7 +495,7 @@ for (step = 0; step < args[1]; step++) {
  var portEnd = 6;
  var serverArray = [];
  if (command === "players") {
-   function status(theip, portEnd, s) {
+  for (i = 1; i < 6; i++) { 
     request('https://api.scpslgame.com/lobbylist.php?format=json', function(err, resp, html) {
         if (!err){
     {
@@ -503,19 +503,17 @@ for (step = 0; step < args[1]; step++) {
      if ("error" in json) {
      console.log("Someone help me!");
      } else {
-       var obj = json.find(o => o.ip === theip && o.port === portEnd);
+       var obj = json.find(o => o.ip === "192.223.31.157" && o.port === 7776+i);
           if(!obj) {
-           serverArray.push(s+"Offline"); 
+           serverArray.push("Server "+i+" "+"Offline"); 
           } else {
-            serverArray.push(s+obj.players);
+            serverArray.push("Server "+i+" "+obj.players);
           }
      } 
             }
       }    
 });
    }
-   status("192.223.31.157",'7777', "Server 1 - ");
-   status("192.223.31.157",'7778', "Server 2 - ");
    console.log(serverArray)
  message.channel.send(serverArray.join("\n"));
  }
