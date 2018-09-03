@@ -634,13 +634,6 @@ if (command === "ss1" || command === "ss2" || command === "ss3" || command === "
 });
 
  }
-  if (command === "ss0"||command === "ssk") {
-if (command === "ss0") {
-  var title = "Official SCP: Secret Laboratory Server";
-  var theip = "192.223.27.212";
-}
-
-   }
 });
 client.on('guildMemberAdd', (member) => {
     member.guild.channels.get('439751531353341954').send(`${member} welcome :)`); 
