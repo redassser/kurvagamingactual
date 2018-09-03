@@ -516,6 +516,7 @@ for (step = 0; step < args[1]; step++) {
    }
    status("192.223.31.157",'7777', "Server 1 - ");
    status("192.223.31.157",'7778', "Server 2 - ");
+   console.log(serverArray)
  message.channel.send(serverArray.join("\n"));
  }
 if (command === "ss1" || command === "ss2" || command === "ss3" || command === "ss4" || command === "ss5" || command === "ssd") {
