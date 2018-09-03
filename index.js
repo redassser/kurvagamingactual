@@ -663,50 +663,45 @@ for (step = 0; step < args[1]; step++) {
         }
         }); 
  }
- if (command === "ss1" || command === "ss2" || command === "ss3" || command === "ss4" || command === "ss5" || command === "ssd") {
-if (command === "ss1") {
-  var title = "Kurva Gaming Dedicated Server #1";
-  var portEnd = "7777"; 
-  var theip = "192.223.31.157"
-}
-else if (command === "ss2") {
-  var title = "Kurva Gaming Dedicated Server #2";
-  var portEnd = "7778";
-  var theip = "192.223.31.157"
-}
-else if (command === "ss3") {
-  var title = "Kurva Gaming Dedicated Server #3";
-  var portEnd = "7779";
-  var theip = "192.223.31.157"
-}
-else if (command === "ss4") {
-  var title = "Kurva Gaming Dedicated Server #4";
-  var portEnd = "7780";
-  var theip = "192.223.31.157"
-}
-else if (command === "ss5") {
-  var title = "Kurva Gaming Dedicated Server #5";
-  var portEnd = "7781";
-  var theip = "192.223.31.157"
-}
- else if (command === "ssd") {
-  var title = "Kurva Gaming Dedicated Server but different";
-  var portEnd = "7778"
-  var theip = "192.223.27.212";
-}
-      request(`https://api.scpslgame.com/lobbylist.php?format=json`, function(err, resp, html) {
+if (command === "ss1" || command === "ss2" || command === "ss3" || command === "ss4" || command === "ss5" || command === "ssd") {
+  if (command === "ss1") {
+    var title = "Kurva Gaming Dedicated Server #1";
+    var portEnd = "7777"; 
+    var theip = "192.223.31.157"
+  } else if (command === "ss2") {
+    var title = "Kurva Gaming Dedicated Server #2";
+    var portEnd = "7778";
+    var theip = "192.223.31.157"
+  } else if (command === "ss3") {
+    var title = "Kurva Gaming Dedicated Server #3";
+    var portEnd = "7779";
+    var theip = "192.223.31.157"
+  } else if (command === "ss4") {
+    var title = "Kurva Gaming Dedicated Server #4";
+    var portEnd = "7780";
+    var theip = "192.223.31.157"
+  } else if (command === "ss5") {
+    var title = "Kurva Gaming Dedicated Server #5";
+    var portEnd = "7781";
+    var theip = "192.223.31.157"
+  } else if (command === "ssd") {
+    var title = "Kurva Gaming Dedicated Server but different";
+    var portEnd = "7778"
+    var theip = "192.223.27.212";
+  }
+                   request(`https://api.scpslgame.com/lobbylist.php?format=json`, function(err, resp, html) {
         if (!err){
-          {
-        var json = JSON.parse(html);   
+    {
+              var json = JSON.parse(html);
      if ("error" in json) {
-     console.log("Something is wrong!");
+     console.log("Someone help me!");
      } else {
- var obj = json.find(o => o.ip === theip && o.port === portEnd);
-       if (!obj) {
-                   message.channel.send({"embed": {
+       var obj = json.find(o => o.ip === theip && o.port === portEnd);
+          if(!obj) {
+           message.channel.send({"embed": {
     "color": 9245716,
     timestamp: new Date(),
-    "title": `${title}`,
+    "title": `${theTitle}`,
      "author": {
       "name": "SCP Secret Laboratory [OFFLINE]",
       "icon_url": "http://scp-sl.wdfiles.com/local--files/nav:side/scp-sl-logo.png"
@@ -729,12 +724,12 @@ else if (command === "ss5") {
           ],
       }
      }); 
-     } else {
-       var playerCount = obj.players
-            message.channel.send({"embed": {
+          } else {
+            var playerCount = obj.players
+                     message.channel.send({"embed": {
     "color": 3498293,
     timestamp: new Date(),
-    "title": `${title}`,
+    "title": `${theTitle}`,
      "author": {
       "name": "SCP Secret Laboratory",
       "icon_url": "http://scp-sl.wdfiles.com/local--files/nav:side/scp-sl-logo.png"
@@ -757,11 +752,11 @@ else if (command === "ss5") {
           ],
       }
      });  
-     }
+          }
+     } 
             }
       }    
-        }
- });
+});
  }
   if (command === "ss0"||command === "ssk") {
 if (command === "ss0") {
