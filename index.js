@@ -495,21 +495,21 @@ for (step = 0; step < args[1]; step++) {
  var portEnd = 7;
 
  if (command === "players") {
-  for (i = 0; i < 6; i++) { 
+  for (x = 0; x < 6; x++) { 
     request('https://api.scpslgame.com/lobbylist.php?format=json', function(err, resp, html) {
         if (!err){
               var json = JSON.parse(html);
      if ("error" in json) {
      console.log("Someone help me!");
      } else {
-       var potr = +7776 + +i
+       var potr = +7776 + +x
         console.log(potr)
        var obj = json.find(o => o.ip === "192.223.31.157" && o.port === "7776"+potr);
           if(!obj) {
-           message.channel.send("Server "+i+" "+"Offline"); 
+           message.channel.send("Server "+x+" "+"Offline"); 
           } else {
-            console.log("Server "+i+" "+obj.players);
-            message.channel.send("Server "+i+" "+obj.players);
+            console.log("Server "+x+" "+obj.players);
+            message.channel.send("Server "+x+" "+obj.players);
           }
      } 
             }
