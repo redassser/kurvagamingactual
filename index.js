@@ -609,7 +609,7 @@ if (command === "ss1" || command === "ss2" || command === "ss3" || command === "
            message.channel.send({"embed": {
     "color": 9245716,
     timestamp: new Date(),
-    "title": `${theTitle}`,
+    "title": `${title}`,
      "author": {
       "name": "SCP Secret Laboratory [OFFLINE]",
       "icon_url": "http://scp-sl.wdfiles.com/local--files/nav:side/scp-sl-logo.png"
@@ -638,7 +638,7 @@ if (command === "ss1" || command === "ss2" || command === "ss3" || command === "
                      message.channel.send({"embed": {
     "color": 3498293,
     timestamp: new Date(),
-    "title": `${theTitle}`,
+    "title": `${title}`,
      "author": {
       "name": "SCP Secret Laboratory",
       "icon_url": "http://scp-sl.wdfiles.com/local--files/nav:side/scp-sl-logo.png"
