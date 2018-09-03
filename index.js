@@ -493,7 +493,7 @@ for (step = 0; step < args[1]; step++) {
  var theip = 6;
  var title = 6;
  var portEnd = 6;
- var serverArray = [];
+
  if (command === "players") {
   for (i = 1; i < 6; i++) { 
     request('https://api.scpslgame.com/lobbylist.php?format=json', function(err, resp, html) {
@@ -503,6 +503,7 @@ for (step = 0; step < args[1]; step++) {
      if ("error" in json) {
      console.log("Someone help me!");
      } else {
+        const serverArray = [];
        var obj = json.find(o => o.ip === "192.223.31.157" && o.port === 7776+i);
           if(!obj) {
            serverArray.push("Server "+i+" "+"Offline"); 
