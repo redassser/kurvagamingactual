@@ -1,12 +1,12 @@
 
-var Discord = require("discord.js");
-var client = new Discord.Client();
-var config = require("./config.json");
-var prefix = "!";
-var request = require('request');
-var cheerio = require('cheerio');
-var fs = require("fs");
-var search = require('youtube-search');
+const Discord = require("discord.js");
+const client = new Discord.Client();
+const config = require("./config.json");
+const prefix = "!";
+const request = require('request');
+const cheerio = require('cheerio');
+const fs = require("fs");
+const search = require('youtube-search');
 client.on("ready", () => {
   console.log("I am ready!");
   client.user.setActivity("!commands");
@@ -592,18 +592,18 @@ for (step = 0; step < args[1]; step++) {
  var title = 6;
  var portEnd = 6;
  if (command === "players") {
-   request(`https://kigen.co/scpsl/getinfo.php?ip=192.223.31.157&port=7777`, function(err, resp, html) {
-        if (!err){
-          var $ = cheerio.load(html); 
-                      if (html != '{"error":"Server not found"}') {
+   request(`https://api.scpslgame.com/lobbylist.php?format=json`, function(err, resp, html) {
+        if (!err){       
                         var json = JSON.parse(html);    
      if ("error" in json) {
      console.log("wtf0");
      } else {
-          var playerCount = json.players;
+        var obj = json.find(o => o.ip === theip && o.port === portEnd);
+          if(!obj) {
+          var playerCount = obj.players;
            message.channel.send(`Server 1: ${playerCount}`);
-     }
-                      }
+          }
+     }                
         }
         });
     request(`https://kigen.co/scpsl/getinfo.php?ip=192.223.31.157&port=7778`, function(err, resp, html) {
@@ -690,7 +690,7 @@ if (command === "ss1" || command === "ss2" || command === "ss3" || command === "
     var theip = "192.223.27.212";
   }
   console.log('comm')
-      request(`https://api.scpslgame.com/lobbylist.php?format=json`, function(err, resp, html) {
+      request('https://api.scpslgame.com/lobbylist.php?format=json', function(err, resp, html) {
         console.log('req')
           console.log(err)
         if (!err){
