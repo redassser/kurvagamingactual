@@ -629,8 +629,7 @@ if (command === "ss1" || command === "ss2" || command === "ss3" || command === "
      });  
           }
      } 
-            }
-      }    
+            }   
 });
 
  }
