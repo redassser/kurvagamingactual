@@ -514,7 +514,7 @@ for (step = 0; step < args[1]; step++) {
       }    
 });
    }
-   message.channel.send(`Server1: ${status(192.223.31.157, 7777)}, \nServer2: ${status(192.223.31.157, 7778)}, \nServer3: ${status(192.223.31.157, 7779)}, \nServer4: ${status(192.223.31.157, 7780)}, \nServer5: ${status(192.223.31.157, 7781)}`);
+   message.channel.send(`Server1: ${status(192.223.31.157, 7777)}, \n Server2: ${status(192.223.31.157, 7778)}, \n Server3: ${status(192.223.31.157, 7779)}, \n Server4: ${status(192.223.31.157, 7780)}, \n Server5: ${status(192.223.31.157, 7781)}`);
  }
 if (command === "ss1" || command === "ss2" || command === "ss3" || command === "ss4" || command === "ss5" || command === "ssd") {
   if (command === "ss1") {
