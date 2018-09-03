@@ -695,14 +695,14 @@ else if (command === "ss5") {
   var theip = "192.223.27.212";
 }
                request(`https://api.scpslgame.com/lobbylist.php?format=json`, function(err, resp, html) {
-                 console.log(jj);
+                 console.log('jj');
         if (!err){
     {
               var json = JSON.parse(html);
      if ("error" in json) {
      console.log("wtf0");
      } else {
-       console.log(gg);
+       console.log('gg');
        var obj = json.find(o => o.ip === theip && o.port === portEnd);
           if(!obj) {
            message.channel.send({"embed": {
@@ -732,7 +732,7 @@ else if (command === "ss5") {
       }
      }); 
           } else {
-            console.log(hh);
+            console.log('hh');
             var playerCount = obj.players
                       message.channel.send({"embed": {
     "color": 3498293,
