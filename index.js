@@ -505,7 +505,7 @@ for (step = 0; step < args[1]; step++) {
      } else {
        var obj = json.find(o => o.ip === theip && o.port === portEnd);
           if(!obj) {
-           return "Offline" 
+           serverArray.push(s+"Offline"); 
           } else {
             serverArray.push(s+obj.players);
           }
