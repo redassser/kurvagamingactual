@@ -504,31 +504,31 @@ for (step = 0; step < args[1]; step++) {
      console.log("Someone help me!");
      } else {
        var ser1 = json.find(o => o.ip === "192.223.31.157" && o.port === '7777');
-          if(!obj) {
+          if(!ser1) {
            arra.push("Server 1 - Offline"); 
           } else {
             arra.push("Server 1 - "+obj.players);
           }
        var ser2 = json.find(o => o.ip === "192.223.31.157" && o.port === '7778');
-          if(!obj) {
+          if(!ser2) {
            arra.push("Server 2 - Offline"); 
           } else {
             arra.push("Server 2 - "+obj.players);
           }
        var ser3 = json.find(o => o.ip === "192.223.31.157" && o.port === '7779');
-          if(!obj) {
+          if(!ser3) {
            arra.push("Server 3 - Offline"); 
           } else {
             arra.push("Server 3 - "+obj.players);
           }
        var ser4 = json.find(o => o.ip === "192.223.31.157" && o.port === '7780');
-          if(!obj) {
+          if(!ser4) {
            arra.push("Server 4 - Offline"); 
           } else {
             arra.push("Server 4 - "+obj.players);
           }
        var ser5 = json.find(o => o.ip === "192.223.31.157" && o.port === '77781');
-          if(!obj) {
+          if(!ser5) {
            arra.push("Server 5 - Offline"); 
           } else {
             arra.push("Server 5 - "+obj.players);
