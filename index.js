@@ -489,7 +489,7 @@ for (step = 0; step < args[1]; step++) {
   }
   }
   //oh look the servers isnt that neat
-   if (message.channel.id === "442739266909503489" || message.channel.id === "444670578784337920" || message.channel.id === "464091801331040297") {
+   if (message.channel.id === "442739266909503489" || message.channel.id === "486892954297040896" || message.channel.id === "464091801331040297") {
  var theip = 7;
  var title = 7;
  var portEnd = 7;
@@ -538,7 +538,7 @@ for (step = 0; step < args[1]; step++) {
             }  
 });
  }
-if (command === "ss1" || command === "ss2" || command === "ss3" || command === "ss4" || command === "ss5" || command === "ss0") {
+if (command === "ss1" || command === "ss2" || command === "ss3" || command === "ss4" || command === "ss5" || command === "ss0"|| command === "ss1w"|| command === "ss2w"|| command === "ss3w") {
   if (command === "ss1") {
     var title = "Kurva Gaming Dedicated Server #1";
     var portEnd = "7777"; 
@@ -563,7 +563,20 @@ if (command === "ss1" || command === "ss2" || command === "ss3" || command === "
     var title = "Official SCP: Secret Laboratory Server";
     var portEnd = "7777"
     var theip = "192.223.27.212";
+  } else if (command === "ss1w") {
+    var title = "Kurva Gaming West Dedicated Server #1";
+    var portEnd = "7777"
+    var theip = "162.248.94.92";
+  } else if (command === "ss2w") {
+    var title = "Kurva Gaming West Dedicated Server #2";
+    var portEnd = "7778"
+    var theip = "162.248.94.92";
+  } else if (command === "ss3w") {
+    var title = "Kurva Gaming West Dedicated Server #3";
+    var portEnd = "7779"
+    var theip = "162.248.94.92";
   }
+  
       request('https://api.scpslgame.com/lobbylist.php?format=json', function(err, resp, html) {
         if (!err){
     {
