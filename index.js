@@ -65,6 +65,10 @@ client.on("message", (message) => {
     }
   }
    if (command === "watchlist") {
+     if (message.member.permissions.has("MANAGE_MESSAGES")){
+     message.channel.send("``Staff only``")
+       return;
+     }
     function hasWarns (value) {
     return value.length > 1;
     }
