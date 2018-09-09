@@ -33,6 +33,14 @@ client.on("message", (message) => {
  if (!message.content.startsWith(prefix) || message.author.bot) return;
   //This is for warnings and stuff down here
   if (command === "warn") {
+  if (!message.member.permissions.has("MANAGE_MESSAGES")) {
+  message.channel.send("``Staff only``");
+    return;
+  }
+  if (args.length =< 2) {
+  message.channel.send("``!warn [name] [reason]``");
+    return;
+  }
     if (client.warn.has(args[0].toLowerCase())) {
       client.warn.push(args[0].toLowerCase(), args.join(" "))
     } else {
@@ -41,7 +49,7 @@ client.on("message", (message) => {
   }
   if (command === "check") {
     if (!message.member.permissions.has("MANAGE_MESSAGES")) {
-    message.channel.send("``Moderators only``");
+    message.channel.send("``Staff only``");
     return;
     }
     if (args.length != 1) {
