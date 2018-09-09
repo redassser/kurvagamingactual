@@ -42,8 +42,10 @@ client.on("message", (message) => {
     return;
   }
     if (client.warn.has(args[0].toLowerCase())) {
-      client.warn.push(args[0].toLowerCase(), args.join(" "))
+      message.channel.send("``"+args[0]+"has been warned again``")
+      client.warn.push(args.shift().toLowerCase(), args.join(" "))
     } else {
+      message.channel.send("``"+args[0]+"has been warned``")
   client.warn.set(args.shift().toLowerCase(), [args.join(" ")]);
   }
   }
