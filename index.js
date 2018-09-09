@@ -77,10 +77,26 @@ if (array.length != 0) {
     for (var i = 0; i < array.length; i++) {
     array[i] = client.warn.get(array[i].toLowerCase()).length + " warns - " + array[i]
   }
-  message.channel.send("``These people have more than 1 warning...``\n"+array.join('\n'));
+  message.channel.send("``These people have been warned...``\n"+array.join('\n'));
 } else {
   message.channel.send("``No people with more than 1 warning``")
 }
+  }
+   if (command === "remove") {
+  if (!message.member.permissions.has('MANAGE_MESSAGES')){
+      message.channel.send("``Staff only``");
+      return; }
+    if (args.length != 1) {
+    message.channel.send("``!remove [name]``");
+      return; }
+      else {
+        if (client.warn.has(args[0])) {
+            client.warn.delete(args[0]);
+            message.channel.send("``Warnings removed.``")
+  } else {
+  message.channel.send("``No warnings for that name``");
+  }
+  }
   }
   //No more warnings uwu
     if (command === "ban") {
