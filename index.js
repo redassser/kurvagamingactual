@@ -26,7 +26,6 @@ client.on("message", (message) => {
   var argo = argu.replace(args[0], "");
   var num = parseInt(command.replace("scp-", ""), 10);
   var commandi = JSON.parse(fs.readFileSync("./commands.json", "utf8"));
-  var warnings = JSON.parse(fs.readFileSync("./warnings.json", "utf8"));
   if (message.isMentioned("464042836032225281")) {
     var hello = config.hello[Math.floor(Math.random()*config.hello.length)];
     message.channel.send(hello);
