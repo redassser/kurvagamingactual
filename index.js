@@ -37,7 +37,7 @@ client.on("message", (message) => {
   message.channel.send("``Staff only``");
     return;
   }
-  if (args.length =< 2) {
+  if (args.length <= 2) {
   message.channel.send("``!warn [name] [reason]``");
     return;
   }
