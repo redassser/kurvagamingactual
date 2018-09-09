@@ -33,14 +33,26 @@ client.on("message", (message) => {
  if (!message.content.startsWith(prefix) || message.author.bot) return;
   //This is for warnings and stuff down here
   if (command === "warn") {
-    if (client.warn.has(args[0])) {
-      client.warn.set(args[0], client.warn.get(args.shift())+"\n"+args.join(" "))
+    if (client.warn.has(args[0].toLowerCase())) {
+      client.warn.set(args[0].toLowerCase(), client.warn.get(args.shift())+"\n"+args.join(" "))
     } else {
-  client.warn.set(args.shift(), args.join(" "));
+  client.warn.set(args.shift().toLowerCase(), args.join(" "));
   }
   }
-  if (command === "watchlist") {
-    message.channel.send(client.warn.get(args[0]))
+  if (command === "check") {
+    if (!message.member.permissions.has("MANAGE_MESSAGES")) {
+    message.channel.send("``Moderators only``");
+    return;
+    }
+    if (args.length != 1) {
+    message.channel.send("``!check [name]``");
+    return;
+    }
+    if (client.warn.has(args[0])) {
+    message.channel.send("``"+args[0]+" has been warned for these reasons...``"+client.warn.get(args[0].toLowerCase()))
+    } else {
+    message.channel.send("``There are no warnings under this name``")
+    }
   }
   //No more warnings uwu
     if (command === "ban") {
