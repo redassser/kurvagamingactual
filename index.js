@@ -70,7 +70,10 @@ client.on("message", (message) => {
     }
     const array = client.warn.keyArray().filter(hasWarns)
 if (array.length != 0) {
-  message.channel.send(" These people have more than 1 warning...``\n"+array.join('\n')+"``");
+    for (var i = 0; i < array.length; i++) {
+    array[i] = client.warn.get(array[i].toLowerCase()).length + " warns - " + array[i]
+  }
+  message.channel.send("``These people have more than 1 warning...``\n"+array.join('\n'));
 } else {
   message.channel.send("``No people with more than 1 warning``")
 }
