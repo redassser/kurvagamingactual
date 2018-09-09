@@ -37,15 +37,15 @@ client.on("message", (message) => {
   message.channel.send("``Staff only``");
     return;
   }
-  if (args.length <= 2) {
+  if (args.length < 2) {
   message.channel.send("``!warn [name] [reason]``");
     return;
   }
     if (client.warn.has(args[0].toLowerCase())) {
-      message.channel.send("``"+args[0]+"has been warned again``")
+      message.channel.send("``"+args[0]+" has been warned again``")
       client.warn.push(args.shift().toLowerCase(), args.join(" "))
     } else {
-      message.channel.send("``"+args[0]+"has been warned``")
+      message.channel.send("``"+args[0]+" has been warned``")
   client.warn.set(args.shift().toLowerCase(), [args.join(" ")]);
   }
   }
