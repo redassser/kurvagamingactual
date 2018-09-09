@@ -34,9 +34,9 @@ client.on("message", (message) => {
   //This is for warnings and stuff down here
   if (command === "warn") {
     if (client.warn.has(args[0])) {
-      client.warn.set(args[0], client.warn.get(args.shift()).push(args.join(" ")))
+      client.warn.set(args[0], client.warn.get(args.shift())+"\n"+push(args.join(" ")))
     } else {
-  client.warn.set(args.shift(), `[${args.join(" ")}]`);
+  client.warn.set(args.shift(), args.join(" "));
   }
   }
   if (command === "watchlist") {
