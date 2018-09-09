@@ -34,9 +34,9 @@ client.on("message", (message) => {
   //This is for warnings and stuff down here
   if (command === "warn") {
     if (client.warn.has(args[0].toLowerCase())) {
-      client.warn.set(args[0].toLowerCase(), client.warn.get(args.shift())+"\n"+args.join(" "))
+      client.warn.push(args[0].toLowerCase(), args.join(" "))
     } else {
-  client.warn.set(args.shift().toLowerCase(), args.join(" "));
+  client.warn.set(args.shift().toLowerCase(), [args.join(" ")]);
   }
   }
   if (command === "check") {
@@ -48,8 +48,8 @@ client.on("message", (message) => {
     message.channel.send("``!check [name]``");
     return;
     }
-    if (client.warn.has(args[0])) {
-    message.channel.send("``"+args[0]+" has been warned for these reasons...``"+client.warn.get(args[0].toLowerCase()))
+    if (client.warn.has(args[0].toLowerCase())) {
+    message.channel.send("``"+args[0]+" has been warned for these reasons...\n``"+client.warn.get(args[0].toLowerCase()))
     } else {
     message.channel.send("``There are no warnings under this name``")
     }
