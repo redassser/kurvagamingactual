@@ -49,7 +49,7 @@ client.on("message", (message) => {
     return;
     }
     if (client.warn.has(args[0].toLowerCase())) {
-    message.channel.send("``"+args[0]+" has been warned for these reasons...\n``"+client.warn.get(args[0].toLowerCase()))
+    message.channel.send("``"+args[0]+" has been warned "+client.warn.get(args[0].toLowerCase()).length+" times for these reasons...``\n"+client.warn.get(args[0].toLowerCase()).join("\n"))
     } else {
     message.channel.send("``There are no warnings under this name``")
     }
