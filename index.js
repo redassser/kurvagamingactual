@@ -43,7 +43,7 @@ client.on("message", (message) => {
   }
     if (client.warn.has(args[0].toLowerCase())) {
       message.channel.send("``"+args[0]+" has been warned again``")
-      client.warn.push(args.shift().toLowerCase(), args.join(" "), allowDupes = True)
+      client.warn.push(args.shift().toLowerCase(), args.join(" "), allowDupes = true)
     } else {
       message.channel.send("``"+args[0]+" has been warned``")
   client.warn.set(args.shift().toLowerCase(), [args.join(" ")]);
@@ -79,7 +79,7 @@ if (array.length != 0) {
   }
   message.channel.send("``These people have been warned...``\n"+array.join('\n'));
 } else {
-  message.channel.send("``No people with more than 1 warning``")
+  message.channel.send("``No people with any warnings``")
 }
   }
    if (command === "remove") {
