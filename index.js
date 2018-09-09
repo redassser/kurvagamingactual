@@ -43,7 +43,7 @@ client.on("message", (message) => {
   }
     if (client.warn.has(args[0].toLowerCase())) {
       message.channel.send("``"+args[0]+" has been warned again``")
-      client.warn.push(args.shift().toLowerCase(), args.join(" "))
+      client.warn.push(args.shift().toLowerCase(), args.join(" "), allowDupes = True)
     } else {
       message.channel.send("``"+args[0]+" has been warned``")
   client.warn.set(args.shift().toLowerCase(), [args.join(" ")]);
