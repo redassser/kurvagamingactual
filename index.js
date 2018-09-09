@@ -649,6 +649,8 @@ if (command === "ss1" || command === "ss2" || command === "ss3" || command === "
  }
 });
 client.on('guildMemberAdd', (member) => {
+  if (member.guild.id === "432332961057079297") {
     member.guild.channels.get('439751531353341954').send(`${member} welcome :)`); 
+  }
 });
 client.login(process.env.BOT_TOKEN);
