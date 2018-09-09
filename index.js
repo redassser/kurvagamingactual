@@ -5,7 +5,15 @@ const config = require("./config.json");
 const prefix = "!";
 const request = require('request');
 const cheerio = require('cheerio');
+const Enmap = require('enmap');
+const EnmapMongo = require("enmap-mongo");
 const fs = require("fs");
+client.warn = new Enmap({ provider: new EnmapMongo({
+  name: `warnings`,
+  dbName: `warnings`,
+  url: process.env.MONGODB
+})
+})
 client.on("ready", () => {
   console.log("I am ready!");
   client.user.setActivity("!commands");
