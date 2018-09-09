@@ -64,6 +64,17 @@ client.on("message", (message) => {
     message.channel.send("``There are no warnings under this name``")
     }
   }
+   if (command === "watchlist") {
+    function hasWarns (value) {
+    return value.length > 1;
+    }
+    const array = client.warn.keyArray().filter(hasWarns)
+if (array.length != 0) {
+  message.channel.send(" These people have more than 1 warning...``\n"+array.join('\n')+"``");
+} else {
+  message.channel.send("``No people with more than 1 warning``")
+}
+  }
   //No more warnings uwu
     if (command === "ban") {
       if (message.member.permissions.has('ADMINISTRATOR')) {
