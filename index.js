@@ -32,14 +32,11 @@ client.on("message", (message) => {
   }
  if (!message.content.startsWith(prefix) || message.author.bot) return;
   //This is for warnings and stuff down here
-  if (command === "try") {
-  client.warn.set(args.shift(), args)
-  }
   if (command === "warn") {
     if (client.warn.has(args[0])) {
       client.warn.set(args[0], client.warn.get(args.shift()).push(args.join(" ")))
     } else {
-  client.warn.set(args.shift(), args.join(" "));
+  client.warn.set(args.shift(), `[${args.join(" ")}]`);
   }
   }
   if (command === "watchlist") {
