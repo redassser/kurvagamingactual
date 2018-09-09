@@ -31,6 +31,18 @@ client.on("message", (message) => {
     message.channel.send(hello);
   }
  if (!message.content.startsWith(prefix) || message.author.bot) return;
+  //This is for warnings and stuff down here
+  if (command === "warn") {
+    if (client.warn.has(args[0])) {
+      client.warn.set(args[0], client.warn.get(args.shift()).push(args.join(" ")))
+    } else {
+  client.warn.set(args.shift(), args.join(" "));
+  }
+  }
+  if (command === "watchlist") {
+    message.channel.send(client.warn.get(args[0]))
+  }
+  //No more warnings uwu
     if (command === "ban") {
       if (message.member.permissions.has('ADMINISTRATOR')) {
        var mention = message.mentions.members.first();
