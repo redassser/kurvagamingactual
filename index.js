@@ -219,24 +219,26 @@ resetBot(message.channel);
    message.channel.send("Nope!");
  }
    } 
-  if (command.startsWith("scp-")&&num >= 1 && num <= 4000) {
-    if (num.toString().length === 1) { 
-      var scp = "00"+`${num}`;      
+  if (command.startsWith("scp-")&&num >= 0 && num <= 4000) {
+    switch (num.toString().length) {
+      case 1:
+        var scp = "00"+num;
+        break;
+      case 2:
+        var scp = "0"+num;
+        break;
+      case 3:
+        var scp = num
+        break;
+      case 4:
+        var scp = num;
+        break;
     }
-     if (num.toString().length === 2) {
-      var scp = "0"+`${num}`;      
-    }
-     if (num.toString().length === 3) {
-      var scp =`${num}`;   
-    }
-     if (num.toString().length === 4) {
-      var scp = `${num}`;    
-    } 
     if(command.endsWith("-j")) {
       message.channel.send(`http://www.scp-wiki.net/scp-${scp}-j`);
     } else {
      message.channel.send(`http://www.scp-wiki.net/scp-${scp}`);
-     }
+    }
   }
    if (command === "hug") {
     var mention = message.mentions.members.first();
@@ -249,23 +251,26 @@ resetBot(message.channel);
   if (command === "donate") {
       message.channel.send("Donate here: https://www.paypal.com/pools/c/839i9RcUvF")
 }
-  if (command === "purge" && !isNaN(args[0])) {
-
+  if (command === "purge") {
     if (message.member.permissions.has('VIEW_AUDIT_LOG')) {
-    var numb = args[0]
-    message.channel.bulkDelete(numb);
-        message.channel.send(`${numb} messages deleted!`)
+     message.channel.send("``Senior staff only``");
+      return;
+    }
+    if (!isNaN(args[0]) || args.length != 1) {
+     message.channel.send("``!purge [number]``");
+      return;
+    }
+    message.channel.bulkDelete(args[0]);
+        message.channel.send(`${args[0]} messages deleted!`)
   .then(msg => {
     msg.delete(5000);
   })
   .catch();
-    }
-    else
-      message.channel.send("Nope.");
+     
   }
  if (command === "support") {
    message.channel.send("No worries, a staff member will be with you soon!")
-  client.channels.get("442726774909042689").send(`<@&432338355683065856>, ${message.author} is having a bit of a problem in ${message.channel}`);
+  client.channels.get("466373577503932441").send(`<@&432337866493001740>, ${message.author} is having a bit of a problem in ${message.channel}`);
   }
   if (command === "commands") {
     message.channel.send("You have been messaged the commands!")
