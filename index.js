@@ -64,7 +64,7 @@ client.on("message", (message) => {
     message.channel.send("``There are no warnings under this name``")
     }
   }
-   if (command === "watchlist") {
+   if (command === "list") {
      if (!message.member.permissions.has("MANAGE_MESSAGES")){
      message.channel.send("``Staff only``")
        return;
@@ -98,21 +98,39 @@ if (array.length != 0) {
   }
   }
   }
+  if (command === "watchlist) {
+     if (!message.member.permissions.has("MANAGE_MESSAGES")){
+     message.channel.send("``Staff only``")
+       return;
+     }
+    function hasWarns (value) {
+    return value.length >= 2;
+    }
+    const array = client.warn.keyArray().filter(hasWarns)
+if (array.length != 0) {
+    for (var i = 0; i < array.length; i++) {
+    array[i] = client.warn.get(array[i].toLowerCase()).length + " warns - " + array[i]
+  }
+  message.channel.send("``These people have been warned more than once...``\n"+array.join('\n'));
+} else {
+  message.channel.send("``No people with more than one warning``")
+}
+  }
   //No more warnings uwu
     if (command === "ban") {
       if (message.member.permissions.has('ADMINISTRATOR')) {
-       var mention = message.mentions.members.first();
-    if (message.isMentioned(mention)) {
+      message.channel.send("``Administrator only``");
+        return;
+      }
+      var mention = message.mentions.members.first();
+      if (message.isMentioned(mention)) {
       mention.ban();
-    message.channel.send(`${mention} has been banned.`);
-   
-  }
-    else {
-      message.channel.send(`You have to mention someone!`);
-    }
-     } else {
-       message.channel.send("Nope!");
-     }
+      message.channel.send('``'+mention+' has been banned.``');
+      }
+      else {
+      message.channel.send('``You have to mention someone``');
+      }
+ 
   }
   if (command === "cah") {
     var randomCAH = config.whiteCard[Math.floor(Math.random()*config.whiteCard.length)];
