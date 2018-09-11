@@ -98,7 +98,7 @@ if (array.length != 0) {
   }
   }
   }
-  if (command === "watchlist) {
+  if (command === "watchlist") {
      if (!message.member.permissions.has("MANAGE_MESSAGES")){
      message.channel.send("``Staff only``")
        return;
