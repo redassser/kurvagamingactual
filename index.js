@@ -64,7 +64,7 @@ client.on("message", (message) => {
     message.channel.send("``There are no warnings under this name``")
     }
   }
-   if (command === "list") {
+   if (command === "watchlist") {
      if (!message.member.permissions.has("MANAGE_MESSAGES")){
      message.channel.send("``Staff only``")
        return;
@@ -98,15 +98,12 @@ if (array.length != 0) {
   }
   }
   }
-  if (command === "watchlist") {
+  if (command === "list") {
      if (!message.member.permissions.has("MANAGE_MESSAGES")){
      message.channel.send("``Staff only``")
        return;
      }
-    function hasWarns (value) {
-    return value.length >= 2;
-    }
-    const array = client.warn.keyArray().filter(hasWarns)
+    const array = client.warn.keyArray()
 if (array.length != 0) {
     for (var i = 0; i < array.length; i++) {
     array[i] = client.warn.get(array[i].toLowerCase()).length + " warns - " + array[i]
@@ -270,7 +267,7 @@ resetBot(message.channel);
       message.channel.send("Donate here: https://www.paypal.com/pools/c/839i9RcUvF")
 }
   if (command === "purge") {
-    if (message.member.permissions.has('VIEW_AUDIT_LOG')) {
+    if (!message.member.permissions.has('VIEW_AUDIT_LOG')) {
      message.channel.send("``Senior staff only``");
       return;
     }
