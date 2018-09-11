@@ -271,7 +271,7 @@ resetBot(message.channel);
      message.channel.send("``Senior staff only``");
       return;
     }
-    if (!isNaN(args[0]) || args.length != 1) {
+    if (isNaN(args[0]) || args.length != 1) {
      message.channel.send("``!purge [number]``");
       return;
     }
