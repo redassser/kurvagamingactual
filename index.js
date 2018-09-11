@@ -77,9 +77,9 @@ if (array.length != 0) {
     for (var i = 0; i < array.length; i++) {
     array[i] = client.warn.get(array[i].toLowerCase()).length + " warns - " + array[i]
   }
-  message.channel.send("``These people have been warned...``\n"+array.join('\n'));
+  message.channel.send("``These people have been warned more than once...``\n"+array.join('\n'));
 } else {
-  message.channel.send("``No people with any warnings``")
+  message.channel.send("``No people with more than one warning``")
 }
   }
    if (command === "remove") {
@@ -108,9 +108,9 @@ if (array.length != 0) {
     for (var i = 0; i < array.length; i++) {
     array[i] = client.warn.get(array[i].toLowerCase()).length + " warns - " + array[i]
   }
-  message.channel.send("``These people have been warned more than once...``\n"+array.join('\n'));
+  message.channel.send("``These people have been warned...``\n"+array.join('\n'));
 } else {
-  message.channel.send("``No people with more than one warning``")
+  message.channel.send("``No people have been warned``")
 }
   }
   //No more warnings uwu
