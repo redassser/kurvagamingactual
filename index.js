@@ -70,7 +70,7 @@ client.on("message", (message) => {
        return;
      }
     function hasWarns (value) {
-    return value.length > 1;
+    return client.warn.get(value).length > 1;
     }
     const array = client.warn.keyArray().filter(hasWarns)
 if (array.length != 0) {
