@@ -229,7 +229,7 @@ if (array.length != 0) {
      function resetBot(channel) {
     channel.send("I'll be back shortly!")
     .then(msg => client.destroy())
-    .then(() => client.login(config.token));
+    .then(() => client.login(process.env.BOT_TOKEN));
 }
  if (message.member.permissions.has('MANAGE_MESSAGES')) {
 resetBot(message.channel);
