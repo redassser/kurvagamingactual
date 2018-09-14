@@ -123,7 +123,7 @@ if (command === "mute) {
     message.channel.send("``!mute [mention]``")
     return;
   }
-  const mention = message.mentions.members.first();
+  var mention = message.mentions.members.first();
   if (message.isMentioned(mention)) {
     message.channel.send(+mention+"`` has been muted``")
   }
