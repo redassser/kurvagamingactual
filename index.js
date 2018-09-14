@@ -114,7 +114,7 @@ if (array.length != 0) {
 }
   }
   //No more warnings uwu
-if (command === "mute) {
+if (command === "mute") {
   if (!message.author.permissions.has("MANAGE_MESSAGES")) {
     message.channel.send("``Moderators only``");
     return;
