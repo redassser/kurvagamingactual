@@ -90,8 +90,8 @@ if (array.length != 0) {
     message.channel.send("``!remove [name]``");
       return; }
       else {
-        if (client.warn.has(args[0])) {
-            client.warn.delete(args[0]);
+        if (client.warn.has(args[0].toLowerCase())) {
+            client.warn.delete(args[0].toLowerCase());
             message.channel.send("``Warnings removed.``")
   } else {
   message.channel.send("``No warnings for that name``");
@@ -114,6 +114,23 @@ if (array.length != 0) {
 }
   }
   //No more warnings uwu
+if (command === "mute) {
+  if (!message.author.permissions.has("MANAGE_MESSAGES")) {
+    message.channel.send("``Moderators only``");
+    return;
+  }
+  if (args.length != 1) {
+    message.channel.send("``!mute [mention]``")
+    return;
+  }
+  const mention = message.mentions.members.first();
+  if (message.isMentioned(mention)) {
+    message.channel.send(+mention+"`` has been muted``")
+  }
+  else 
+    message.channel.send("``Please mention someone``")
+  }
+}
     if (command === "ban") {
       if (message.member.permissions.has('ADMINISTRATOR')) {
       message.channel.send("``Administrator only``");
