@@ -645,6 +645,12 @@ for (step = 0; step < args[1]; step++) {
           } else {
             arra.push("Server 5 - "+ser5.players);
           }
+       var ser0 = json.find(o => o.ip === "192.223.27.212" && o.port === '7777');
+          if(!ser0) {
+           arra.push("Official Server - Offline"); 
+          } else {
+            arra.push("Official Server - "+ser0.players);
+          }
        message.channel.send(arra)
      } 
             }  
