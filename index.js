@@ -120,14 +120,14 @@ if (command === "mute") {
     return;
   }
   if (args.length != 1) {
-    message.channel.send("``!mute [mention]``")
+    message.channel.send("``!mute [mention]``");
     return;
   }
   var mention = message.mentions.members.first();
   if (message.isMentioned(mention)) {
-    message.channel.send(+mention+"`` has been muted``")
+    message.channel.send(+mention+"`` has been muted``");
   }
-  else 
+  else {
     message.channel.send("``Please mention someone``")
   }
 }
