@@ -125,7 +125,7 @@ if (command === "mute") {
   }
   var mention = message.mentions.members.first();
   if (message.isMentioned(mention)) {
-    message.channel.send(+mention+"`` has been muted``");
+    message.channel.send(mention+" ``has been muted``");
   }
   else {
     message.channel.send("``Please mention someone``")
