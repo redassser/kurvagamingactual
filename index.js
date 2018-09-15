@@ -125,10 +125,10 @@ if (command === "mute") {
   }
   var mention = message.mentions.members.first();
   if (message.isMentioned(mention)) {
-     if (mention.roles.has("490335017147432960")) {
+     if (mention.roles.has("490352699942895617")) {
       message.channel.send(mention+" ``has already been muted``")
   } else {
-  mention.addRole("490335017147432960");
+  mention.addRole("490352699942895617");
     message.channel.send(mention+" ``has benn muted``")
   }
   }
@@ -147,10 +147,10 @@ if (command === "mute") {
   }
   var mention = message.mentions.members.first();
   if (message.isMentioned(mention)) {
-     if (!mention.roles.has("490335017147432960")) {
+     if (!mention.roles.has("490352699942895617")) {
       message.channel.send(mention+" ``has not been muted``")
   } else {
-  mention.removeRole("490335017147432960");
+  mention.removeRole("490352699942895617");
     message.channel.send(mention+" ``has benn unmuted``")
   }
   }
