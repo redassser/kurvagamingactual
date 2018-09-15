@@ -516,6 +516,7 @@ resetBot(message.channel);
   }
   if (command === "offline") {
     var mention = message.mentions.members.first();
+    if (args.length === 0) {
     //mod
     if (message.member.roles.has("432337866493001740")) {
       message.member.removeRole("432337866493001740");
@@ -537,6 +538,7 @@ resetBot(message.channel);
       message.channel.send(`${message.author} is now offline.`);
       message.delete();
     } 
+    }
     //mention
         else if (message.isMentioned(mention)) {
           if (message.author.permissions.has("VIEW_AUDIT_LOGS")) {
