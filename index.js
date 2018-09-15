@@ -125,7 +125,34 @@ if (command === "mute") {
   }
   var mention = message.mentions.members.first();
   if (message.isMentioned(mention)) {
-    message.channel.send(mention+" ``has been muted``");
+     if (mention.roles.has("490335017147432960")) {
+      message.channel.send(mention+" ``has already been muted``")
+  } else {
+  mention.addRole("490335017147432960");
+    message.channel.send(mention+" ``has benn muted``")
+  }
+  }
+  else {
+    message.channel.send("``Please mention someone``")
+  }
+}
+  if (command === "unmute") {
+  if (!message.member.permissions.has("MANAGE_MESSAGES")) {
+    message.channel.send("``Moderators only``");
+    return;
+  }
+  if (args.length != 1) {
+    message.channel.send("``!unmute [mention]``");
+    return;
+  }
+  var mention = message.mentions.members.first();
+  if (message.isMentioned(mention)) {
+     if (!mention.roles.has("490335017147432960")) {
+      message.channel.send(mention+" ``has not been muted``")
+  } else {
+  mention.removeRole("490335017147432960");
+    message.channel.send(mention+" ``has benn unmuted``")
+  }
   }
   else {
     message.channel.send("``Please mention someone``")
