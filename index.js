@@ -59,9 +59,7 @@ client.on("message", (message) => {
           .catch();
         message.delete();
       }
-    }  else {
-    message.delete();
-    }
+    } else message.delete();  
   }
   //This is for warnings and stuff down here
   if (command === "warn") {
