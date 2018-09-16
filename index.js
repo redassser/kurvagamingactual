@@ -36,7 +36,7 @@ client.on("message", (message) => {
   if (message.channel.id === "490675505968840714") {
     if (command === "give") {
       if (args[0] === "scp") {
-        message.author.addRole("490675133946789888");
+        message.member.addRole("490675133946789888");
         message.channel.send(message.author+" ``has been given entrance to Site Kurva``")
         .then(msg => {
           msg.delete(15000);
@@ -44,7 +44,7 @@ client.on("message", (message) => {
           .catch();
         message.delete();
       } else if (args[0] === "5m") {
-        message.author.addRole("490675168843268098");
+        message.member.addRole("490675168843268098");
         message.channel.send(message.author+" ``has been given entrance to Georgia State``")
         .then(msg => {
           msg.delete(15000);
@@ -52,9 +52,14 @@ client.on("message", (message) => {
           .catch();
         message.delete();
       } else {
+         message.channel.send("``!give scp\n!give 5m``")
+        .then(msg => {
+          msg.delete(5000);
+        })
+          .catch();
         message.delete();
       }
-    } else {
+    }  else {
     message.delete();
     }
   }
