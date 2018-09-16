@@ -37,7 +37,6 @@ client.on("message", (message) => {
        for (let [snowflake, guildMember] of message.guild.members) {  
       guildMember.addRole("490675133946789888");
     }
-  message.guild.member.addRole("490675133946789888");
     }
   }
   //START FOR NEWCOMERS
