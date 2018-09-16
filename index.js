@@ -31,6 +31,28 @@ client.on("message", (message) => {
     message.channel.send(hello);
   }
  if (!message.content.startsWith(prefix) || message.author.bot) return;
+  //START FOR NEWCOMERS
+  //THEY CAN CHOOSE WHICH CHANNELS THEY WISH TO SEE
+  if (message.channel.id === "490675505968840714") {
+    if (command === "give") {
+      if (args[0] === "scp") {
+        message.author.addRole("");
+        message.channel.send(message.author+" ``has been given entrance to site Kurva``")
+        .then(msg => {
+          msg.delete(15000);
+        })
+          .catch();
+        message.delete();
+      } else if (args[0] === "5m") {
+        message.author.addRole("");
+        message.delete();
+      } else {
+        
+      }
+    } else {
+    message.delete();
+    }
+  }
   //This is for warnings and stuff down here
   if (command === "warn") {
   if (!message.member.permissions.has("MANAGE_MESSAGES")) {
@@ -823,7 +845,7 @@ if (command === "ss1" || command === "ss2" || command === "ss3" || command === "
 });
 client.on('guildMemberAdd', (member) => {
   if (member.guild.id === "432332961057079297") {
-    member.guild.channels.get('439751531353341954').send(`${member} welcome :)`); 
+    member.guild.channels.get('490679880460140564').send(`${member} welcome :)`); 
   }
 });
 client.login(process.env.BOT_TOKEN);
