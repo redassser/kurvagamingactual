@@ -30,11 +30,9 @@ client.on("message", (message) => {
     var hello = config.hello[Math.floor(Math.random()*config.hello.length)];
     message.channel.send(hello);
   }
- if (!message.content.startsWith(prefix) || message.author.bot) return;
   //START FOR NEWCOMERS
   //THEY CAN CHOOSE WHICH CHANNELS THEY WISH TO SEE
   if (message.channel.id === "490675505968840714") {
-    console.log(message.content.startsWith(prefix))
     if (message.author.bot || !message.content.startsWith(prefix)) message.delete();
     if (command === "give") {
       if (args[0] === "scp") {
