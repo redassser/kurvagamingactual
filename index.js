@@ -30,6 +30,13 @@ client.on("message", (message) => {
     var hello = config.hello[Math.floor(Math.random()*config.hello.length)];
     message.channel.send(hello);
   }
+  //TEMPORARY
+  if (command === "now") {
+    console.log(message.guild.member)
+    if (args[0] === "this") {
+  message.guild.member.addRole("490675133946789888");
+    }
+  }
   //START FOR NEWCOMERS
   //THEY CAN CHOOSE WHICH CHANNELS THEY WISH TO SEE
   if (message.channel.id === "490675505968840714") {
@@ -39,7 +46,7 @@ client.on("message", (message) => {
       return;
     }
     if (command === "give") {
-      if (args[0] === "scp") {
+      if (args[0].toLowerCase() === "scp") {
         message.member.addRole("490675133946789888");
         message.channel.send(message.author+" ``has been given entrance to Site Kurva``")
         .then(msg => {
@@ -48,9 +55,9 @@ client.on("message", (message) => {
           .catch();
         message.delete();
         return;
-      } else if (args[0] === "5m") {
+      } else if (args[0].toLowerCase() === "fivem") {
         message.member.addRole("490675168843268098");
-        message.channel.send(message.author+" ``has been given entrance to Georgia State``")
+        message.channel.send(message.author+" ``has been given entrance to Idaho State``")
         .then(msg => {
           msg.delete(15000);
         })
@@ -167,7 +174,7 @@ if (command === "mute") {
       message.channel.send(mention+" ``has already been muted``")
   } else {
   mention.addRole("465987375902883874");
-    message.channel.send(mention+" ``has benn muted``")
+    message.channel.send(mention+" ``has been muted``")
   }
   }
   else {
@@ -189,7 +196,7 @@ if (command === "mute") {
       message.channel.send(mention+" ``has not been muted``")
   } else {
   mention.removeRole("465987375902883874");
-    message.channel.send(mention+" ``has benn unmuted``")
+    message.channel.send(mention+" ``has been unmuted``")
   }
   }
   else {
