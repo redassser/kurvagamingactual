@@ -66,8 +66,10 @@ client.on("message", (message) => {
         return;
       }
     } else {
+      if (!message.author.bot) {
       message.delete();  
       return;
+      }
     }
     }
   if (!message.content.startsWith(prefix) || message.author.bot || message.channel.id === "490675505968840714") return;
