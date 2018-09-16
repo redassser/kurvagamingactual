@@ -65,8 +65,11 @@ client.on("message", (message) => {
         message.delete();
         return;
       }
-    } else message.delete();  
-  }
+    } else {
+      message.delete();  
+      return;
+    }
+    }
   if (!message.content.startsWith(prefix) || message.author.bot || message.channel.id === "490675505968840714") return;
   //This is for warnings and stuff down here
   if (command === "warn") {
