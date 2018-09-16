@@ -34,11 +34,9 @@ client.on("message", (message) => {
   //START FOR NEWCOMERS
   //THEY CAN CHOOSE WHICH CHANNELS THEY WISH TO SEE
   if (message.channel.id === "490675505968840714") {
-    if (!message.content.startsWith(prefix)) {
-      message.delete();
-      return;
-    }
-      if (command === "give") {
+    console.log(message.content.startsWith(prefix))
+    if (message.author.bot || !message.content.startsWith(prefix)) message.delete();
+    if (command === "give") {
       if (args[0] === "scp") {
         message.member.addRole("490675133946789888");
         message.channel.send(message.author+" ``has been given entrance to Site Kurva``")
@@ -65,6 +63,7 @@ client.on("message", (message) => {
       }
     } else message.delete();  
   }
+  if (message.channel.id === "490675505968840714") return;
   //This is for warnings and stuff down here
   if (command === "warn") {
   if (!message.member.permissions.has("MANAGE_MESSAGES")) {
