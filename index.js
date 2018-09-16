@@ -33,6 +33,7 @@ client.on("message", (message) => {
   //START FOR NEWCOMERS
   //THEY CAN CHOOSE WHICH CHANNELS THEY WISH TO SEE
   if (message.channel.id === "490675505968840714") {
+    if (message.author.bot) return;
     if (!message.content.startsWith(prefix)) {
       message.delete();
       return;
@@ -65,12 +66,7 @@ client.on("message", (message) => {
         message.delete();
         return;
       }
-    } else {
-      if (!message.author.bot) {
-      message.delete();  
-      return;
-      }
-    }
+    } else message.delete();
     }
   if (!message.content.startsWith(prefix) || message.author.bot || message.channel.id === "490675505968840714") return;
   //This is for warnings and stuff down here
