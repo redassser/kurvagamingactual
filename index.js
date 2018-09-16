@@ -50,7 +50,7 @@ client.on("message", (message) => {
         return;
       } else if (args[0] === "fivem") {
         message.member.addRole("490675168843268098");
-        message.channel.send(message.author+" ``has been given entrance to Idaho State``")
+        message.channel.send(message.author+" ``has been given entrance to FiveM``")
         .then(msg => {
           msg.delete(15000);
         })
