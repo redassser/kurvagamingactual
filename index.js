@@ -33,7 +33,10 @@ client.on("message", (message) => {
   //START FOR NEWCOMERS
   //THEY CAN CHOOSE WHICH CHANNELS THEY WISH TO SEE
   if (message.channel.id === "490675505968840714") {
-    if (!message.content.startsWith(prefix)) message.delete();
+    if (!message.content.startsWith(prefix)) {
+      message.delete();
+      return;
+    }
     if (command === "give") {
       if (args[0] === "scp") {
         message.member.addRole("490675133946789888");
@@ -43,6 +46,7 @@ client.on("message", (message) => {
         })
           .catch();
         message.delete();
+        return;
       } else if (args[0] === "5m") {
         message.member.addRole("490675168843268098");
         message.channel.send(message.author+" ``has been given entrance to Georgia State``")
@@ -51,6 +55,7 @@ client.on("message", (message) => {
         })
           .catch();
         message.delete();
+        return;
       } else {
          message.channel.send("``!give scp\n!give 5m``")
         .then(msg => {
@@ -58,6 +63,7 @@ client.on("message", (message) => {
         })
           .catch();
         message.delete();
+        return;
       }
     } else message.delete();  
   }
