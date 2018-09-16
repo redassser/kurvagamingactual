@@ -50,7 +50,7 @@ client.on("message", (message) => {
       return;
     }
     if (command === "give") {
-      if (args[0].toLowerCase() === "scp") {
+      if (args[0] === "scp") {
         message.member.addRole("490675133946789888");
         message.channel.send(message.author+" ``has been given entrance to Site Kurva``")
         .then(msg => {
@@ -59,7 +59,7 @@ client.on("message", (message) => {
           .catch();
         message.delete();
         return;
-      } else if (args[0].toLowerCase() === "fivem") {
+      } else if (args[0] === "fivem") {
         message.member.addRole("490675168843268098");
         message.channel.send(message.author+" ``has been given entrance to Idaho State``")
         .then(msg => {
