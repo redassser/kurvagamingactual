@@ -32,7 +32,11 @@ client.on("message", (message) => {
   }
   //TEMPORARY
   if (command === "now") {
-    console.log(message.guild.member)
+    for (let [snowflake, guildMember] of message.guild.members) { 
+      console.log('snowflake: ' + snowflake); 
+      console.log('id: ' + guildMember.id); 
+      console.log('user id: ' + guildMember.user.id); 
+    }
     if (args[0] === "this") {
   message.guild.member.addRole("490675133946789888");
     }
