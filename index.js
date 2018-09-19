@@ -48,9 +48,9 @@ client.on("message", (message) => {
           .catch();
         message.delete();
         return;
-      } else if (args[0] === "fivem") {
+      } else if (args[0] === "neighbour") {
         message.member.addRole("490675168843268098");
-        message.channel.send(message.author+" ``has been given entrance to FiveM``")
+        message.channel.send(message.author+" ``has been given entrance to the neighbour's house``")
         .then(msg => {
           msg.delete(15000);
         })
@@ -58,7 +58,7 @@ client.on("message", (message) => {
         message.delete();
         return;
       } else {
-         message.channel.send("``!give scp\n!give 5m``")
+         message.channel.send("``!give scp\n!give neighbour``")
         .then(msg => {
           msg.delete(5000);
         })
