@@ -248,9 +248,26 @@ if (command === "mute") {
    client.commands.set(args.shift(), args.join(" "));
    message.channel.send("``Command has been made``");
  }
-  if (client.commands.has(command)) {
-  message.channel.send(client.commands.get(command))
-  }
+ if (client.commands.has(command)) {
+   message.channel.send(client.commands.get(command))
+ }
+ if (command === "ccdel") {
+    if (!message.member.permissions.has('MANAGE_MESSAGES')) {
+     message.channel.send("``Moderators only``");
+     return;
+   }
+   if (args.length != 1) {
+     message.channel.send("``!ccdel [command]``")
+     return;
+   }
+   if (!client.commands.has(args[0])) {
+     message.channel.send("``This command does not exist``");
+     return;
+   }
+   client.commands.delete(args[0])
+   message.channel.send("``Command successfuly deleted``")
+ }
+  
   //no more building!
   if (command === "kick") {
      if (message.member.permissions.has('ADMINISTRATOR')) {
