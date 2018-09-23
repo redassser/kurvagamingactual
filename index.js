@@ -241,11 +241,11 @@ if (command === "mute") {
      message.channel.send("``!cc [command] [response]``")
      return;
    }
-   if (client.command.has(args[0])) {
+   if (client.commands.has(args[0])) {
      message.channel.send("``This command already exists``");
      return;
    }
-   client.command.set(args.shift(), args.join(" "));
+   client.commands.set(args.shift(), args.join(" "));
    message.channel.send("``Command has been made``");
  }
   if (client.commands.has(command)) {
