@@ -14,6 +14,12 @@ client.warn = new Enmap({ provider: new EnmapMongo({
   url: process.env.MONGODB
 })
 })
+client.commands = new Enmap({ provider: new EnmapMongo({
+  name: `commands`,
+  dbName: `commands`,
+  url: process.env.MONGODB2
+})
+})
 client.on("ready", () => {
   console.log("I am ready!");
   client.user.setActivity("!commands");
@@ -226,69 +232,24 @@ if (command === "mute") {
     console.log(`${message.author.username} in ${message.channel.name} used the cah command.`);
   }
   //build-a-b̶e̶a̶r̶ command
-  function checkexist(x) {
-    return args[0] != x;
-  }
-   if (command === "cc") {
-     if (message.member.permissions.has('ADMINISTRATOR') && config.exist.every(checkexist)) {
-         if (args[0] != ""  && argo != "") {
-     if (!commandi[args[0]]) commandi[args[0]] = {
-         command:argo,
-       };else {
-         message.channel.send("That command already exists!");
-         return;
-       }
-       fs.writeFile("./commands.json", JSON.stringify(commandi), (err) => {
-          if (err) console.error(err)
-  });
-  var userWarns = commandi[args[0]] ? commandi[args[0]].command : argo;
-     message.channel.send(`${args[0]} now does \'${userWarns}\'`);
-   } else {
-     message.channel.send("To make a command, type \n``!cc [command you want to call] [text you want the bot to say]``");
+ if (command === "cc") {
+   if (!message.member.permissions.has('MANAGE_MESSAGES')) {
+     message.channel.send("``Moderators only``");
+     return;
    }
-   } else {
-     message.channel.send("Nope!");
-     }
-     }
-  if (commandi[command]) {
-    var userWarns = commandi[command] ? commandi[command].command:args[1];
-    message.channel.send(userWarns);
-  }
-  var bam = 0;
-  if (command === "cclist") { 
-    var commandlist = Object.keys(commandi)
- if (commandlist.length != 0) {
-   var bam = commandlist;
- } else {
-   var bam = "There are no commands!";
+   if (args.length < 2) {
+     message.channel.send("``!cc [command] [response]``")
+     return;
+   }
+   if (client.command.has(args[0])) {
+     message.channel.send("``This command already exists``");
+     return;
+   }
+   client.command.set(args.shift(), args.join(" "));
+   message.channel.send("``Command has been made``");
  }
-   message.channel.send({"embed": {
-    "color": 3498293,
-    timestamp: new Date(),
-    "title": `CC commands currently in use`,
-        fields: [{
-          name: "Commands",
-          value: `${bam}`,
-          inline: true
-        }
-          ],
-      }
-     }); 
-  }
-  if(command === "ccdel") {
-    if (message.member.permissions.has('ADMINISTRATOR')) {
-    if (commandi[args[0]]) {
-      delete commandi[args[0]];
-       fs.writeFile("./commands.json", JSON.stringify(commandi), (err) => {
-          if (err) console.error(err)
-       });
-       message.channel.send(`Command ${args[0]} has been deleted!`);
-    } else {
-      message.channel.send("That command doesn't exist!");
-    }
-  } else {
-  message.channel.send("Nope!");
-  }
+  if (client.commands.has(command)) {
+  message.channel.send(client.commands.get(command))
   }
   //no more building!
   if (command === "kick") {
