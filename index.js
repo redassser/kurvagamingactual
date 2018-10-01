@@ -202,7 +202,7 @@ if (command === "mute") {
   }
 }
     if (command === "ban") {
-      if (!message.member.permissions.has('ADMINISTRATOR')) {
+      if (!message.member.permissions.has('MANAGE_SERVER')) {
       message.channel.send("``Administrator only``");
         return;
       }
