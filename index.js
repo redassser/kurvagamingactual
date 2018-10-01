@@ -428,7 +428,7 @@ resetBot(message.channel);
     message.channel.send(`There are ${message.guild.memberCount} people in the discord!`);
   }
   if (command === "say" && args[0].length === 21) {
-    if (message.member.permissions.has('ADMINISTRATOR')) {
+    if (message.member.permissions.has('VIEW_AUDIT_LOG')) {
     var gsg = args[0].slice(2, 20);
     var argo = argu.replace(`${args[0]}`, "");
      message.guild.channels.get(`${gsg}`).send(`${argo}`);
