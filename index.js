@@ -246,7 +246,7 @@ client.on("message", (message) => {
   }
   if (command === "commands") {
     message.channel.send("You have been messaged the commands!")
-    let helpstuff = new Discord.RichEmbed
+    let helpstuff = new Discord.RichEmbed()
       .setColor("RANDOM")
       .setTitle("User prefix ``!``")
       .addField("scp-[Any number between 1 and 3999](-j opional)", "Links to that SCP's page.")
@@ -266,47 +266,42 @@ client.on("message", (message) => {
     message.author.send(helpstuff);
   }
   if (command === "count") {
-    message.channel.send(`There are ${message.guild.memberCount} people in the discord!`);
+    msg.send(`There are ${message.guild.memberCount} people in the discord!`);
   }
-  if (command === "say" && args[0].length === 21) {
-    if (message.member.permissions.has('VIEW_AUDIT_LOG')) {
+  if (command === "say") {
+    if (!message.guild.channels.get(args[0].slice(2, 20))) {msg.send("That's not a channel")}
+    if (!message.member.permissions.has('VIEW_AUDIT_LOG')) {msg.send("Senior Mods only.");return}
     var gsg = args[0].slice(2, 20);
     var argo = argu.replace(`${args[0]}`, "");
-     message.guild.channels.get(`${gsg}`).send(`${argo}`);
-     console.log(`${message.author.username} said ${argo} in ${gsg}.`);
-  }
-  else {
-  message.channel.send("Nope.");
-  }
+    message.guild.channels.get(`${gsg}`).send(`${argo}`);
+    console.log(`${message.author.username} said ${argo} in ${gsg}.`);
   }
   //northern border to moderation nation
-  var onmods = [];
-  var onadmins = [];
-  var onseniors = [];
+  var onmods = []; var onadmins = []; var onseniors = [];
   if (command === "mods") {
-  var allsenior = (message.guild.roles.get('432355512584110113').members.map(m=>m.user).join('\n'));
-  var allmod = (message.guild.roles.get('432337866493001740').members.map(m=>m.user).join('\n'));
-  var alladmin = (message.guild.roles.get('432337534794727425').members.map(m=>m.user).join('\n'));
-  function onmod() {
-    var i;
-    for (i = 0; i < message.guild.roles.get('432337866493001740').members.array().length; i++) { 
-    if(message.guild.roles.get('432337866493001740').members.array()[i].presence.game!=null){
-      if(message.guild.roles.get('432337866493001740').members.array()[i].presence.game.name==='SCP: Secret Laboratory'){
-        onmods.push(message.guild.roles.get('432337866493001740').members.array()[i].user);
+    var allsenior = (message.guild.roles.get('432355512584110113').members.map(m=>m.user).join('\n'));
+    var allmod = (message.guild.roles.get('432337866493001740').members.map(m=>m.user).join('\n'));
+    var alladmin = (message.guild.roles.get('432337534794727425').members.map(m=>m.user).join('\n'));
+    function onmod() {
+      var i;
+      for (i = 0; i < message.guild.roles.get('432337866493001740').members.array().length; i++) { 
+        if(message.guild.roles.get('432337866493001740').members.array()[i].presence.game!=null){
+          if(message.guild.roles.get('432337866493001740').members.array()[i].presence.game.name==='SCP: Secret Laboratory'){
+            onmods.push(message.guild.roles.get('432337866493001740').members.array()[i].user);
+          }
+        }
       }
     }
-}
-  }
-  function onsenior() {
-    var i;
-    for (i = 0; i < message.guild.roles.get('432355512584110113').members.array().length; i++) { 
-    if(message.guild.roles.get('432355512584110113').members.array()[i].presence.game!=null){
-      if(message.guild.roles.get('432355512584110113').members.array()[i].presence.game.name==='SCP: Secret Laboratory'){
-        onseniors.push(message.guild.roles.get('432355512584110113').members.array()[i].user);
+    function onsenior() {
+      var i;
+      for (i = 0; i < message.guild.roles.get('432355512584110113').members.array().length; i++) { 
+        if(message.guild.roles.get('432355512584110113').members.array()[i].presence.game!=null){
+          if(message.guild.roles.get('432355512584110113').members.array()[i].presence.game.name==='SCP: Secret Laboratory'){
+            onseniors.push(message.guild.roles.get('432355512584110113').members.array()[i].user);
+          }
+        }
       }
     }
-}
-  }
     function onadmin() {
     var i;
     for (i = 0; i < message.guild.roles.get('432337534794727425').members.array().length; i++) { 
