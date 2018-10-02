@@ -225,7 +225,7 @@ client.on("message", (message) => {
       case 4:
         var scp = num;break;
     }
-    if(!command.endsWith("-j")) {message.channel.send(`http://www.scp-wiki.net/scp-${scp}`);return]
+    if(!command.endsWith("-j")) {message.channel.send(`http://www.scp-wiki.net/scp-${scp}`);return}
     msg.send(`http://www.scp-wiki.net/scp-${scp}-j`);
   }
   if (command === "hug") {
