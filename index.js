@@ -262,7 +262,7 @@ client.on("message", (message) => {
       .addfield("vote [topic]", "**Moderator** Starts a vote")
       .addField("cc (command) (text)", "**Moderator** The bot will say the (text) when you do !(command).")
       .addField("ccdel (command)","**Moderator** The command will be deleted from existance.")
-      .addField("cclist","**Moderator** Lists all CC commands currently in use.")
+      .addField("cclist","**Moderator** Lists all CC commands currently in use.");
     message.author.send(helpstuff);
   }
   if (command === "count") {
