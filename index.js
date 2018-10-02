@@ -136,7 +136,7 @@ client.on("message", (message) => {
     if (!message.member.permissions.has("MANAGE_MESSAGES")) {msg.send("``Moderators only``");return}
     if (args.length != 1) {msg.send("``!mute [mention]``");return}
     var mention = message.mentions.members.first();
-    if (!message.isMentioned(mention)) {msg.send("``Please mention someone``");return;);
+    if (!message.isMentioned(mention)) {msg.send("``Please mention someone``");return}
     if (mention.roles.has("465987375902883874")) {
       msg.send(mention+" ``has already been muted``")
     } else {
