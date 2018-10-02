@@ -167,7 +167,7 @@ client.on("message", (message) => {
     var randomCAH = config.whiteCard[Math.floor(Math.random()*config.whiteCard.length)];
     let cah = new Discord.RichEmbed()
       .setTitle(argu+"\n"+randomCAH)
-      .setColor("15844367")
+      .setColor("24536")
       .setAuthor(message.author.username+" says...", message.author.avatarURL);
     msg.send(cah)
     message.delete();
@@ -246,6 +246,8 @@ client.on("message", (message) => {
   }
   if (command === "commands") {
     message.channel.send("You have been messaged the commands!")
+    let helpstuff = new Discord.RichEmbed
+      .setColor("3947583")
     message.author.send({"embed": {
     "color": 3947583,
     "title": "Use prefix '!'",
