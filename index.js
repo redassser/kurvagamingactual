@@ -193,7 +193,7 @@ client.on("message", (message) => {
   }
   if (command === "cclist") {
     if (!message.member.permissions.has('MANAGE_MESSAGES')) {msg.send("``Moderators only``");return}
-    const array = client.servers.keyArray()
+    const array = client.commands.keyArray()
     if (array.length === 0) {message.channel.send("``No commands have been made. Use !set to add some!``");return}
     msg.send("List of commands\n``"+array.join('\n')+"``");
   }
