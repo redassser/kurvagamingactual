@@ -191,7 +191,7 @@ client.on("message", (message) => {
     client.commands.delete(args[0])
     msg.send("``Command successfuly deleted``")
   }
-  if (commnd === "cclist") {
+  if (command === "cclist") {
     if (!message.member.permissions.has('MANAGE_MESSAGES')) {msg.send("``Moderators only``");return}
     const array = client.servers.keyArray()
     if (array.length === 0) {message.channel.send("``No commands have been made. Use !set to add some!``");return}
