@@ -475,7 +475,6 @@ resetBot(message.channel);
   if (command === "offline") {
     var mention = message.mentions.members.first();
     if (args.length != 0) return;
-    //mod
     var rem = 0; var add = 0;
     if (message.member.roles.has("432337866493001740")) {rem = "432337866493001740";add = "471095786554523658"}
     else if (message.member.roles.has("432355512584110113")) {rem = "432355512584110113";add = "477195100867526689"}
@@ -486,31 +485,18 @@ resetBot(message.channel);
       msg.send(message.author+"is now offline.");
       message.delete();
   }
-    //mention
-    if (command === "online") {
-      //mod
-      if (message.member.roles.has("471095786554523658")) {
-      message.member.addRole("432337866493001740");
-      message.member.removeRole("471095786554523658");
-      message.channel.send(`${message.author} is now online.`);
+   if (command === "online") {
+    var mention = message.mentions.members.first();
+    if (args.length != 0) return;
+    var rem = 0; var add = 0;
+    if (message.member.roles.has("471095786554523658")) {rem = "471095786554523658";add = "432337866493001740"}
+    else if (message.member.roles.has("477195100867526689")) {rem = "477195100867526689";add = "432355512584110113"}
+    else if (message.member.roles.has("477195674421821451")) {rem = "477195674421821451";add = "432337534794727425"}
+    else {msg.send("Nope!");return}
+      message.member.removeRole(rem);
+      message.member.addRole(add);
+      msg.send(message.author+"is now online.");
       message.delete();
-    } 
-      //senior
-      else if (message.member.roles.has("477195100867526689")) {
-      message.member.addRole("432355512584110113");
-      message.member.removeRole("477195100867526689");
-      message.channel.send(`${message.author} is now online.`);
-      message.delete();
-    }
-      //admin
-      else if (message.member.roles.has("477195674421821451")) {
-      message.member.addRole("432337534794727425");
-      message.member.removeRole("477195674421821451");
-      message.channel.send(`${message.author} is now online.`);
-      message.delete();
-    } else {
-      message.channel.send("Nope!");
-    }
   }
   //southern border to moderaton nation
   if (command === "kgmeme") {
