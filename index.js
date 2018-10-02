@@ -476,9 +476,11 @@ resetBot(message.channel);
     var mention = message.mentions.members.first();
     if (args.length != 0) return;
     //mod
-    if (message.member.roles.has("432337866493001740")) {var rem = "432337866493001740"; var add = "471095786554523658"}
-    else if (message.member.roles.has("432355512584110113")) {var rem = "432355512584110113"; var add = "477195100867526689"}
-    else if (message.member.roles.has("432337534794727425")) {var rem = "432337534794727425"; var add = "477195674421821451"}
+    var rem = 0; var add = 0;
+    if (message.member.roles.has("432337866493001740")) {rem = "432337866493001740";add = "471095786554523658"}
+    else if (message.member.roles.has("432355512584110113")) {rem = "432355512584110113";add = "477195100867526689"}
+    else if (message.member.roles.has("432337534794727425")) {rem = "432337534794727425";add = "477195674421821451"}
+    else {msg.send("Nope!");return}
       message.member.removeRole(rem);
       message.member.addRole(add);
       msg.send(message.author+"is now offline.");
