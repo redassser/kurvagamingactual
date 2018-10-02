@@ -39,7 +39,7 @@ client.on("message", (message) => {
   //START FOR NEWCOMERS
   //THEY CAN CHOOSE WHICH CHANNELS THEY WISH TO SEE
   if (msg.id === "490675505968840714") {
-    if (!message.content.startsWith(prefix)||message.author.bot) {message.delete();return;};
+    if (!message.content.startsWith(prefix)||message.author.bot) {message.delete();return}
     if (command === "give") {
       if (args[0] === "scp") {
         message.member.addRole("490675133946789888");
@@ -75,8 +75,8 @@ client.on("message", (message) => {
   if (!message.content.startsWith(prefix) || message.author.bot || msg.id === "490675505968840714") return;
   //This is for warnings and stuff down here
   if (command === "warn") {
-    if (!message.member.permissions.has("MANAGE_MESSAGES")) {msg.send("``Staff only``");return;};
-    if (args.length < 2) {msg.send("``!warn [name] [reason]``");return;};
+    if (!message.member.permissions.has("MANAGE_MESSAGES")) {msg.send("``Staff only``");return}
+    if (args.length < 2) {msg.send("``!warn [name] [reason]``");return}
     if (client.warn.has(args[0].toLowerCase())) {
       msg.send("``"+args[0]+" has been warned again``")
       client.warn.push(args.shift().toLowerCase(), args.join(" "))
@@ -86,8 +86,8 @@ client.on("message", (message) => {
     }
   }
   if (command === "check") {
-    if (!message.member.permissions.has("MANAGE_MESSAGES")) {msg.send("``Staff only``");return;};
-    if (args.length != 1) {msg.send("``!check [name]``");return;}
+    if (!message.member.permissions.has("MANAGE_MESSAGES")) {msg.send("``Staff only``");return}
+    if (args.length != 1) {msg.send("``!check [name]``");return}
     if (client.warn.has(args[0].toLowerCase())) {
       msg.send("``"+args[0].toLowerCase()+" has been warned "+client.warn.get(args[0].toLowerCase()).length+" times for these reasons...``\n"+client.warn.get(args[0].toLowerCase()).join("\n"))
     } else {
@@ -95,7 +95,7 @@ client.on("message", (message) => {
     }
   }
   if (command === "watchlist") {
-    if (!message.member.permissions.has("MANAGE_MESSAGES")){msg.send("``Staff only``");return;}
+    if (!message.member.permissions.has("MANAGE_MESSAGES")){msg.send("``Staff only``");return}
     function hasWarns (value) {
       return client.warn.get(value).length > 1;
     }
@@ -110,8 +110,8 @@ client.on("message", (message) => {
     }
   }
   if (command === "remove") {
-    if (!message.member.permissions.has('MANAGE_MESSAGES')){msg.send("``Staff only``");return;};
-    if (args.length != 1) {msg.send("``!remove [name]``");return;};
+    if (!message.member.permissions.has('MANAGE_MESSAGES')){msg.send("``Staff only``");return}
+    if (args.length != 1) {msg.send("``!remove [name]``");return}
     if (client.warn.has(args[0].toLowerCase())) {
       client.warn.delete(args[0].toLowerCase());
       msg.send("``Warnings removed.``")
@@ -120,7 +120,7 @@ client.on("message", (message) => {
     }
   }
   if (command === "list") {
-    if (!message.member.permissions.has("MANAGE_MESSAGES")){msg.send("``Staff only``");return;};
+    if (!message.member.permissions.has("MANAGE_MESSAGES")){msg.send("``Staff only``");return}
     const array = client.warn.keyArray()
     if (array.length != 0) {
       for (var i = 0; i < array.length; i++) {
@@ -133,8 +133,8 @@ client.on("message", (message) => {
   }
   //No more warnings uwu
   if (command === "mute") {
-    if (!message.member.permissions.has("MANAGE_MESSAGES")) {msg.send("``Moderators only``");return;};
-    if (args.length != 1) {msg.send("``!mute [mention]``");return;};
+    if (!message.member.permissions.has("MANAGE_MESSAGES")) {msg.send("``Moderators only``");return}
+    if (args.length != 1) {msg.send("``!mute [mention]``");return}
     var mention = message.mentions.members.first();
     if (!message.isMentioned(mention)) {msg.send("``Please mention someone``");return;);
     if (mention.roles.has("465987375902883874")) {
@@ -145,10 +145,10 @@ client.on("message", (message) => {
     }
   }
   if (command === "unmute") {
-    if (!message.member.permissions.has("MANAGE_MESSAGES")) {msg.send("``Moderators only``");return;};
-    if (args.length != 1) {message.channel.send("``!unmute [mention]``");return;};
+    if (!message.member.permissions.has("MANAGE_MESSAGES")) {msg.send("``Moderators only``");return}
+    if (args.length != 1) {message.channel.send("``!unmute [mention]``");return}
     var mention = message.mentions.members.first();
-    if (!message.isMentioned(mention)) {msg.send("``Please mention someone``");return;};
+    if (!message.isMentioned(mention)) {msg.send("``Please mention someone``");return}
     if (!mention.roles.has("465987375902883874")) {
       msg.send(mention+" ``has not been muted``")
     } else {
@@ -157,9 +157,9 @@ client.on("message", (message) => {
     }
   }
   if (command === "ban") {
-    if (!message.member.permissions.has('VIEW_AUDIT_LOG')) {msg.send("``Administrator only``");return;}
+    if (!message.member.permissions.has('VIEW_AUDIT_LOG')) {msg.send("``Administrator only``");return}
     var mention = message.mentions.members.first();
-    if (!message.isMentioned(mention)) {msg.send('``You have to mention someone``');return;};
+    if (!message.isMentioned(mention)) {msg.send('``You have to mention someone``');return}
     mention.ban();
     msg.send('``'+mention+' has been banned.``');
   }
@@ -476,19 +476,14 @@ resetBot(message.channel);
     var mention = message.mentions.members.first();
     if (args.length === 0) {
     //mod
-    if (message.member.roles.has("432337866493001740")) {
-      message.member.removeRole("432337866493001740");
-      message.member.addRole("471095786554523658");
-      message.channel.send(`${message.author} is now offline.`);
+    if (message.member.roles.has("432337866493001740")) {var rem = "432337866493001740"; var add = "471095786554523658"}
+    if (message.member.roles.has("432355512584110113")) {var rem = "432355512584110113"; var add = "477195100867526689"}
+      message.member.removeRole(rem);
+      message.member.addRole(add);
+      msg.send(message.author+"is now offline.");
       message.delete();
     } 
     //senior
-        else if (message.member.roles.has("432355512584110113")) {
-      message.member.removeRole("432355512584110113");
-      message.member.addRole("477195100867526689");
-      message.channel.send(`${message.author} is now offline.`);
-      message.delete();
-    } 
     //admin
         else if (message.member.roles.has("432337534794727425")) {
       message.member.removeRole("432337534794727425");
