@@ -474,52 +474,17 @@ resetBot(message.channel);
   }
   if (command === "offline") {
     var mention = message.mentions.members.first();
-    if (args.length === 0) {
+    if (args.length != 0) return;
     //mod
     if (message.member.roles.has("432337866493001740")) {var rem = "432337866493001740"; var add = "471095786554523658"}
-    if (message.member.roles.has("432355512584110113")) {var rem = "432355512584110113"; var add = "477195100867526689"}
+    else if (message.member.roles.has("432355512584110113")) {var rem = "432355512584110113"; var add = "477195100867526689"}
+    else if (message.member.roles.has("432337534794727425")) {var rem = "432337534794727425"; var add = "477195674421821451"}
       message.member.removeRole(rem);
       message.member.addRole(add);
       msg.send(message.author+"is now offline.");
       message.delete();
-    } 
-    //senior
-    //admin
-        else if (message.member.roles.has("432337534794727425")) {
-      message.member.removeRole("432337534794727425");
-      message.member.addRole("477195674421821451");
-      message.channel.send(`${message.author} is now offline.`);
-      message.delete();
-    } 
-    }
+  }
     //mention
-        else if (message.isMentioned(mention)) {
-          if (message.author.permissions.has("VIEW_AUDIT_LOGS")) {
-      //mod
-    if (mention.roles.has("432337866493001740")) {
-      mention.removeRole("432337866493001740");
-      mention.addRole("471095786554523658");
-      message.channel.send(`${mention} is now offline.`);
-    } 
-    //senior
-        else if (mention.roles.has("432355512584110113")) {
-      mention.removeRole("432355512584110113");
-      mention.addRole("477195100867526689");
-      message.channel.send(`${mention} is now offline.`);
-    } 
-    //admin
-        else if (mention.roles.has("432337534794727425")) {
-      mention.removeRole("432337534794727425");
-      mention.addRole("477195674421821451");
-      message.channel.send(`${mention} is now offline.`);
-    } 
-          } else {
-          message.channel.send("``Senior moderators only``")
-          }
-        } else {
-        message.channel.send("``Nope!``")
-        }
-    }
     if (command === "online") {
       //mod
       if (message.member.roles.has("471095786554523658")) {
