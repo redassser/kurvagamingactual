@@ -543,7 +543,7 @@ for (step = 0; step < args[1]; step++) {
          else {arra.push("Server 3 - "+ser3.players)}
            
          let ser4 = json.find(o => o.ip === "192.223.31.157" && o.port === '7780')
-         if(!) {arra.push("Server 4 - Offline")} 
+         if(!ser4) {arra.push("Server 4 - Offline")} 
          else {arra.push("Server 4 - "+ser4.players)}
            
          let ser5 = json.find(o => o.ip === "192.223.31.157" && o.port === '7781')
