@@ -517,7 +517,7 @@ for (step = 0; step < args[1]; step++) {
   }
   }
   //oh look the servers isnt that neat
- if (message.channel.id != "442739266909503489" || message.channel.id != "486892954297040896" || message.channel.id != "464091801331040297") return;
+ if (message.channel.id != "442739266909503489" && message.channel.id != "486892954297040896" && message.channel.id != "464091801331040297") return;
  var theip = 7; var title = 7; var portEnd = 7;
 
  if (command === "players") {
