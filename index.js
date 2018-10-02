@@ -529,23 +529,29 @@ for (step = 0; step < args[1]; step++) {
        if ("error" in json) {
          console.log("Someone help me!");
        } else {
-           
-         if(!(json.find(o => o.ip === "192.223.31.157" && o.port === '7777'))) {arra.push("Server 1 - Offline")} 
+         
+         let ser1 = json.find(o => o.ip === "192.223.31.157" && o.port === '7777')
+         if(!ser1) {arra.push("Server 1 - Offline")} 
          else {arra.push("Server 1 - "+ser1.players)}
            
-         if(!(json.find(o => o.ip === "192.223.31.157" && o.port === '7778'))) {arra.push("Server 2 - Offline")}
+         let ser2 = json.find(o => o.ip === "192.223.31.157" && o.port === '7778')
+         if(!ser2) {arra.push("Server 2 - Offline")}
          else {arra.push("Server 2 - "+ser2.players)}
            
-         if(!(json.find(o => o.ip === "192.223.31.157" && o.port === '7779'))) {arra.push("Server 3 - Offline")} 
+         let ser3 = json.find(o => o.ip === "192.223.31.157" && o.port === '7779')
+         if(!ser3) {arra.push("Server 3 - Offline")} 
          else {arra.push("Server 3 - "+ser3.players)}
            
-         if(!(json.find(o => o.ip === "192.223.31.157" && o.port === '7780'))) {arra.push("Server 4 - Offline")} 
+         let ser4 = json.find(o => o.ip === "192.223.31.157" && o.port === '7780')
+         if(!) {arra.push("Server 4 - Offline")} 
          else {arra.push("Server 4 - "+ser4.players)}
            
-         if(!(json.find(o => o.ip === "192.223.31.157" && o.port === '7781'))) {arra.push("Server 5 - Offline")}
+         let ser5 = json.find(o => o.ip === "192.223.31.157" && o.port === '7781')
+         if(!ser5) {arra.push("Server 5 - Offline")}
          else {arra.push("Server 5 - "+ser5.players)}
            
-         if(!(json.find(o => o.ip === "192.223.27.212" && o.port === '7777'))) {arra.push("Official Server - Offline")}
+         let ser0 = json.find(o => o.ip === "192.223.27.212" && o.port === '7777')
+         if(!ser0) {arra.push("Official Server - Offline")}
          else {arra.push("Official Server - "+ser0.players)}
            
          message.channel.send(arra)
