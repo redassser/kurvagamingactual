@@ -167,7 +167,7 @@ client.on("message", (message) => {
     var randomCAH = config.whiteCard[Math.floor(Math.random()*config.whiteCard.length)];
     let cah = new Discord.RichEmbed()
       .setTitle(argu+"\n"+randomCAH)
-      .setColor("24536")
+      .setColor("RANDOM")
       .setAuthor(message.author.username+" says...", message.author.avatarURL);
     msg.send(cah)
     message.delete();
@@ -248,81 +248,22 @@ client.on("message", (message) => {
     message.channel.send("You have been messaged the commands!")
     let helpstuff = new Discord.RichEmbed
       .setColor("3947583")
-    message.author.send({"embed": {
-    "color": 3947583,
-    "title": "Use prefix '!'",
-        fields: [
-          {
-          name: "scp-[Any number between 1 and 3999](-j opional)",
-          value: "Links to that SCP's page."
-        },
-                 {
-          name: "hug",
-          value: "Gives a hug to you or the person you mention!"
-        },
-                 {
-          name: "donate",
-          value: "Links to the official Kurva PayPal page!"
-        },
-                 {
-          name: "commands",
-          value: "You *just* did it."
-        },
-                 {
-          name: "support",
-          value: "Tells a staff member that you need help. Do not abuse it or there will be consequences."
-        },
-          {
-          name: "kgmeme",
-          value: "Give you a free Kurva Gaming certified meme."
-        },
-         {
-          name: "ss0, 1, 2, 3, k",
-          value: "Tells you the current status of the server."
-        },
-        {
-          name: "8ball",
-          value: "Answers your question *very* truthfully."
-        },
-         {
-          name: "cah",
-          value: "Continues your sentence with a white card from Cards Against Humanity!"
-        },
-                 {
-          name: "purge\nADMIN ONLY",
-          value: "Deletes specified number of messages."
-        },
-         {
-          name: "status\nADMIN ONLY",
-          value: "Sets the **Playing** message for the bot."
-        },
-         {
-          name: "ping\nOWNER ONLY",
-          value: "Pings a person the given number of times.\nUp to 5 reccomended."
-        },
-        {
-          name: "restart\nMOD ONLY",
-          value: "Restarts the bot."
-        },
-         {
-          name: "vote\nADMIN ONLY",
-          value: "Starts a vote!"
-        },
-        {
-          name: "cc (command) (text)\nADMIN ONLY",
-          value: "The bot will say the (text) when you do !(command)."
-        },
-        {
-          name: "ccdel (command)\nADMIN ONLY",
-          value: "The command will be deleted from existance."
-        },
-         {
-          name: "cclist",
-          value: "Lists all CC commands currently in use."
-        },
-       ],
-      }
-     });
+      .setTitle("User prefix ``!``")
+      .addField("scp-[Any number between 1 and 3999](-j opional)", "Links to that SCP's page.")
+      .addField("hug (mention optional)","Gives a hug to you or the person you mention!")
+      .addField("donate","Links to the official Kurva PayPal page!")
+      .addField("kgmeme", "Give you a free Kurva Gaming certified meme.")
+      .addField("players", "Tells you the player count of server 0 through 5.")
+      .addField("ss[0, 1, 2, 3, 4, 5, 1w, 2w, 3w]", "Tells you the current status of the server.")
+      .addField("8ball","Answers your question *very* truthfully.")
+      .addField("cah [sentence]", "Finishes your sentence with a white card from Cards Against Humanity!")
+      .addField("purge [number]", "**Moderator** Deletes specified number of messages.")
+      .addField("restart", "**Moderator** restarts the bot.")
+      .addfield("vote [topic]", "**Moderator** Starts a vote")
+      .addField("cc (command) (text)", "**Moderator** The bot will say the (text) when you do !(command).")
+      .addField("ccdel (command)","**Moderator** The command will be deleted from existance.")
+      .addField("cclist","**Moderator** Lists all CC commands currently in use.")
+    message.author.send(helpstuff);
   }
   if (command === "count") {
     message.channel.send(`There are ${message.guild.memberCount} people in the discord!`);
