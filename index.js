@@ -405,7 +405,7 @@ client.on("message", (message) => {
     if (!argu) {message.channel.send("``You didn't ask a question.``");return}
     console.log(`${message.author.username} in ${message.channel.name} used the 8ball command.`);
     var randomResponse = config.myArray[Math.floor(Math.random()*config.myArray.length)];
-    msg.send(message.author"'s question was "+argu+"\nThe magic 8 ball says..."+randomResponse);
+    msg.send(message.author+"'s question was "+argu+"\nThe magic 8 ball says..."+randomResponse);
     message.delete();
   }
  
