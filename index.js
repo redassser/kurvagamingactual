@@ -394,44 +394,40 @@ client.on("message", (message) => {
   //southern border to moderaton nation
   if (command === "kgmeme") {
     var embedPic = config.ourArray[Math.floor(Math.random()*config.ourArray.length)];
-   message.channel.send(embedPic); 
-    console.log(`${message.author.username} in ${message.channel.name} used the kgmeme command.`);
+   msg.send(embedPic); 
+    console.log(`${message.author.username} in ${msg.name} used the kgmeme command.`);
   }
   if (command === "status") {
-      if (message.member.permissions.has('ADMINISTRATOR')) {
-  var statusgame = argu
-  client.user.setActivity(`${statusgame}`);
+    if (!message.member.permissions.has('ADMINISTRATOR')) {msg.send("``Administrators only``");return}
+    client.user.setActivity(`${argu}`);
   }
-   else {
-  message.channel.send("Nope.");
-  }
-  }
- 
-   if (command === "8ball" && argu != "") {
+  if (command === "8ball") {
+    if (!argu) {message.channel.send("``You didn't ask a question.``");return}
     console.log(`${message.author.username} in ${message.channel.name} used the 8ball command.`);
     var randomResponse = config.myArray[Math.floor(Math.random()*config.myArray.length)];
-    message.channel.send(`${message.author}'s question was '${argu}' \nThe magic 8 ball says... '` + randomResponse + `'`);
+    msg.send(message.author"'s question was "+argu+"\nThe magic 8 ball says..."+randomResponse);
     message.delete();
   }
  
-if (command === "ping" && !isNaN(args[1]) && message.isMentioned(message.mentions.members.first())) {
-  if (message.guild.ownerID === message.author.id) {
+if (command === "ping") {
+  let mention = message.mentions.members.first()
+  if (args.length != 2) {msg.send("``!ping [mention] [number]``");return}
+  if (!isNaN(args[1])) {msg.send("``That's not a number.``");return}
+  if (message.isMentioned(mention)) {msg.send("``You have to mention someone.``");return}
+  if (message.guild.ownerID != message.author.id) {msg.send("Owner only");return}
   var step;
   if (args[1] <= 5) {
-for (step = 0; step < args[1]; step++) {
-  message.channel.send(`${args[0]}`);
-}
+    for (step = 0; step < args[1]; step++) {
+      message.channel.send(`${args[0]}`);
+    }
   } else {
     for (step = 0; step < args[1]; step+=5) {
-  message.channel.send(`${args[0]} ${args[0]} ${args[0]} ${args[0]} ${args[0]}`);
-}
+      msg.send(args[0]+args[0]+args[0]+args[0]+args[0]);
+    }
   }
-} else {
-  message.channel.send("Nope.");
 }
-}
-  if (command === "vote" && argu != "") {
- if (message.member.permissions.has('ADMINISTRATOR')) {
+if (command === "vote" && argu != "") {
+  if (!message.member.permissions.has('ADMINISTRATOR')) {msg.send("``Administrator only.``");return}
     message.channel.send({embed: {
     color: 15844367,
     author: {
@@ -443,16 +439,10 @@ for (step = 0; step < args[1]; step++) {
     }).then(newMessage => {
    newMessage.react('✅')
    newMessage.react('❌')
-        // (catch errors)
         .catch(console.error);
     })
-    // (catch errors)
     .catch(console.error);
-    message.delete();  
-}
-  else {
-  message.channel.send("Nope.");
-  }
+    message.delete(); 
   }
   //oh look the servers isnt that neat
  if (message.channel.id != "442739266909503489" && message.channel.id != "486892954297040896" && message.channel.id != "464091801331040297") return;
