@@ -31,208 +31,151 @@ client.on("message", (message) => {
   var argu = args.join(" ")
   var argo = argu.replace(args[0], "");
   var num = parseInt(command.replace("scp-", ""), 10);
+  var msg = message.channel;
   if (message.isMentioned("464042836032225281")) {
     var hello = config.hello[Math.floor(Math.random()*config.hello.length)];
     message.channel.send(hello);
   }
   //START FOR NEWCOMERS
   //THEY CAN CHOOSE WHICH CHANNELS THEY WISH TO SEE
-  if (message.channel.id === "490675505968840714") {
-    if (message.author.bot) return;
-    if (!message.content.startsWith(prefix)) {
-      message.delete();
-      return;
-    }
+  if (msg.id === "490675505968840714") {
+    if (!message.content.startsWith(prefix)||message.author.bot) {message.delete();return;};
     if (command === "give") {
       if (args[0] === "scp") {
         message.member.addRole("490675133946789888");
-        message.channel.send(message.author+" ``has been given entrance to Site Kurva``")
+        msg.send(message.author+" ``has been given entrance to Site Kurva``")
         .then(msg => {
           msg.delete(15000);
         })
-          .catch();
+        .catch();
         message.delete();
         return;
       } else if (args[0] === "neighbour") {
         message.member.addRole("490675168843268098");
-        message.channel.send(message.author+" ``has been given entrance to the neighbour's house``")
+        msg.send(message.author+" ``has been given entrance to the neighbour's house``")
         .then(msg => {
           msg.delete(15000);
         })
-          .catch();
+        .catch();
         message.delete();
         return;
       } else {
-         message.channel.send("``!give scp\n!give neighbour``")
+        msg.send("``!give scp\n!give neighbour``")
         .then(msg => {
           msg.delete(5000);
         })
-          .catch();
+        .catch();
         message.delete();
         return;
       }
     } else message.delete();
-    }
-  if (!message.content.startsWith(prefix) || message.author.bot || message.channel.id === "490675505968840714") return;
+  }
+  //end of channel choosing
+  //this is to heck the bots and non-prefixes
+  if (!message.content.startsWith(prefix) || message.author.bot || msg.id === "490675505968840714") return;
   //This is for warnings and stuff down here
   if (command === "warn") {
-  if (!message.member.permissions.has("MANAGE_MESSAGES")) {
-  message.channel.send("``Staff only``");
-    return;
-  }
-  if (args.length < 2) {
-  message.channel.send("``!warn [name] [reason]``");
-    return;
-  }
+    if (!message.member.permissions.has("MANAGE_MESSAGES")) {msg.send("``Staff only``");return;};
+    if (args.length < 2) {msg.send("``!warn [name] [reason]``");return;};
     if (client.warn.has(args[0].toLowerCase())) {
-      message.channel.send("``"+args[0]+" has been warned again``")
+      msg.send("``"+args[0]+" has been warned again``")
       client.warn.push(args.shift().toLowerCase(), args.join(" "))
     } else {
-      message.channel.send("``"+args[0]+" has been warned``")
-  client.warn.set(args.shift().toLowerCase(), [args.join(" ")]);
-  }
+      msg.send("``"+args[0].toLowerCase()+" has been warned``")
+      client.warn.set(args.shift().toLowerCase(), [args.join(" ")]);
+    }
   }
   if (command === "check") {
-    if (!message.member.permissions.has("MANAGE_MESSAGES")) {
-    message.channel.send("``Staff only``");
-    return;
-    }
-    if (args.length != 1) {
-    message.channel.send("``!check [name]``");
-    return;
-    }
+    if (!message.member.permissions.has("MANAGE_MESSAGES")) {msg.send("``Staff only``");return;};
+    if (args.length != 1) {msg.send("``!check [name]``");return;}
     if (client.warn.has(args[0].toLowerCase())) {
-    message.channel.send("``"+args[0]+" has been warned "+client.warn.get(args[0].toLowerCase()).length+" times for these reasons...``\n"+client.warn.get(args[0].toLowerCase()).join("\n"))
+      msg.send("``"+args[0].toLowerCase()+" has been warned "+client.warn.get(args[0].toLowerCase()).length+" times for these reasons...``\n"+client.warn.get(args[0].toLowerCase()).join("\n"))
     } else {
-    message.channel.send("``There are no warnings under this name``")
+      msg.send("``There are no warnings under this name``")
     }
   }
-   if (command === "watchlist") {
-     if (!message.member.permissions.has("MANAGE_MESSAGES")){
-     message.channel.send("``Staff only``")
-       return;
-     }
+  if (command === "watchlist") {
+    if (!message.member.permissions.has("MANAGE_MESSAGES")){msg.send("``Staff only``");return;}
     function hasWarns (value) {
-    return client.warn.get(value).length > 1;
+      return client.warn.get(value).length > 1;
     }
     const array = client.warn.keyArray().filter(hasWarns)
-if (array.length != 0) {
-    for (var i = 0; i < array.length; i++) {
-    array[i] = client.warn.get(array[i].toLowerCase()).length + " warns - " + array[i]
+    if (array.length != 0) {
+      for (var i = 0; i < array.length; i++) {
+        array[i] = client.warn.get(array[i].toLowerCase()).length + " warns - " + array[i]
+      }
+      msg.send("``These people have been warned more than once...``\n"+array.join('\n'));
+    } else {
+      msg.send("``No people with more than one warning``")
+    }
   }
-  message.channel.send("``These people have been warned more than once...``\n"+array.join('\n'));
-} else {
-  message.channel.send("``No people with more than one warning``")
-}
-  }
-   if (command === "remove") {
-  if (!message.member.permissions.has('MANAGE_MESSAGES')){
-      message.channel.send("``Staff only``");
-      return; }
-    if (args.length != 1) {
-    message.channel.send("``!remove [name]``");
-      return; }
-      else {
-        if (client.warn.has(args[0].toLowerCase())) {
-            client.warn.delete(args[0].toLowerCase());
-            message.channel.send("``Warnings removed.``")
-  } else {
-  message.channel.send("``No warnings for that name``");
-  }
-  }
+  if (command === "remove") {
+    if (!message.member.permissions.has('MANAGE_MESSAGES')){msg.send("``Staff only``");return;};
+    if (args.length != 1) {msg.send("``!remove [name]``");return;};
+    if (client.warn.has(args[0].toLowerCase())) {
+      client.warn.delete(args[0].toLowerCase());
+      msg.send("``Warnings removed.``")
+    } else {
+      msg.send("``No warnings for that name``");
+    }
   }
   if (command === "list") {
-     if (!message.member.permissions.has("MANAGE_MESSAGES")){
-     message.channel.send("``Staff only``")
-       return;
-     }
+    if (!message.member.permissions.has("MANAGE_MESSAGES")){msg.send("``Staff only``");return;};
     const array = client.warn.keyArray()
-if (array.length != 0) {
-    for (var i = 0; i < array.length; i++) {
-    array[i] = client.warn.get(array[i].toLowerCase()).length + " warns - " + array[i]
-  }
-  message.channel.send("``These people have been warned...``\n"+array.join('\n'));
-} else {
-  message.channel.send("``No people have been warned``")
-}
+    if (array.length != 0) {
+      for (var i = 0; i < array.length; i++) {
+        array[i] = client.warn.get(array[i].toLowerCase()).length + " warns - " + array[i]
+      }
+      msg.send("``These people have been warned...``\n"+array.join('\n'));
+    } else {
+      msg.send("``No people have been warned``")
+    }
   }
   //No more warnings uwu
-if (command === "mute") {
-  if (!message.member.permissions.has("MANAGE_MESSAGES")) {
-    message.channel.send("``Moderators only``");
-    return;
+  if (command === "mute") {
+    if (!message.member.permissions.has("MANAGE_MESSAGES")) {msg.send("``Moderators only``");return;};
+    if (args.length != 1) {msg.send("``!mute [mention]``");return;};
+    var mention = message.mentions.members.first();
+    if (!message.isMentioned(mention)) {msg.send("``Please mention someone``");return;);
+    if (mention.roles.has("465987375902883874")) {
+      msg.send(mention+" ``has already been muted``")
+    } else {
+      mention.addRole("465987375902883874");
+      msg.send(mention+" ``has been muted``")
+    }
   }
-  if (args.length != 1) {
-    message.channel.send("``!mute [mention]``");
-    return;
-  }
-  var mention = message.mentions.members.first();
-  if (message.isMentioned(mention)) {
-     if (mention.roles.has("465987375902883874")) {
-      message.channel.send(mention+" ``has already been muted``")
-  } else {
-  mention.addRole("465987375902883874");
-    message.channel.send(mention+" ``has been muted``")
-  }
-  }
-  else {
-    message.channel.send("``Please mention someone``")
-  }
-}
   if (command === "unmute") {
-  if (!message.member.permissions.has("MANAGE_MESSAGES")) {
-    message.channel.send("``Moderators only``");
-    return;
+    if (!message.member.permissions.has("MANAGE_MESSAGES")) {msg.send("``Moderators only``");return;};
+    if (args.length != 1) {message.channel.send("``!unmute [mention]``");return;};
+    var mention = message.mentions.members.first();
+    if (!message.isMentioned(mention)) {msg.send("``Please mention someone``");return;};
+    if (!mention.roles.has("465987375902883874")) {
+      msg.send(mention+" ``has not been muted``")
+    } else {
+      mention.removeRole("465987375902883874");
+      msg.send(mention+" ``has been unmuted``")
+    }
   }
-  if (args.length != 1) {
-    message.channel.send("``!unmute [mention]``");
-    return;
-  }
-  var mention = message.mentions.members.first();
-  if (message.isMentioned(mention)) {
-     if (!mention.roles.has("465987375902883874")) {
-      message.channel.send(mention+" ``has not been muted``")
-  } else {
-  mention.removeRole("465987375902883874");
-    message.channel.send(mention+" ``has been unmuted``")
-  }
-  }
-  else {
-    message.channel.send("``Please mention someone``")
-  }
-}
-    if (command === "ban") {
-      if (!message.member.permissions.has('VIEW_AUDIT_LOG')) {
-      message.channel.send("``Administrator only``");
-        return;
-      }
-      var mention = message.mentions.members.first();
-      if (message.isMentioned(mention)) {
-      mention.ban();
-      message.channel.send('``'+mention+' has been banned.``');
-      }
-      else {
-      message.channel.send('``You have to mention someone``');
-      }
- 
+  if (command === "ban") {
+    if (!message.member.permissions.has('VIEW_AUDIT_LOG')) {msg.send("``Administrator only``");return;}
+    var mention = message.mentions.members.first();
+    if (!message.isMentioned(mention)) {msg.send('``You have to mention someone``');return;};
+    mention.ban();
+    msg.send('``'+mention+' has been banned.``');
   }
   if (command === "cah") {
     var randomCAH = config.whiteCard[Math.floor(Math.random()*config.whiteCard.length)];
-    message.channel.send({embed: {
-    color: 15844367,
-    author: {
-      name: `${message.author.username} says...`,
-      icon_url: message.author.avatarURL
-    },
-    title: `${argu}\n${randomCAH}`,
-    }
-    })
+    let cah = new Discord.RichEmbed()
+      .setTitle(argu+"\n"+randomCAH)
+      .setColor("15844367")
+      .setAuthor(message.author.username+" says...", message.author.avatarURL);
+    msg.send(cah)
     message.delete();
     console.log(`${message.author.username} in ${message.channel.name} used the cah command.`);
   }
   //build-a-b̶e̶a̶r̶ command
- if (command === "cc") {
-   if (!message.member.permissions.has('MANAGE_MESSAGES')) {
+  if (command === "cc") {
+    if (!message.member.permissions.has('MANAGE_MESSAGES')) {
      message.channel.send("``Moderators only``");
      return;
    }
