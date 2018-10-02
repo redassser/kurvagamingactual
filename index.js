@@ -247,7 +247,7 @@ client.on("message", (message) => {
   if (command === "commands") {
     message.channel.send("You have been messaged the commands!")
     let helpstuff = new Discord.RichEmbed
-      .setColor("3947583")
+      .setColor("RANDOM")
       .setTitle("User prefix ``!``")
       .addField("scp-[Any number between 1 and 3999](-j opional)", "Links to that SCP's page.")
       .addField("hug (mention optional)","Gives a hug to you or the person you mention!")
@@ -554,7 +554,7 @@ for (step = 0; step < args[1]; step++) {
        var obj = json.find(o => o.ip === theip && o.port === portEnd);
           if(!obj) {
            let serverstatusoff = new Discord.RichEmbed()
-             .setColor("9245716")
+             .setColor("#e51c1c")
              .setTitle(title)
              .setAuthor("SCP Secret Laboratory [OFFLINE]","http://scp-sl.wdfiles.com/local--files/nav:side/scp-sl-logo.png")
              .addField("IP:", theip, true)
@@ -564,7 +564,7 @@ for (step = 0; step < args[1]; step++) {
           } else {
             var playerCount = obj.players
             let serverstatuson = new Discord.RichEmbed()
-             .setColor("3498293")
+             .setColor("#1de535")
              .setTitle(title)
              .setAuthor("SCP Secret Laboratory [OFFLINE]","http://scp-sl.wdfiles.com/local--files/nav:side/scp-sl-logo.png")
              .addField("IP:", theip, true)
