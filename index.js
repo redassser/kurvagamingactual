@@ -157,7 +157,7 @@ client.on("message", (message) => {
     }
   }
   if (command === "ban") {
-    if (!message.member.permissions.has('VIEW_AUDIT_LOG')) {msg.send("``Administrator only``");return}
+    if (!message.member.permissions.has('VIEW_AUDIT_LOG')) {msg.send("``Senior Mods only``");return}
     var mention = message.mentions.members.first();
     if (!message.isMentioned(mention)) {msg.send('``You have to mention someone``');return}
     mention.ban();
@@ -175,119 +175,74 @@ client.on("message", (message) => {
   }
   //build-a-b̶e̶a̶r̶ command
   if (command === "cc") {
-    if (!message.member.permissions.has('MANAGE_MESSAGES')) {
-     message.channel.send("``Moderators only``");
-     return;
-   }
-   if (args.length < 2) {
-     message.channel.send("``!cc [command] [response]``")
-     return;
-   }
-   if (client.commands.has(args[0])) {
-     message.channel.send("``This command already exists``");
-     return;
-   }
-   client.commands.set(args.shift(), args.join(" "));
-   message.channel.send("``Command has been made``");
- }
- if (client.commands.has(command)) {
-   message.channel.send(client.commands.get(command))
- }
- if (command === "ccdel") {
-    if (!message.member.permissions.has('MANAGE_MESSAGES')) {
-     message.channel.send("``Moderators only``");
-     return;
-   }
-   if (args.length != 1) {
-     message.channel.send("``!ccdel [command]``")
-     return;
-   }
-   if (!client.commands.has(args[0])) {
-     message.channel.send("``This command does not exist``");
-     return;
-   }
-   client.commands.delete(args[0])
-   message.channel.send("``Command successfuly deleted``")
- }
-  
+    if (!message.member.permissions.has('MANAGE_MESSAGES')) {msg.send("``Moderators only``");return}
+    if (args.length < 2) {msg.send("``!cc [command] [response]``");return}
+    if (client.commands.has(args[0])) {msg.send("``This command already exists``");return}
+    client.commands.set(args.shift(), args.join(" "));
+    msg.send("``Command has been made``");
+  }
+  if (client.commands.has(command)) {
+    msg.send(client.commands.get(command))
+  }
+  if (command === "ccdel") {
+    if (!message.member.permissions.has('MANAGE_MESSAGES')) {msg.send("``Moderators only``");return}
+    if (args.length != 1) {msg.send("``!ccdel [command]``");return}
+    if (!client.commands.has(args[0])) {msg.send("``This command does not exist``");return}
+    client.commands.delete(args[0])
+    msg.send("``Command successfuly deleted``")
+  }
+  if (commnd === "cclist") {
+    if (!message.member.permissions.has('MANAGE_MESSAGES')) {msg.send("``Moderators only``");return}
+    const array = client.servers.keyArray()
+    if (array.length === 0) {message.channel.send("``No commands have been made. Use !set to add some!``");return}
+    msg.send("List of commands\n``"+array.join('\n')+"``");
+  }
   //no more building!
   if (command === "kick") {
-     if (message.member.permissions.has('ADMINISTRATOR')) {
-       var mention = message.mentions.members.first();
-    if (message.isMentioned(mention)) {
-    message.channel.send(`${mention} has been kicked.`);
+    var mention = message.mentions.members.first();
+    if (!message.member.permissions.has('VIEW_AUDIT_LOG')) {msg.send("Senior Mods only");return}
+    if (!message.isMentioned(mention)) {msg.send(`You have to mention someone!`);return}
+    mention.kick()
+    msg.send(`${mention} has been kicked.`);
   }
-    else {
-      message.channel.send(`You have to mention someone!`);
+  if (command === "restart"){
+    if (!message.member.permissions.has('MANAGE_MESSAGES')) {msg.send("``Moderators only!``");return}
+    function resetBot(channel) {
+      channel.send("I'll be back shortly!")
+     .then(msg => client.destroy())
+     .then(() => client.login(process.env.BOT_TOKEN));
     }
-     } else {
-       message.channel.send("Nope!");
-     }
-  }
-   if (command === "restart"){
-     function resetBot(channel) {
-    channel.send("I'll be back shortly!")
-    .then(msg => client.destroy())
-    .then(() => client.login(process.env.BOT_TOKEN));
-}
- if (message.member.permissions.has('MANAGE_MESSAGES')) {
-resetBot(message.channel);
- } else {
-   message.channel.send("Nope!");
- }
-   } 
+    resetBot(msg);
+  } 
   if (command.startsWith("scp-")&&num >= 0 && num <= 4000) {
     switch (num.toString().length) {
       case 1:
-        var scp = "00"+num;
-        break;
+        var scp = "00"+num;break;
       case 2:
-        var scp = "0"+num;
-        break;
+        var scp = "0"+num;break;
       case 3:
-        var scp = num
-        break;
+        var scp = num;break;
       case 4:
-        var scp = num;
-        break;
+        var scp = num;break;
     }
-    if(command.endsWith("-j")) {
-      message.channel.send(`http://www.scp-wiki.net/scp-${scp}-j`);
-    } else {
-     message.channel.send(`http://www.scp-wiki.net/scp-${scp}`);
-    }
+    if(!command.endsWith("-j")) {message.channel.send(`http://www.scp-wiki.net/scp-${scp}`);return]
+    msg.send(`http://www.scp-wiki.net/scp-${scp}-j`);
   }
-   if (command === "hug") {
+  if (command === "hug") {
     var mention = message.mentions.members.first();
-    if (message.isMentioned(mention)) {
-    message.channel.send(`(>^_^)> ${mention} <(^.^<)`)
-  }
-    else 
-      message.channel.send(`(>^_^)> ${message.author} <(^.^<)`)
+    if (!message.isMentioned(mention)) {msg.send(`(>^_^)> ${message.author} <(^.^<)`);return}
+    msg.send(`(>^_^)> ${mention} <(^.^<)`)
   }
   if (command === "donate") {
-      message.channel.send("Donate here: https://www.paypal.com/pools/c/839i9RcUvF")
-}
-  if (command === "purge") {
-    if (!message.member.permissions.has('VIEW_AUDIT_LOG')) {
-     message.channel.send("``Senior staff only``");
-      return;
-    }
-    if (isNaN(args[0]) || args.length != 1) {
-     message.channel.send("``!purge [number]``");
-      return;
-    }
-    message.channel.bulkDelete(args[0]);
-        message.channel.send(`${args[0]} messages deleted!`)
-  .then(msg => {
-    msg.delete(5000);
-  })
-  .catch();
-     
+    msg.send("Donate here: https://www.paypal.com/pools/c/839i9RcUvF")
   }
- if (command === "support") {
-   message.channel.send("No worries, a staff member will be with you soon!")
-  client.channels.get("466373577503932441").send(`<@&432337866493001740>, ${message.author} is having a bit of a problem in ${message.channel}`);
+  if (command === "purge") {
+    if (!message.member.permissions.has('VIEW_AUDIT_LOG')) {message.channel.send("``Senior staff only``");return}
+    if (isNaN(args[0]) || args.length != 1) {message.channel.send("``!purge [number]``");return}
+    msg.bulkDelete(args[0]);
+    msg.send(`${args[0]} messages deleted!`)
+    .then(mesg => {mesg.delete(5000)})
+    .catch();   
   }
   if (command === "commands") {
     message.channel.send("You have been messaged the commands!")
