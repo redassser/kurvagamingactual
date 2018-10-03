@@ -50,9 +50,9 @@ client.on("message", (message) => {
         .catch();
         message.delete();
         return;
-      } else if (args[0] === "neighbour") {
+      } else if (args[0] === "synthroid") {
         message.member.addRole("490675168843268098");
-        msg.send(message.author+" ``has been given entrance to the neighbour's house``")
+        msg.send(message.author+" ``has been given entrance to synthroid``")
         .then(msg => {
           msg.delete(15000);
         })
@@ -60,7 +60,7 @@ client.on("message", (message) => {
         message.delete();
         return;
       } else {
-        msg.send("``!give scp\n!give neighbour``")
+        msg.send("``!give scp\n!give synthroid``")
         .then(msg => {
           msg.delete(5000);
         })
