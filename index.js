@@ -303,67 +303,31 @@ client.on("message", (message) => {
       }
     }
     function onadmin() {
-    var i;
-    for (i = 0; i < message.guild.roles.get('432337534794727425').members.array().length; i++) { 
-    if(message.guild.roles.get('432337534794727425').members.array()[i].presence.game!=null){
-      if(message.guild.roles.get('432337534794727425').members.array()[i].presence.game.name==='SCP: Secret Laboratory'){
-        onadmins.push(message.guild.roles.get('432337534794727425').members.array()[i].user);
+      var i;
+      for (i = 0; i < message.guild.roles.get('432337534794727425').members.array().length; i++) { 
+        if(message.guild.roles.get('432337534794727425').members.array()[i].presence.game!=null){
+          if(message.guild.roles.get('432337534794727425').members.array()[i].presence.game.name==='SCP: Secret Laboratory'){
+            onadmins.push(message.guild.roles.get('432337534794727425').members.array()[i].user);
+          }
+        }
       }
     }
-}
-  }
-  onmod();
-
-  onadmin();
-  onsenior();
-   message.channel.send({"embed": {
-    "color": 857707,
-    timestamp: new Date(),
-    "title": `Kurva Gaming Official Servers`,
-    "thumbnail":{
-      "url": "https://i.imgur.com/QTZC9gA.png"
-    },
-    "footer": {
-      "icon_url": "https://cdn1.iconfinder.com/data/icons/color-bold-style/21/08-512.png",
-      "text": "Please call for any in-game mod before anyone else!"
-    },
-     "author": {
-      "name": "Currently available Moderators",
-      "icon_url": "https://vignette.wikia.nocookie.net/roblox/images/c/ce/Police_Sergeants_Cap.png/revision/latest?cb=20170211084322"
-     },
-        fields: [{
-          name: "Mods",
-          value: `All: ${allmod}`,
-          inline: true
-        },
-        {
-          name: "Mods",
-          value: `In-game: ${onmods.join(', ')}`,
-          inline: true
-        },
-        {
-          name: "Senior mods",
-          value: `All: ${allsenior}`,
-          inline: true
-        },
-                         {
-          name: "Senior mods",
-          value: `In-game: ${onseniors.join(', ')}`,
-          inline: true
-        },
-        {
-          name: "Admins",
-          value: `All: ${alladmin}`,
-          inline: true
-        },
-                 {
-          name: "Admins",
-          value: `In-game: ${onadmins.join(', ')}`,
-          inline: true
-        }
-          ],
-      }
-     }); 
+    onmod();
+    onadmin();
+    onsenior();
+    let modhelp = new Discord.RichEmbed()
+      .setColor("857707")
+      .setTitle("Kurva Gaming Official Servers")
+      .setThumbnail("https://i.imgur.com/QTZC9gA.png")
+      .setFooter("Please call for any in-game mod before anyone else!")
+      .setAuthor("Currently available Moderators", "https://vignette.wikia.nocookie.net/roblox/images/c/ce/Police_Sergeants_Cap.png/revision/latest?cb=20170211084322")
+      .addField("All Mods",allmod,true)
+      .addField("In-game Mods",onmods.join(", "),true)
+      .addField("All Senior Mods",allsenior,true)
+      .addField("In-game Senior Mods", onseniors.join(", "),true)
+      .addField("All Admins",alladmin,true)
+      .addField("In-game Admins",onadmins.join(", "),true);
+    message.channel.send(modhelp); 
   }
   if (command === "offline") {
     var mention = message.mentions.members.first();
@@ -394,7 +358,7 @@ client.on("message", (message) => {
   //southern border to moderaton nation
   if (command === "kgmeme") {
     var embedPic = config.ourArray[Math.floor(Math.random()*config.ourArray.length)];
-   msg.send(embedPic); 
+    msg.send(embedPic); 
     console.log(`${message.author.username} in ${msg.name} used the kgmeme command.`);
   }
   if (command === "status") {
@@ -409,159 +373,156 @@ client.on("message", (message) => {
     message.delete();
   }
  
-if (command === "ping") {
-  let mention = message.mentions.members.first()
-  if (args.length != 2) {msg.send("``!ping [mention] [number]``");return}
-  if (!isNaN(args[1])) {msg.send("``That's not a number.``");return}
-  if (message.isMentioned(mention)) {msg.send("``You have to mention someone.``");return}
-  if (message.guild.ownerID != message.author.id) {msg.send("Owner only");return}
-  var step;
-  if (args[1] <= 5) {
-    for (step = 0; step < args[1]; step++) {
-      message.channel.send(`${args[0]}`);
-    }
-  } else {
-    for (step = 0; step < args[1]; step+=5) {
-      msg.send(args[0]+args[0]+args[0]+args[0]+args[0]);
+  if (command === "ping") {
+    let mention = message.mentions.members.first()
+    if (args.length != 2) {msg.send("``!ping [mention] [number]``");return}
+    if (!isNaN(args[1])) {msg.send("``That's not a number.``");return}
+    if (message.isMentioned(mention)) {msg.send("``You have to mention someone.``");return}
+    if (message.guild.ownerID != message.author.id) {msg.send("Owner only");return}
+    var step;
+    if (args[1] <= 5) {
+      for (step = 0; step < args[1]; step++) {
+        message.channel.send(`${args[0]}`);
+      }
+    } else {
+      for (step = 0; step < args[1]; step+=5) {
+        msg.send(args[0]+args[0]+args[0]+args[0]+args[0]);
+      }
     }
   }
-}
-if (command === "vote" && argu != "") {
-  if (!message.member.permissions.has('ADMINISTRATOR')) {msg.send("``Administrator only.``");return}
-    message.channel.send({embed: {
-    color: 15844367,
-    author: {
-      name: `${message.author.username} is calling a vote!`,
-      icon_url: message.author.avatarURL
-    },
-    title: `${argu}`,
-    }
-    }).then(newMessage => {
-   newMessage.react('✅')
-   newMessage.react('❌')
-        .catch(console.error);
+  if (command === "vote" && argu != "") {
+    if (!argu) {msg.send("``You didnt't type anything.``");return}
+    if (!message.member.permissions.has('VIEW_AUDIT_LOG')) {msg.send("``Senior Mods only.``");return}
+    let voteem = new Discord.RichEmbed()
+      .setColor("15844367")
+      .setAuthor(message.author.username+" is calling a vote!")
+      .setTitle(argu);
+    message.channel.send(voteem)
+    .then(newMessage => {
+    newMessage.react('✅')
+    newMessage.react('❌')
+    .catch(console.error);
     })
     .catch(console.error);
     message.delete(); 
   }
   //oh look the servers isnt that neat
- if (message.channel.id != "442739266909503489" && message.channel.id != "486892954297040896" && message.channel.id != "464091801331040297") return;
- var theip = 7; var title = 7; var portEnd = 7;
+  if (message.channel.id != "442739266909503489" && message.channel.id != "486892954297040896" && message.channel.id != "464091801331040297") return;
+  var theip = 7; var title = 7; var portEnd = 7;
 
- if (command === "players") {
-   var arra = [];
-   request('https://api.scpslgame.com/lobbylist.php?format=json', function(err, resp, html) {
-     if (!err){
-       var arra = [];
-       var json = JSON.parse(html);
-       if ("error" in json) {
-         console.log("Someone help me!");
-       } else {
-         
-         let ser1 = json.find(o => o.ip === "192.223.31.157" && o.port === '7777')
-         if(!ser1) {arra.push("Server 1 - Offline")} 
-         else {arra.push("Server 1 - "+ser1.players)}
+  if (command === "players") {
+    var arra = [];
+    request('https://api.scpslgame.com/lobbylist.php?format=json', function(err, resp, html) {
+      if (!err){
+        var arra = [];
+        var json = JSON.parse(html);
+        if ("error" in json) {
+          console.log("Someone help me!");
+        } else {
+          
+          let ser1 = json.find(o => o.ip === "192.223.31.157" && o.port === '7777')
+          if(!ser1) {arra.push("Server 1 - Offline")} 
+          else {arra.push("Server 1 - "+ser1.players)}
            
-         let ser2 = json.find(o => o.ip === "192.223.31.157" && o.port === '7778')
-         if(!ser2) {arra.push("Server 2 - Offline")}
-         else {arra.push("Server 2 - "+ser2.players)}
+          let ser2 = json.find(o => o.ip === "192.223.31.157" && o.port === '7778')
+          if(!ser2) {arra.push("Server 2 - Offline")}
+          else {arra.push("Server 2 - "+ser2.players)}
            
-         let ser3 = json.find(o => o.ip === "192.223.31.157" && o.port === '7779')
-         if(!ser3) {arra.push("Server 3 - Offline")} 
-         else {arra.push("Server 3 - "+ser3.players)}
+          let ser3 = json.find(o => o.ip === "192.223.31.157" && o.port === '7779')
+          if(!ser3) {arra.push("Server 3 - Offline")} 
+          else {arra.push("Server 3 - "+ser3.players)}
            
-         let ser4 = json.find(o => o.ip === "192.223.31.157" && o.port === '7780')
-         if(!ser4) {arra.push("Server 4 - Offline")} 
-         else {arra.push("Server 4 - "+ser4.players)}
+          let ser4 = json.find(o => o.ip === "192.223.31.157" && o.port === '7780')
+          if(!ser4) {arra.push("Server 4 - Offline")} 
+          else {arra.push("Server 4 - "+ser4.players)}
            
-         let ser5 = json.find(o => o.ip === "192.223.31.157" && o.port === '7781')
-         if(!ser5) {arra.push("Server 5 - Offline")}
-         else {arra.push("Server 5 - "+ser5.players)}
+          let ser5 = json.find(o => o.ip === "192.223.31.157" && o.port === '7781')
+          if(!ser5) {arra.push("Server 5 - Offline")}
+          else {arra.push("Server 5 - "+ser5.players)}
            
-         let ser0 = json.find(o => o.ip === "192.223.27.212" && o.port === '7777')
-         if(!ser0) {arra.push("Official Server - Offline")}
-         else {arra.push("Official Server - "+ser0.players)}
+          let ser0 = json.find(o => o.ip === "192.223.27.212" && o.port === '7777')
+          if(!ser0) {arra.push("Official Server - Offline")}
+          else {arra.push("Official Server - "+ser0.players)}
            
-         message.channel.send(arra)
-       } 
-     }  
-   });
- }
- if (command.startsWith("ss")){
-  switch (command) {
-    case "ss1":
-      var title = "Kurva Gaming Dedicated Server #1";
-      var portEnd = "7777"; 
-      var theip = "192.223.31.157"; break;
-    case "ss2": 
-      var title = "Kurva Gaming Dedicated Server #2";
-      var portEnd = "7778";
-      var theip = "192.223.31.157"; break;
-    case "ss3":
-      var title = "Kurva Gaming Dedicated Server #3";
-      var portEnd = "7779";
-      var theip = "192.223.31.157"; break;
-    case "ss4":
-      var title = "Kurva Gaming Dedicated Server #4";
-      var portEnd = "7780";
-      var theip = "192.223.31.157"; break;
-    case "ss5": 
-      var title = "Kurva Gaming Dedicated Server #5";
-      var portEnd = "7781";
-      var theip = "192.223.31.157"; break;
-    case "ss0":
-      var title = "Official SCP: Secret Laboratory Server";
-      var portEnd = "7777"
-      var theip = "192.223.27.212"; break;
-    case "ss1w":
-      var title = "Kurva Gaming West Dedicated Server #1";
-      var portEnd = "7777"
-      var theip = "162.248.94.92"; break;
-    case "ss2w": 
-      var title = "Kurva Gaming West Dedicated Server #2";
-      var portEnd = "7778"
-      var theip = "162.248.94.92"; break
-    case "ss3w": 
-      var title = "Kurva Gaming West Dedicated Server #3";
-      var portEnd = "7779"
-      var theip = "162.248.94.92"; break
-    default:
-      msg.channel.send("``Sorry, that isn't a server.``");
-      return;
+          message.channel.send(arra)
+        } 
+      }  
+    });
   }
-      request('https://api.scpslgame.com/lobbylist.php?format=json', function(err, resp, html) {
-        if (!err){
-    {
-              var json = JSON.parse(html);
-     if ("error" in json) {
-     console.log("Someone help me!");
-     } else {
-       var obj = json.find(o => o.ip === theip && o.port === portEnd);
-          if(!obj) {
-           let serverstatusoff = new Discord.RichEmbed()
-             .setColor("#e51c1c")
-             .setTitle(title)
-             .setAuthor("SCP Secret Laboratory [OFFLINE]","http://scp-sl.wdfiles.com/local--files/nav:side/scp-sl-logo.png")
-             .addField("IP:", theip, true)
-             .addField("PORT:", portEnd, true)
-             .addField("PLAYERS:", "N/A", true)
-           message.channel.send(serverstatusoff); 
+  if (command.startsWith("ss")){
+    switch (command) {
+      case "ss1":
+        var title = "Kurva Gaming Dedicated Server #1";
+        var portEnd = "7777"; 
+        var theip = "192.223.31.157"; break;
+      case "ss2": 
+        var title = "Kurva Gaming Dedicated Server #2";
+        var portEnd = "7778";
+        var theip = "192.223.31.157"; break;
+      case "ss3":
+        var title = "Kurva Gaming Dedicated Server #3";
+        var portEnd = "7779";
+        var theip = "192.223.31.157"; break;
+      case "ss4":
+        var title = "Kurva Gaming Dedicated Server #4";
+        var portEnd = "7780";
+        var theip = "192.223.31.157"; break;
+      case "ss5": 
+        var title = "Kurva Gaming Dedicated Server #5";
+        var portEnd = "7781";
+        var theip = "192.223.31.157"; break;
+      case "ss0":
+        var title = "Official SCP: Secret Laboratory Server";
+        var portEnd = "7777"
+        var theip = "192.223.27.212"; break;
+      case "ss1w":
+        var title = "Kurva Gaming West Dedicated Server #1";
+        var portEnd = "7777"
+        var theip = "162.248.94.92"; break;
+      case "ss2w": 
+        var title = "Kurva Gaming West Dedicated Server #2";
+        var portEnd = "7778"
+        var theip = "162.248.94.92"; break
+      case "ss3w": 
+        var title = "Kurva Gaming West Dedicated Server #3";
+        var portEnd = "7779"
+        var theip = "162.248.94.92"; break
+      default:
+        msg.channel.send("``Sorry, that isn't a server.``");
+        return;
+    }
+    request('https://api.scpslgame.com/lobbylist.php?format=json', function(err, resp, html) {
+      if (!err){
+        {
+          var json = JSON.parse(html);
+          if ("error" in json) {
+            console.log("Someone help me!");
           } else {
-            var playerCount = obj.players
-            let serverstatuson = new Discord.RichEmbed()
-             .setColor("#1de535")
-             .setTitle(title)
-             .setAuthor("SCP Secret Laboratory [OFFLINE]","http://scp-sl.wdfiles.com/local--files/nav:side/scp-sl-logo.png")
-             .addField("IP:", theip, true)
-             .addField("PORT:", portEnd, true)
-             .addField("PLAYERS:", playerCount, true)
-           message.channel.send(serverstatuson);
-          }
-     } 
-            }   
-        }
-});
- }
+            var obj = json.find(o => o.ip === theip && o.port === portEnd);
+            if(!obj) {
+              let serverstatusoff = new Discord.RichEmbed()
+                .setColor("#e51c1c")
+                .setTitle(title)
+                .setAuthor("SCP Secret Laboratory [OFFLINE]","http://scp-sl.wdfiles.com/local--files/nav:side/scp-sl-logo.png")                 .addField("IP:", theip, true)
+                .addField("PORT:", portEnd, true)
+                .addField("PLAYERS:", "N/A", true)
+              message.channel.send(serverstatusoff); 
+            } else {
+              var playerCount = obj.players
+              let serverstatuson = new Discord.RichEmbed()
+                .setColor("#1de535")
+                .setTitle(title)
+                .setAuthor("SCP Secret Laboratory [OFFLINE]","http://scp-sl.wdfiles.com/local--files/nav:side/scp-sl-logo.png")
+                .addField("IP:", theip, true)
+                .addField("PORT:", portEnd, true)
+                .addField("PLAYERS:", playerCount, true)
+              message.channel.send(serverstatuson);
+            }
+          } 
+        }   
+      }
+    });
+  }
 });
 client.on('guildMemberAdd', (member) => {
   if (member.guild.id === "432332961057079297") {
