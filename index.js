@@ -39,7 +39,6 @@ client.on("message", (message) => {
   //START FOR NEWCOMERS
   //THEY CAN CHOOSE WHICH CHANNELS THEY WISH TO SEE
   if (msg.id === "490675505968840714") {
-    if (!message.content.startsWith(prefix)||message.author.bot) {message.delete();return}
     if (command === "give") {
       if (args[0] === "scp") {
         message.member.addRole("490675133946789888");
