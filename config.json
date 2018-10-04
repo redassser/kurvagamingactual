@@ -1,7 +1,7 @@
 {
   "token": "NDY0MDQyODM2MDMyMjI1Mjgx.Dh5NkQ.XLX2Jt-T4729Jve5Ye6mTztGFTA",
   "timeUnits": ["seconds","months","hours","days"],
-  "exist": ["sea","ban","cah","cc","cclist","ccdel","kick","warn","restart","count","say","offline","online","kgmeme","status","status","8ball","ping","vote","players","ss1","ss2","ss3","ss4","ss0","ssk","command"],
+  "exist": ["help","sea","ban","cah","cc","cclist","ccdel","kick","warn","restart","count","say","offline","online","kgmeme","status","status","8ball","ping","vote","players","ss1","ss2","ss3","ss4","ss0","ssk","command"],
   "myArray" : [
       "Don't count on it.",
       "My reply is no.",
@@ -21,6 +21,7 @@
       ],
   "ports": ["7777","7778","7779","7780","7781","7782","7783","7784"],
   "hello": [
+    "Did gray restart the server again?",
     "Hello, welcome to Butte County Department of Behavioral Health. How may I help you today?",
     "Welcome to the Krusty Krabs, may I take your order?",
     "Hey, man... That concrete statue lookin' thing in the corner is freaking me out. Make sure to keep an eye on 'em, will ya'?",
