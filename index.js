@@ -269,12 +269,12 @@ client.on("message", (message) => {
     msg.send(`There are ${message.guild.memberCount} people in the discord!`);
   }
   if (command === "say") {
-    if (!message.guild.channels.get(args[0].slice(2, 20))) {msg.send("That's not a channel")}
+    if (!message.guild.channels.get(args[0].slice(2, 20))) {msg.send("That's not a channel");return}
     if (!message.member.permissions.has('VIEW_AUDIT_LOG')) {msg.send("Senior Mods only.");return}
-    var gsg = args[0].slice(2, 20);
-    var argo = argu.replace(`${args[0]}`, "");
-    message.guild.channels.get(`${gsg}`).send(`${argo}`);
-    console.log(`${message.author.username} said ${argo} in ${gsg}.`);
+    var channelid = args[0].slice(2, 20);
+    var argo = argu.replace(args[0], "");
+    message.guild.channels.get(channelid).send(`${argo}`);
+    console.log(message.author.username+" said "+argo+" in "+message.guild.channels.get(channelid));
   }
   //northern border to moderation nation
   var onmods = []; var onadmins = []; var onseniors = [];
