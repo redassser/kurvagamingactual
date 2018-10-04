@@ -390,11 +390,11 @@ client.on("message", (message) => {
       }
     }
   }
-  if (command === "vote" && argu != "") {
+  if (command === "vote") {
     if (!argu) {msg.send("``You didnt't type anything.``");return}
     if (!message.member.permissions.has('VIEW_AUDIT_LOG')) {msg.send("``Senior Mods only.``");return}
     let voteem = new Discord.RichEmbed()
-      .setColor("15844367")
+      .setColor("RANDOM")
       .setAuthor(message.author.username+" is calling a vote!")
       .setTitle(argu);
     message.channel.send(voteem)
