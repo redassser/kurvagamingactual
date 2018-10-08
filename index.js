@@ -325,17 +325,17 @@ client.on("message", (message) => {
     onadmin();
     onsenior();
     let modhelp = new Discord.RichEmbed()
-      .setColor("857707")
+      .setColor("RANDOM")
       .setTitle("Kurva Gaming Official Servers")
       .setThumbnail("https://i.imgur.com/QTZC9gA.png")
       .setFooter("Please call for any in-game mod before anyone else!")
       .setAuthor("Currently available Moderators", "https://vignette.wikia.nocookie.net/roblox/images/c/ce/Police_Sergeants_Cap.png/revision/latest?cb=20170211084322")
-      .addField("All Mods",allmod,true)
-      .addField("In-game Mods",onmods.join(", "),true)
-      .addField("All Senior Mods",allsenior,true)
-      .addField("In-game Senior Mods", onseniors.join(", "),true)
-      .addField("All Admins",alladmin,true)
-      .addField("In-game Admins",onadmins.join(", "),true);
+      .addField("All Mods",allmod)
+      .addField("In-game Mods",onmods.join(", "))
+      .addField("All Senior Mods",allsenior)
+      .addField("In-game Senior Mods", onseniors.join(", "))
+      .addField("All Admins",alladmin)
+      .addField("In-game Admins",onadmins.join(", "));
     message.channel.send(modhelp); 
   }
   if (command === "offline") {
