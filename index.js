@@ -59,8 +59,17 @@ client.on("message", (message) => {
         .catch();
         message.delete();
         return;
+      } else if (args[0] === "rust") {
+        message.member.addRole("498674147451338772");
+        msg.send(message.author+" ``has been given entrance to RUST``")
+        .then(msg => {
+          msg.delete(15000);
+        })
+        .catch();
+        message.delete();
+        return;
       } else {
-        msg.send("``!give scp\n!give synthroid``")
+        msg.send("``!give scp\n!give synthroid\n!give rust``")
         .then(msg => {
           msg.delete(5000);
         })
