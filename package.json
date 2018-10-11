@@ -23,6 +23,7 @@
     "enmap-mongo": "^2.0.1",
     "jsdom": "^11.11.0",
     "parser": "^0.1.4",
-    "request": "^2.88.0"
+    "request": "^2.88.0",
+    "google-spreadsheet": "^2.0.6"
   }
 }
