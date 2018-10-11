@@ -7,7 +7,9 @@ const request = require('request');
 const cheerio = require('cheerio');
 const Enmap = require('enmap');
 const EnmapMongo = require("enmap-mongo");
-const fs = require("fs");
+const GoogleSpreadsheet = require('google-spreadsheet');
+const creds = JSON.parse(process.env.CREDS);
+const doc = new GoogleSpreadsheet(process.env.SPREADSHEET);
 client.warn = new Enmap({ provider: new EnmapMongo({
   name: `warnings`,
   dbName: `warnings`,
@@ -83,63 +85,7 @@ client.on("message", (message) => {
   //this is to heck the bots and non-prefixes
   if (!message.content.startsWith(prefix) || message.author.bot || msg.id === "490675505968840714") return;
   //This is for warnings and stuff down here
-  if (command === "warn") {
-    if (!message.member.permissions.has("MANAGE_MESSAGES")) {msg.send("``Staff only``");return}
-    if (args.length < 2) {msg.send("``!warn [name] [reason]``");return}
-    if (client.warn.has(args[0].toLowerCase())) {
-      msg.send("``"+args[0]+" has been warned again``")
-      client.warn.push(args.shift().toLowerCase(), args.join(" "))
-    } else {
-      msg.send("``"+args[0].toLowerCase()+" has been warned``")
-      client.warn.set(args.shift().toLowerCase(), [args.join(" ")]);
-    }
-  }
-  if (command === "check") {
-    if (!message.member.permissions.has("MANAGE_MESSAGES")) {msg.send("``Staff only``");return}
-    if (args.length != 1) {msg.send("``!check [name]``");return}
-    if (client.warn.has(args[0].toLowerCase())) {
-      msg.send("``"+args[0].toLowerCase()+" has been warned "+client.warn.get(args[0].toLowerCase()).length+" times for these reasons...``\n"+client.warn.get(args[0].toLowerCase()).join("\n"))
-    } else {
-      msg.send("``There are no warnings under this name``")
-    }
-  }
-  if (command === "watchlist") {
-    if (!message.member.permissions.has("MANAGE_MESSAGES")){msg.send("``Staff only``");return}
-    function hasWarns (value) {
-      return client.warn.get(value).length > 1;
-    }
-    const array = client.warn.keyArray().filter(hasWarns)
-    if (array.length != 0) {
-      for (var i = 0; i < array.length; i++) {
-        array[i] = client.warn.get(array[i].toLowerCase()).length + " warns - " + array[i]
-      }
-      msg.send("``These people have been warned more than once...``\n"+array.join('\n'));
-    } else {
-      msg.send("``No people with more than one warning``")
-    }
-  }
-  if (command === "remove") {
-    if (!message.member.permissions.has('MANAGE_MESSAGES')){msg.send("``Staff only``");return}
-    if (args.length != 1) {msg.send("``!remove [name]``");return}
-    if (client.warn.has(args[0].toLowerCase())) {
-      client.warn.delete(args[0].toLowerCase());
-      msg.send("``Warnings removed.``")
-    } else {
-      msg.send("``No warnings for that name``");
-    }
-  }
-  if (command === "list") {
-    if (!message.member.permissions.has("MANAGE_MESSAGES")){msg.send("``Staff only``");return}
-    const array = client.warn.keyArray()
-    if (array.length != 0) {
-      for (var i = 0; i < array.length; i++) {
-        array[i] = client.warn.get(array[i].toLowerCase()).length + " warns - " + array[i]
-      }
-      msg.send("``These people have been warned...``\n"+array.join('\n'));
-    } else {
-      msg.send("``No people have been warned``")
-    }
-  }
+  
   //No more warnings uwu
   if (command === "mute") {
     if (!message.member.permissions.has("MANAGE_MESSAGES")) {msg.send("``Moderators only``");return}
@@ -182,6 +128,57 @@ client.on("message", (message) => {
     message.delete();
     console.log(`${message.author.username} in ${message.channel.name} used the cah command.`);
   }
+  doc.useServiceAccountAuth(creds, function (err) {
+  var playerAndReason = message.content.slice(command.length+prefix.length).split(";");
+  var playerNoReason = message.content.slice(command.length+prefix.length).trim()
+  var Player = playerAndReason.shift().trim();
+  var Reason = playerAndReason.shift();
+  if (command === "warn") {
+    if (!message.member.permissions.has("MANAGE_MESSAGES")) {message.channel.send("``Staff only``");return}
+    if (!Player) {message.channel.send("``That is not a valid name``"); return}
+    if (!Reason) {message.channel.send("``That is not a valid reason``"); return}
+    if (playerAndReason.length != 0) {message.channel.send("``Too many semicolons``"); return}
+    doc.getRows(1, function(err, rows) {
+      let indexOfPlayer = rows.map(x => x.player).indexOf(Player)
+      if(indexOfPlayer <= -1) {
+        doc.addRow(1, { player: Player, reasons: Reason}, function(err, row) {
+          if(err) {message.channel.send("Tell pie \n"+err)}
+          message.channel.send(Player+" has been warned")
+        });
+      } else {
+        doc.getRows(1, function(err, rows) {
+          if(err) {message.channel.send("Tell pie \n"+err)}
+          rows[0].reasons = rows[0].reasons+"\n"+Reason
+          rows[0].save()
+        });
+        message.channel.send(Player+" has been warned again")
+      }
+    });
+  } //end for the !warn
+  if (command === "delete") {
+  if (!message.member.permissions.has("MANAGE_MESSAGES")) {message.channel.send("``Staff only``");return}
+    if (!playerNoReason) {message.channel.send("``That is not a valid name``");return}
+    doc.getRows(1, function(err, rows) {
+      if(err) {message.channel.send("Tell pie \n"+err)}
+      let indexOfPlayer = rows.map(x => x.player).indexOf(playerNoReason)
+      if(indexOfPlayer <= -1) {message.channel.send("``There are no warnings under that name``");return}
+      message.channel.send("Warnings for "+playerNoReason+" have been deleted")
+      rows[indexOfPlayer].del()
+    });
+  } //end for delete
+  if (command === "check") {
+    if (!message.member.permissions.has("MANAGE_MESSAGES")) {message.channel.send("``Staff only``");return}
+    if (!playerNoReason) {message.channel.send("``That is not a valid name``");return}
+    doc.getRows(1, function(err, rows) {
+      if(err) {
+        message.channel.send("Tell pie \n"+err);
+      }
+      let indexOfPlayer = rows.map(x => x.player).indexOf(playerNoReason)
+      if(indexOfPlayer <= -1) {message.channel.send("``There are no warnings under that name``");return}
+      message.channel.send("Warnings for "+playerNoReason+":\n``"+rows[indexOfPlayer]["reasons"]+"``")
+    });
+  } //end for check
+  }); //end for the creds
   //build-a-b̶e̶a̶r̶ command
   if (command === "cc") {
     if (!message.member.permissions.has('MANAGE_MESSAGES')) {msg.send("``Moderators only``");return}
