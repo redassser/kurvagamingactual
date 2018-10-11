@@ -148,8 +148,8 @@ client.on("message", (message) => {
       } else {
         doc.getRows(1, function(err, rows) {
           if(err) {message.channel.send("Tell pie \n"+err)}
-          rows[0].reasons = rows[0].reasons+"\n"+Reason
-          rows[0].save()
+          rows[indexOfPlayer].reasons = rows[indexOfPlayer].reasons+"\n"+Reason
+          rows[indexOfPlayer].save()
         });
         message.channel.send(Player+" has been warned again")
       }
