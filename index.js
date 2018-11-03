@@ -44,6 +44,7 @@ client.on("message", (message) => {
     if (message.author.id === "464042836032225281") return;
     if (command === "give") {
       if (args[0] === "scp") {
+        console.log(message.content)
         message.member.addRole("490675133946789888");
         msg.send(message.author+" ``has been given entrance to Site Kurva``")
         .then(msg => {
