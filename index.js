@@ -43,17 +43,7 @@ client.on("message", (message) => {
   if (msg.id === "490675505968840714") {
     if (message.author.id === "464042836032225281") return;
     if (command === "give") {
-      if (args[0] === "scp") {
-        console.log(message.content)
-        message.member.addRole("490675133946789888");
-        msg.send(message.author+" ``has been given entrance to Site Kurva``")
-        .then(msg => {
-          msg.delete(15000);
-        })
-        .catch();
-        message.delete();
-        return;
-      } else if (args[0] === "synthroid") {
+      if (args[0] === "synthroid") {
         message.member.addRole("490675168843268098");
         msg.send(message.author+" ``has been given entrance to synthroid``")
         .then(msg => {
@@ -72,7 +62,7 @@ client.on("message", (message) => {
         message.delete();
         return;
       } else {
-        msg.send("``!give scp\n!give synthroid\n!give rust``")
+        msg.send("``!give synthroid\n!give rust``")
         .then(msg => {
           msg.delete(5000);
         })
