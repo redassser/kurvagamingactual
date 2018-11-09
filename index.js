@@ -485,7 +485,7 @@ client.on("message", (message) => {
         var portEnd = "7779"
         var theip = "162.248.94.92"; break
       default:
-        msg.channel.send("``Sorry, that isn't a server.``");
+        message.channel.send("``Sorry, that isn't a server.``");
         return;
     }
     request('https://api.scpslgame.com/lobbylist.php?format=json', function(err, resp, html) {
