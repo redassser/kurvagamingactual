@@ -8,8 +8,6 @@ const cheerio = require('cheerio');
 const Enmap = require('enmap');
 const EnmapMongo = require("enmap-mongo");
 const GoogleSpreadsheet = require('google-spreadsheet');
-const creds = JSON.parse(process.env.CREDS);
-const doc = new GoogleSpreadsheet(process.env.SPREADSHEET);
 client.warn = new Enmap({ provider: new EnmapMongo({
   name: `warnings`,
   dbName: `warnings`,
@@ -52,17 +50,8 @@ client.on("message", (message) => {
         .catch();
         message.delete();
         return;
-      } else if (args[0] === "rust") {
-        message.member.addRole("498674147451338772");
-        msg.send(message.author+" ``has been given entrance to RUST``")
-        .then(msg => {
-          msg.delete(15000);
-        })
-        .catch();
-        message.delete();
-        return;
       } else {
-        msg.send("``!give synthroid\n!give rust``")
+        msg.send("``!give synthroid``")
         .then(msg => {
           msg.delete(5000);
         })
@@ -119,6 +108,8 @@ client.on("message", (message) => {
     message.delete();
     console.log(`${message.author.username} in ${message.channel.name} used the cah command.`);
   }
+  var creds = JSON.parse(process.env.CREDS);
+  var doc = new GoogleSpreadsheet(process.env.SPREADSHEET);
   doc.useServiceAccountAuth(creds, function (err) {
   var playerAndReason = message.content.slice(command.length+prefix.length).split(";");
   var playerNoReason = message.content.slice(command.length+prefix.length).trim()
