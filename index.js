@@ -8,12 +8,7 @@ const cheerio = require('cheerio');
 const Enmap = require('enmap');
 const EnmapMongo = require("enmap-mongo");
 const GoogleSpreadsheet = require('google-spreadsheet');
-client.warn = new Enmap({ provider: new EnmapMongo({
-  name: `warnings`,
-  dbName: `warnings`,
-  url: process.env.MONGODB
-})
-})
+
 client.commands = new Enmap({ provider: new EnmapMongo({
   name: `commands`,
   dbName: `commands`,
