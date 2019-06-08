@@ -390,15 +390,15 @@ client.on("message", (message) => {
     message.delete(); 
   }
   //oh look the servers isnt that neat
-  var serverList = {"ss1":["Kurva Gaming Dedicated Server #1","7777","192.223.31.157"],
-                    "ss2":["Kurva Gaming Dedicated Server #2","7778","192.223.31.157"],
-                    "ss3":["Kurva Gaming Dedicated Server #3","7779","192.223.31.157"],
-                    "ss4":["Kurva Gaming Dedicated Server #4","7780","192.223.31.157"],
-                    "ss5":["Kurva Gaming Dedicated Server #5","7781","192.223.31.157"],
-                    "ss0":["Official SCP: Secret Laboratory Server","7777","192.223.27.212"],
-                    "ss1w":["Kurva Gaming West Dedicated Server #1","7777","162.248.94.92"],
-                    "ss2w":["Kurva Gaming West Dedicated Server #2","7778","162.248.94.92"],
-                    "ss3w":["Kurva Gaming West Dedicated Server #3","7779","162.248.94.92"],
+  var serverList = {ss1:["Kurva Gaming Dedicated Server #1","7777","192.223.31.157"],
+                    ss2:["Kurva Gaming Dedicated Server #2","7778","192.223.31.157"],
+                    ss3:["Kurva Gaming Dedicated Server #3","7779","192.223.31.157"],
+                    ss4:["Kurva Gaming Dedicated Server #4","7780","192.223.31.157"],
+                    ss5:["Kurva Gaming Dedicated Server #5","7781","192.223.31.157"],
+                    ss0:["Official SCP: Secret Laboratory Server","7777","192.223.27.212"],
+                    ss1w:["Kurva Gaming West Dedicated Server #1","7777","162.248.94.92"],
+                    ss2w:["Kurva Gaming West Dedicated Server #2","7778","162.248.94.92"],
+                    ss3w:["Kurva Gaming West Dedicated Server #3","7779","162.248.94.92"],
                    }
   if (message.channel.id != "442739266909503489" && message.channel.id != "486892954297040896" && message.channel.id != "464091801331040297") return;
   var theip; var title; var portEnd;
@@ -442,10 +442,10 @@ client.on("message", (message) => {
     });
   }
   if (command in serverList)  {
-    console.log(command,serverList."ss1",serverList.ss1,serverList.command)
-    title = serverList.[0];
-    portEnd = serverList.[1];
-    theip = serverList.[2];
+    console.log(command,serverList.ss1,serverList.command)
+    title = serverList.command[0];
+    portEnd = serverList.command[1];
+    theip = serverList.command[2];
   }
     request('https://api.scpslgame.com/lobbylist.php?format=json', function(err, resp, html) {
       if (!err){
