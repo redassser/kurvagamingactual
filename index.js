@@ -391,7 +391,7 @@ client.on("message", (message) => {
   }
   //oh look the servers isnt that neat
   var serverList = {ss1:["Kurva Gaming Dedicated Server #1","7777","192.223.31.157"],
-                    "ss2":["Kurva Gaming Dedicated Server #2","7778","192.223.31.157"],
+                    ss2:["Kurva Gaming Dedicated Server #2","7778","192.223.31.157"],
                     ss3:["Kurva Gaming Dedicated Server #3","7779","192.223.31.157"],
                     ss4:["Kurva Gaming Dedicated Server #4","7780","192.223.31.157"],
                     ss5:["Kurva Gaming Dedicated Server #5","7781","192.223.31.157"],
@@ -442,11 +442,10 @@ client.on("message", (message) => {
     });
   }
   if (command in serverList)  {
-    console.log(command,serverList.ss1,serverList[command])
     title = serverList[command][0];
     portEnd = serverList[command][1];
     theip = serverList[command][2];
-  }
+  } else {return;}}
     request('https://api.scpslgame.com/lobbylist.php?format=json', function(err, resp, html) {
       if (!err){
         {
