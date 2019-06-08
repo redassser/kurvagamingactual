@@ -390,6 +390,16 @@ client.on("message", (message) => {
     message.delete(); 
   }
   //oh look the servers isnt that neat
+  var serverList = {"ss1":["Kurva Gaming Dedicated Server #1","7777","192.223.31.157"],
+                    "ss2":["Kurva Gaming Dedicated Server #2","7778","192.223.31.157"],
+                    "ss3":["Kurva Gaming Dedicated Server #3","7779","192.223.31.157"],
+                    "ss4":["Kurva Gaming Dedicated Server #4","7780","192.223.31.157"],
+                    "ss5":["Kurva Gaming Dedicated Server #5","7781","192.223.31.157"],
+                    "ss0":["Official SCP: Secret Laboratory Server","7777","192.223.27.212"],
+                    "ss1w":["Kurva Gaming West Dedicated Server #1","7777","162.248.94.92"],
+                    "ss2w":["Kurva Gaming West Dedicated Server #2","7778","162.248.94.92"],
+                    "ss3w":["Kurva Gaming West Dedicated Server #3","7779","162.248.94.92"],
+                   }
   if (message.channel.id != "442739266909503489" && message.channel.id != "486892954297040896" && message.channel.id != "464091801331040297") return;
   var theip = 7; var title = 7; var portEnd = 7;
 
@@ -432,48 +442,12 @@ client.on("message", (message) => {
       }  
     });
   }
-  if (command.startsWith("ss")){
-    switch (command) {
-      case "ss1":
-        var title = "Kurva Gaming Dedicated Server #1";
-        var portEnd = "7777"; 
-        var theip = "192.223.31.157"; break;
-      case "ss2": 
-        var title = "Kurva Gaming Dedicated Server #2";
-        var portEnd = "7778";
-        var theip = "192.223.31.157"; break;
-      case "ss3":
-        var title = "Kurva Gaming Dedicated Server #3";
-        var portEnd = "7779";
-        var theip = "192.223.31.157"; break;
-      case "ss4":
-        var title = "Kurva Gaming Dedicated Server #4";
-        var portEnd = "7780";
-        var theip = "192.223.31.157"; break;
-      case "ss5": 
-        var title = "Kurva Gaming Dedicated Server #5";
-        var portEnd = "7781";
-        var theip = "192.223.31.157"; break;
-      case "ss0":
-        var title = "Official SCP: Secret Laboratory Server";
-        var portEnd = "7777"
-        var theip = "192.223.27.212"; break;
-      case "ss1w":
-        var title = "Kurva Gaming West Dedicated Server #1";
-        var portEnd = "7777"
-        var theip = "162.248.94.92"; break;
-      case "ss2w": 
-        var title = "Kurva Gaming West Dedicated Server #2";
-        var portEnd = "7778"
-        var theip = "162.248.94.92"; break
-      case "ss3w": 
-        var title = "Kurva Gaming West Dedicated Server #3";
-        var portEnd = "7779"
-        var theip = "162.248.94.92"; break
-      default:
-        message.channel.send("``Sorry, that isn't a server.``");
-        return;
-    }
+  if (command in serverList)  {
+    console.log(serverList.command)
+    var title = serverList[0];
+    var portEnd = serverList[1];
+    var theip = serverList[2];
+  }
     request('https://api.scpslgame.com/lobbylist.php?format=json', function(err, resp, html) {
       if (!err){
         {
@@ -495,7 +469,7 @@ client.on("message", (message) => {
               let serverstatuson = new Discord.RichEmbed()
                 .setColor("#1de535")
                 .setTitle(title)
-                .setAuthor("SCP Secret Laboratory [OFFLINE]","http://scp-sl.wdfiles.com/local--files/nav:side/scp-sl-logo.png")
+                .setAuthor("SCP Secret Laboratory","http://scp-sl.wdfiles.com/local--files/nav:side/scp-sl-logo.png")
                 .addField("IP:", theip, true)
                 .addField("PORT:", portEnd, true)
                 .addField("PLAYERS:", playerCount, true)
