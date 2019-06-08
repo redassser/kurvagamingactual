@@ -411,7 +411,7 @@ client.on("message", (message) => {
           var i;
           for (i=0;i<Object.keys(serverList).length;i++) {
             console.log(serverList[Object.keys(serverList)[i]],Object.keys(serverList))
-            let ser = json.find(o => o.ip === serverList[Object.keys(serverList)[i]][2] && o.port === Object.keys(serverList)[i][1])
+            let ser = json.find(o => o.ip === serverList[Object.keys(serverList)[i]][2] && o.port === serverList[Object.keys(serverList)[i]][1])
             if (!ser) {arra.push("Server "+serverList[Object.keys(serverList)[i]][3]+" - Offline")}
             else {arra.push("Server "+serverList[Objet.keys(serverList)[i]][3]+" - "+ser.players)}
           };
