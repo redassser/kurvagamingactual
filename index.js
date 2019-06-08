@@ -445,7 +445,7 @@ client.on("message", (message) => {
     title = serverList[command][0];
     portEnd = serverList[command][1];
     theip = serverList[command][2];
-  } else {return;}}
+  } else {return;}
     request('https://api.scpslgame.com/lobbylist.php?format=json', function(err, resp, html) {
       if (!err){
         {
