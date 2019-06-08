@@ -442,10 +442,10 @@ client.on("message", (message) => {
     });
   }
   if (command in serverList)  {
-    console.log(serverList.command)
-    title = serverList[0];
-    portEnd = serverList[1];
-    theip = serverList[2];
+    console.log(command,serverList."ss1",serverList.ss1,serverList.command)
+    title = serverList.[0];
+    portEnd = serverList.[1];
+    theip = serverList.[2];
   }
     request('https://api.scpslgame.com/lobbylist.php?format=json', function(err, resp, html) {
       if (!err){
