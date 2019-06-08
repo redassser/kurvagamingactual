@@ -411,10 +411,10 @@ client.on("message", (message) => {
           var i;
           console.log(Object.keys(serverList))
           for (i=0;i<Object.keys(serverList).length;i++) {
-            console.log(Object.keys(serverList)[i])
-            let ser = json.find(o => o.ip === Object.keys(serverList)[i][2] && o.port === Object.keys(serverList)[i][1])
-            if (!ser) {arra.push("Server "+Object.keys(serverList)[i][3]+" - Offline")}
-            else {arra.push("Server "+Object.keys(serverList)[i][3]+" - "+ser.players)}
+            console.log(serverList[i])
+            let ser = json.find(o => o.ip === serverList[i][2] && o.port === Object.keys(serverList)[i][1])
+            if (!ser) {arra.push("Server "+serverList[i][3]+" - Offline")}
+            else {arra.push("Server "+serverList[i][3]+" - "+ser.players)}
           };
           
           message.channel.send(arra)
