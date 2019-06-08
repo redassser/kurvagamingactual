@@ -401,8 +401,7 @@ client.on("message", (message) => {
                     "ss3w":["Kurva Gaming West Dedicated Server #3","7779","162.248.94.92"],
                    }
   if (message.channel.id != "442739266909503489" && message.channel.id != "486892954297040896" && message.channel.id != "464091801331040297") return;
-  var theip = 7; var title = 7; var portEnd = 7;
-
+  var theip; var title; var portEnd;
   if (command === "players") {
     var arra = [];
     request('https://api.scpslgame.com/lobbylist.php?format=json', function(err, resp, html) {
@@ -444,9 +443,9 @@ client.on("message", (message) => {
   }
   if (command in serverList)  {
     console.log(serverList.command)
-    var title = serverList[0];
-    var portEnd = serverList[1];
-    var theip = serverList[2];
+    title = serverList[0];
+    portEnd = serverList[1];
+    theip = serverList[2];
   }
     request('https://api.scpslgame.com/lobbylist.php?format=json', function(err, resp, html) {
       if (!err){
@@ -479,7 +478,6 @@ client.on("message", (message) => {
         }   
       }
     });
-  }
 });
 client.on('guildMemberAdd', (member) => {
   if (member.guild.id === "432332961057079297") {
