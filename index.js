@@ -390,15 +390,12 @@ client.on("message", (message) => {
     message.delete(); 
   }
   //oh look the servers isnt that neat
-  var serverList = {ss1:["Kurva Gaming Dedicated Server #1","7777","192.223.31.157"],
-                    ss2:["Kurva Gaming Dedicated Server #2","7778","192.223.31.157"],
-                    ss3:["Kurva Gaming Dedicated Server #3","7779","192.223.31.157"],
-                    ss4:["Kurva Gaming Dedicated Server #4","7780","192.223.31.157"],
-                    ss5:["Kurva Gaming Dedicated Server #5","7781","192.223.31.157"],
-                    ss0:["Official SCP: Secret Laboratory Server","7777","192.223.27.212"],
-                    ss1w:["Kurva Gaming West Dedicated Server #1","7777","162.248.94.92"],
-                    ss2w:["Kurva Gaming West Dedicated Server #2","7778","162.248.94.92"],
-                    ss3w:["Kurva Gaming West Dedicated Server #3","7779","162.248.94.92"],
+  var serverList = {ss1:["Kurva Gaming Dedicated Server #1","7777","192.223.31.157","1"],
+                    ss2:["Kurva Gaming Dedicated Server #2","7778","192.223.31.157","2"],
+                    ss3:["Kurva Gaming Dedicated Server #3","7779","192.223.31.157","3"],
+                    ss4:["Kurva Gaming Dedicated Server #4","7780","192.223.31.157","4"],
+                    ss5:["Kurva Gaming Dedicated Server #5","7781","192.223.31.157","5"],
+                    ss0:["Official SCP: Secret Laboratory Server","7777","192.223.27.212","Official Server"]
                    }
   if (message.channel.id != "442739266909503489" && message.channel.id != "486892954297040896" && message.channel.id != "464091801331040297") return;
   var theip; var title; var portEnd;
@@ -411,31 +408,13 @@ client.on("message", (message) => {
         if ("error" in json) {
           console.log("Someone help me!");
         } else {
+          var i;
+          for (i=0;i<Object.keys(serverList).length;i++) {
+            let ser = json.find(o => o.ip === Object.keys(serverList)[i][2] && o.port === Object.keys(serverList)[i][1])
+            if (!ser) {arra.push("Server "+Object.keys(serverList)[i][3]+" - Offline")}
+            else {arra.push("Server "+Object.keys(serverList)[i][3]+" - "+ser.players)}
+          };
           
-          let ser1 = json.find(o => o.ip === "192.223.31.157" && o.port === '7777')
-          if(!ser1) {arra.push("Server 1 - Offline")} 
-          else {arra.push("Server 1 - "+ser1.players)}
-           
-          let ser2 = json.find(o => o.ip === "192.223.31.157" && o.port === '7778')
-          if(!ser2) {arra.push("Server 2 - Offline")}
-          else {arra.push("Server 2 - "+ser2.players)}
-           
-          let ser3 = json.find(o => o.ip === "192.223.31.157" && o.port === '7779')
-          if(!ser3) {arra.push("Server 3 - Offline")} 
-          else {arra.push("Server 3 - "+ser3.players)}
-           
-          let ser4 = json.find(o => o.ip === "192.223.31.157" && o.port === '7780')
-          if(!ser4) {arra.push("Server 4 - Offline")} 
-          else {arra.push("Server 4 - "+ser4.players)}
-           
-          let ser5 = json.find(o => o.ip === "192.223.31.157" && o.port === '7781')
-          if(!ser5) {arra.push("Server 5 - Offline")}
-          else {arra.push("Server 5 - "+ser5.players)}
-           
-          let ser0 = json.find(o => o.ip === "192.223.27.212" && o.port === '7777')
-          if(!ser0) {arra.push("Official Server - Offline")}
-          else {arra.push("Official Server - "+ser0.players)}
-           
           message.channel.send(arra)
         } 
       }  
