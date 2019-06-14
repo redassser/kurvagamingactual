@@ -7,8 +7,6 @@ const request = require('request');
 const cheerio = require('cheerio');
 const Enmap = require('enmap');
 const EnmapMongo = require("enmap-mongo");
-const GoogleSpreadsheet = require('google-spreadsheet');
-
 client.commands = new Enmap({ provider: new EnmapMongo({
   name: `commands`,
   dbName: `commands`,
@@ -31,37 +29,8 @@ client.on("message", (message) => {
     var hello = config.hello[Math.floor(Math.random()*config.hello.length)];
     message.channel.send(hello);
   }
-  //START FOR NEWCOMERS
-  //THEY CAN CHOOSE WHICH CHANNELS THEY WISH TO SEE
-  if (msg.id === "490675505968840714") {
-    if (message.author.id === "464042836032225281") return;
-    if (command === "give") {
-      if (args[0] === "synthroid") {
-        message.member.addRole("490675168843268098");
-        msg.send(message.author+" ``has been given entrance to synthroid``")
-        .then(msg => {
-          msg.delete(15000);
-        })
-        .catch();
-        message.delete();
-        return;
-      } else {
-        msg.send("``!give synthroid``")
-        .then(msg => {
-          msg.delete(5000);
-        })
-        .catch();
-        message.delete();
-        return;
-      }
-    } else message.delete();
-  }
-  //end of channel choosing
   //this is to heck the bots and non-prefixes
   if (!message.content.startsWith(prefix) || message.author.bot || msg.id === "490675505968840714") return;
-  //This is for warnings and stuff down here
-  
-  //No more warnings uwu
   if (command === "mute") {
     if (!message.member.permissions.has("MANAGE_MESSAGES")) {msg.send("``Moderators only``");return}
     if (args.length != 1) {msg.send("``!mute [mention]``");return}
@@ -103,59 +72,6 @@ client.on("message", (message) => {
     message.delete();
     console.log(`${message.author.username} in ${message.channel.name} used the cah command.`);
   }
-  var creds = JSON.parse(process.env.CREDS);
-  var doc = new GoogleSpreadsheet(process.env.SPREADSHEET);
-  doc.useServiceAccountAuth(creds, function (err) {
-  var playerAndReason = message.content.slice(command.length+prefix.length).split(";");
-  var playerNoReason = message.content.slice(command.length+prefix.length).trim()
-  var Player = playerAndReason.shift().trim();
-  var Reason = playerAndReason.shift();
-  if (command === "warn") {
-    if (!message.member.permissions.has("MANAGE_MESSAGES")) {message.channel.send("``Staff only``");return}
-    if (!Player) {message.channel.send("``That is not a valid name``"); return}
-    if (!Reason) {message.channel.send("``That is not a valid reason``"); return}
-    if (playerAndReason.length != 0) {message.channel.send("``Too many semicolons``"); return}
-    doc.getRows(1, function(err, rows) {
-      let indexOfPlayer = rows.map(x => x.player).indexOf(Player)
-      if(indexOfPlayer <= -1) {
-        doc.addRow(1, { player: Player, reasons: Reason}, function(err, row) {
-          if(err) {message.channel.send("Tell pie \n"+err)}
-          message.channel.send(Player+" has been warned")
-        });
-      } else {
-        doc.getRows(1, function(err, rows) {
-          if(err) {message.channel.send("Tell pie \n"+err)}
-          rows[indexOfPlayer].reasons = rows[indexOfPlayer].reasons+"\n"+Reason
-          rows[indexOfPlayer].save()
-        });
-        message.channel.send(Player+" has been warned again")
-      }
-    });
-  } //end for the !warn
-  if (command === "delete") {
-  if (!message.member.permissions.has("MANAGE_MESSAGES")) {message.channel.send("``Staff only``");return}
-    if (!playerNoReason) {message.channel.send("``That is not a valid name``");return}
-    doc.getRows(1, function(err, rows) {
-      if(err) {message.channel.send("Tell pie \n"+err)}
-      let indexOfPlayer = rows.map(x => x.player).indexOf(playerNoReason)
-      if(indexOfPlayer <= -1) {message.channel.send("``There are no warnings under that name``");return}
-      message.channel.send("Warnings for "+playerNoReason+" have been deleted")
-      rows[indexOfPlayer].del()
-    });
-  } //end for delete
-  if (command === "check") {
-    if (!message.member.permissions.has("MANAGE_MESSAGES")) {message.channel.send("``Staff only``");return}
-    if (!playerNoReason) {message.channel.send("``That is not a valid name``");return}
-    doc.getRows(1, function(err, rows) {
-      if(err) {
-        message.channel.send("Tell pie \n"+err);
-      }
-      let indexOfPlayer = rows.map(x => x.player).indexOf(playerNoReason)
-      if(indexOfPlayer <= -1) {message.channel.send("``There are no warnings under that name``");return}
-      message.channel.send("Warnings for "+playerNoReason+":\n``"+rows[indexOfPlayer]["reasons"]+"``")
-    });
-  } //end for check
-  }); //end for the creds
   //build-a-b̶e̶a̶r̶ command
   if (command === "cc") {
     if (!message.member.permissions.has('MANAGE_MESSAGES')) {msg.send("``Moderators only``");return}
@@ -389,7 +305,11 @@ client.on("message", (message) => {
     .catch(console.error);
     message.delete(); 
   }
-  //oh look the servers isnt that neat
+  /*
+  Server List for all servers, along with
+  !players
+  and the other !ss commands
+  */
   var serverList = {ss1:["Kurva Gaming Dedicated Server #1","7777","192.223.31.157","1"],
                     ss2:["Kurva Gaming Dedicated Server #2","7778","192.223.31.157","2"],
                     ss3:["Kurva Gaming Dedicated Server #3","7779","192.223.31.157","3"],
