@@ -329,12 +329,15 @@ client.on("message", (message) => {
           console.log("Someone help me!");
         } else {
           var i;
+          let playerList = new Discord.RichEmbed()
+            .setColor("#4286f4")
+            .setTitle("Player list for Kurva Gaming Servers")
           for (i=0;i<Object.keys(serverList).length;i++) {
             let ser = json.find(o => o.ip === serverList[Object.keys(serverList)[i]][2] && o.port === serverList[Object.keys(serverList)[i]][1])
-            if (!ser) {arra.push("Server "+serverList[Object.keys(serverList)[i]][3]+" - Offline")}
-            else {arra.push("Server "+serverList[Object.keys(serverList)[i]][3]+" - "+ser.players)}
+            if (!ser) {playerList.addField("Server "+serverList[Object.keys(serverList)[i]][3],"Offline", true)}
+            else {playerList.addField("Server "+serverList[Object.keys(serverList)[i]][3],ser.players, true)}
           };
-          message.channel.send(arra)
+          message.channel.send(playerList)
         } 
       }  
     });
