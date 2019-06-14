@@ -310,11 +310,11 @@ client.on("message", (message) => {
   !players
   and the other !ss commands
   */
-  var serverList = {ss1:["Kurva Gaming Dedicated Server #1","7777","192.223.31.157","1"],
-                    ss2:["Kurva Gaming Dedicated Server #2","7778","192.223.31.157","2"],
-                    ss3:["Kurva Gaming Dedicated Server #3","7779","192.223.31.157","3"],
-                    ss4:["Kurva Gaming Dedicated Server #4","7780","192.223.31.157","4"],
-                    ss5:["Kurva Gaming Dedicated Server #5","7781","192.223.31.157","5"],
+  var serverList = {ss1:["Kurva Gaming Dedicated Server #1","7777","192.223.31.157","Server 1"],
+                    ss2:["Kurva Gaming Dedicated Server #2","7778","192.223.31.157","Server 2"],
+                    ss3:["Kurva Gaming Dedicated Server #3","7779","192.223.31.157","Server 3"],
+                    ss4:["Kurva Gaming Dedicated Server #4","7780","192.223.31.157","Server 4"],
+                    ss5:["Kurva Gaming Dedicated Server #5","7781","192.223.31.157","Server 5"],
                     ss0:["Official SCP: Secret Laboratory Server","7777","192.223.27.212","Official Server"]
                    }
   if (message.channel.id != "442739266909503489" && message.channel.id != "486892954297040896" && message.channel.id != "464091801331040297") return;
@@ -334,8 +334,8 @@ client.on("message", (message) => {
             .setAuthor("SCP Secret Laboratory, Players","http://scp-sl.wdfiles.com/local--files/nav:side/scp-sl-logo.png")
           for (i=0;i<Object.keys(serverList).length;i++) {
             let ser = json.find(o => o.ip === serverList[Object.keys(serverList)[i]][2] && o.port === serverList[Object.keys(serverList)[i]][1])
-            if (!ser) {playerList.addField("Server "+serverList[Object.keys(serverList)[i]][3],"Offline", true)}
-            else {playerList.addField("Server "+serverList[Object.keys(serverList)[i]][3],ser.players, true)}
+            if (!ser) {playerList.addField(serverList[Object.keys(serverList)[i]][3],"Offline", true)}
+            else {playerList.addField(serverList[Object.keys(serverList)[i]][3],ser.players, true)}
           };
           message.channel.send(playerList)
         } 
