@@ -331,7 +331,7 @@ client.on("message", (message) => {
           var i;
           let playerList = new Discord.RichEmbed()
             .setColor("#4286f4")
-            .setTitle("Player list for Kurva Gaming Servers")
+            .setAuthor("SCP Secret Laboratory, Players","http://scp-sl.wdfiles.com/local--files/nav:side/scp-sl-logo.png")
           for (i=0;i<Object.keys(serverList).length;i++) {
             let ser = json.find(o => o.ip === serverList[Object.keys(serverList)[i]][2] && o.port === serverList[Object.keys(serverList)[i]][1])
             if (!ser) {playerList.addField("Server "+serverList[Object.keys(serverList)[i]][3],"Offline", true)}
