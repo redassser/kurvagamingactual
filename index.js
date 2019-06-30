@@ -88,8 +88,20 @@ client.on("message", (message) => {
   if (command === "cclist") {
     if (!message.member.permissions.has('MANAGE_MESSAGES')) {msg.send("``Moderators only``");return}
     const array = client.commands.keyArray()
-    if (array.length === 0) {message.channel.send("``No commands have been made. Use !set to add some!``");return}
-    msg.send("List of commands\n``"+array.join('\n')+"``");
+     if (((args[0]*5))>(array.length+5)) {message.channel.send("``There aren't that many pages``");return;}
+    if (!isNaN(args[0])) {
+      var x = (args[0]*5)-5;
+      var y = ((array.length)>(x+5)) ? (x+5) : array.length;
+    }
+    let listEmbed = new Discord.RichEmbed()
+    .setTitle("CC command list")
+    .setFooter("Page "+array[0])
+    if (array.length === 0) {message.channel.send("``No commands made``");return}
+    for (var i = x; i < y; i++) {
+      listEmbed.addField("!"+client.commands.get(array[i]));
+    }
+    message.channel.send(listEmbed);
+
   }
   //no more building!
 
