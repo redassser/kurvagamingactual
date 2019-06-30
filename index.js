@@ -56,13 +56,6 @@ client.on("message", (message) => {
       msg.send(mention+" ``has been unmuted``")
     }
   }
-  if (command === "ban") {
-    if (!message.member.permissions.has('VIEW_AUDIT_LOG')) {msg.send("``Senior Mods only``");return}
-    var mention = message.mentions.members.first();
-    if (!message.isMentioned(mention)) {msg.send('``You have to mention someone``');return}
-    mention.ban();
-    msg.send('``'+mention+' has been banned.``');
-  }
   if (command === "cah") {
     var randomCAH = config.whiteCard[Math.floor(Math.random()*config.whiteCard.length)];
     let cah = new Discord.RichEmbed()
