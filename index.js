@@ -99,23 +99,7 @@ client.on("message", (message) => {
     msg.send("List of commands\n``"+array.join('\n')+"``");
   }
   //no more building!
-  
-  if (command === "kick") {
-    var mention = message.mentions.members.first();
-    if (!message.member.permissions.has('VIEW_AUDIT_LOG')) {msg.send("Senior Mods only");return}
-    if (!message.isMentioned(mention)) {msg.send(`You have to mention someone!`);return}
-    mention.kick()
-    msg.send(`${mention} has been kicked.`);
-  }
-  if (command === "restart"){
-    if (!message.member.permissions.has('MANAGE_MESSAGES')) {msg.send("``Moderators only!``");return}
-    function resetBot(channel) {
-      channel.send("I'll be back shortly!")
-     .then(msg => client.destroy())
-     .then(() => client.login(process.env.BOT_TOKEN));
-    }
-    resetBot(msg);
-  } 
+
   if (command.startsWith("scp-")&&num >= 0 && num <= 4000) {
     switch (num.toString().length) {
       case 1:
@@ -156,11 +140,10 @@ client.on("message", (message) => {
       .addField("donate","Links to the official Kurva PayPal page!")
       .addField("kgmeme", "Give you a free Kurva Gaming certified meme.")
       .addField("players", "Tells you the player count of server 0 through 5.")
-      .addField("ss[0, 1, 2, 3, 4, 5, 1w, 2w, 3w]", "Tells you the current status of the server.")
+      .addField("ss[0, 1, 2, 3, 4, 5]", "Tells you the current status of the server.")
       .addField("8ball","Answers your question *very* truthfully.")
       .addField("cah [sentence]", "Finishes your sentence with a white card from Cards Against Humanity!")
       .addField("purge [number]", "**Moderator** Deletes specified number of messages.")
-      .addField("restart", "**Moderator** restarts the bot.")
       .addField("vote [topic]", "**Moderator** Starts a vote")
       .addField("cc (command) (text)", "**Moderator** The bot will say the (text) when you do !(command).")
       .addField("ccdel (command)","**Moderator** The command will be deleted from existance.")
@@ -178,86 +161,7 @@ client.on("message", (message) => {
     message.guild.channels.get(channelid).send(`${argo}`);
     console.log(message.author.username+" said "+argo+" in "+message.guild.channels.get(channelid));
   }
-  //northern border to moderation nation
-  var onmods = []; var onadmins = []; var onseniors = [];
-  if (command === "mods") {
-    var allsenior = (message.guild.roles.get('432355512584110113').members.map(m=>m.user).join('\n'));
-    var allmod = (message.guild.roles.get('432337866493001740').members.map(m=>m.user).join('\n'));
-    var alladmin = (message.guild.roles.get('432337534794727425').members.map(m=>m.user).join('\n'));
-    function onmod() {
-      var i;
-      for (i = 0; i < message.guild.roles.get('432337866493001740').members.array().length; i++) { 
-        if(message.guild.roles.get('432337866493001740').members.array()[i].presence.game!=null){
-          if(message.guild.roles.get('432337866493001740').members.array()[i].presence.game.name==='SCP: Secret Laboratory'){
-            onmods.push(message.guild.roles.get('432337866493001740').members.array()[i].user);
-          }
-        }
-      }
-    }
-    function onsenior() {
-      var i;
-      for (i = 0; i < message.guild.roles.get('432355512584110113').members.array().length; i++) { 
-        if(message.guild.roles.get('432355512584110113').members.array()[i].presence.game!=null){
-          if(message.guild.roles.get('432355512584110113').members.array()[i].presence.game.name==='SCP: Secret Laboratory'){
-            onseniors.push(message.guild.roles.get('432355512584110113').members.array()[i].user);
-          }
-        }
-      }
-    }
-    function onadmin() {
-      var i;
-      for (i = 0; i < message.guild.roles.get('432337534794727425').members.array().length; i++) { 
-        if(message.guild.roles.get('432337534794727425').members.array()[i].presence.game!=null){
-          if(message.guild.roles.get('432337534794727425').members.array()[i].presence.game.name==='SCP: Secret Laboratory'){
-            onadmins.push(message.guild.roles.get('432337534794727425').members.array()[i].user);
-          }
-        }
-      }
-    }
-    onmod();
-    onadmin();
-    onsenior();
-    let modhelp = new Discord.RichEmbed()
-      .setColor("RANDOM")
-      .setTitle("Kurva Gaming Official Servers")
-      .setThumbnail("https://i.imgur.com/QTZC9gA.png")
-      .setFooter("Please call for any in-game mod before anyone else!")
-      .setAuthor("Currently available Moderators", "https://vignette.wikia.nocookie.net/roblox/images/c/ce/Police_Sergeants_Cap.png/revision/latest?cb=20170211084322")
-      .addField("All Mods",allmod)
-      .addField("In-game Mods",onmods.join(", "))
-      .addField("All Senior Mods",allsenior)
-      .addField("In-game Senior Mods", onseniors.join(", "))
-      .addField("All Admins",alladmin)
-      .addField("In-game Admins",onadmins.join(", "));
-    message.channel.send(modhelp); 
-  }
-  if (command === "offline") {
-    var mention = message.mentions.members.first();
-    if (args.length != 0) return;
-    var rem = 0; var add = 0;
-    if (message.member.roles.has("432337866493001740")) {rem = "432337866493001740";add = "471095786554523658"}
-    else if (message.member.roles.has("432355512584110113")) {rem = "432355512584110113";add = "477195100867526689"}
-    else if (message.member.roles.has("432337534794727425")) {rem = "432337534794727425";add = "477195674421821451"}
-    else {msg.send("Nope!");return}
-      message.member.removeRole(rem);
-      message.member.addRole(add);
-      msg.send(message.author+"is now offline.");
-      message.delete();
-  }
-   if (command === "online") {
-    var mention = message.mentions.members.first();
-    if (args.length != 0) return;
-    var rem = 0; var add = 0;
-    if (message.member.roles.has("471095786554523658")) {rem = "471095786554523658";add = "432337866493001740"}
-    else if (message.member.roles.has("477195100867526689")) {rem = "477195100867526689";add = "432355512584110113"}
-    else if (message.member.roles.has("477195674421821451")) {rem = "477195674421821451";add = "432337534794727425"}
-    else {msg.send("Nope!");return}
-      message.member.removeRole(rem);
-      message.member.addRole(add);
-      msg.send(message.author+"is now online.");
-      message.delete();
-  }
-  //southern border to moderaton nation
+
   if (command === "kgmeme") {
     var embedPic = config.ourArray[Math.floor(Math.random()*config.ourArray.length)];
     msg.send(embedPic); 
