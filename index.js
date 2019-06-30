@@ -88,17 +88,17 @@ client.on("message", (message) => {
   if (command === "cclist") {
     if (!message.member.permissions.has('MANAGE_MESSAGES')) {msg.send("``Moderators only``");return}
     const array = client.commands.keyArray()
-     if (((args[0]*5))>(array.length+5)) {message.channel.send("``There aren't that many pages``");return;}
+     if (((args[0]*10))>(array.length+5)) {message.channel.send("``There aren't that many pages``");return;}
     if (!isNaN(args[0])) {
-      var x = (args[0]*5)-5;
-      var y = ((array.length)>(x+5)) ? (x+5) : array.length;
-    }
+      var x = (args[0]*10)-5;
+      var y = ((array.length)>(x+10)) ? (x+10) : array.length;
+    } else {message.channel.send("Please put a number");return;}
     let listEmbed = new Discord.RichEmbed()
     .setTitle("CC command list")
-    .setFooter("Page "+array[0])
+    .setFooter("Page "+args[0])
     if (array.length === 0) {message.channel.send("``No commands made``");return}
     for (var i = x; i < y; i++) {
-      listEmbed.addField("!"+client.commands.get(array[i]));
+      listEmbed.addField("!"+client.commands.keyArray()[i]);
     }
     message.channel.send(listEmbed);
 
