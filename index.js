@@ -31,6 +31,7 @@ client.on("message", (message) => {
   }
   //this is to heck the bots and non-prefixes
   if (!message.content.startsWith(prefix) || message.author.bot || msg.id === "490675505968840714") return;
+  //mute command
   if (command === "mute") {
     if (!message.member.permissions.has("MANAGE_MESSAGES")) {msg.send("``Moderators only``");return}
     if (args.length != 1) {msg.send("``!mute [mention]``");return}
@@ -72,12 +73,13 @@ client.on("message", (message) => {
     message.delete();
     console.log(`${message.author.username} in ${message.channel.name} used the cah command.`);
   }
+  
   //build-a-b̶e̶a̶r̶ command
   if (command === "cc") {
     if (!message.member.permissions.has('MANAGE_MESSAGES')) {msg.send("``Moderators only``");return}
     if (args.length < 2) {msg.send("``!cc [command] [response]``");return}
-    if (client.commands.has(args[0])) {msg.send("``This command already exists``");return}
-    client.commands.set(args.shift(), args.join(" "));
+    if (client.commands.has(args[0].toLowerCase())) {msg.send("``This command already exists``");return}
+    client.commands.set(args.shift().toLowerCase(), args.join(" "));
     msg.send("``Command has been made``");
   }
   if (client.commands.has(command)) {
@@ -97,6 +99,7 @@ client.on("message", (message) => {
     msg.send("List of commands\n``"+array.join('\n')+"``");
   }
   //no more building!
+  
   if (command === "kick") {
     var mention = message.mentions.members.first();
     if (!message.member.permissions.has('VIEW_AUDIT_LOG')) {msg.send("Senior Mods only");return}
