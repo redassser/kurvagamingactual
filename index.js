@@ -93,11 +93,10 @@ client.on("message", (message) => {
     if (!isNaN(args[0])) {
       var x = (args[0]*pagenum)-pagenum;
       var y = ((array.length)>(x+pagenum)) ? (x+pagenum) : array.length;
-    } else {message.channel.send("Please put a number");return;}
+    } else {message.channel.send("``!cclist [pagenumber]``");return;}
     let listEmbed = new Discord.RichEmbed()
     .setTitle("CC command list")
-    const pages = Math.ceil(array.length/pagenum)
-    .setFooter("Page "+args[0]+" of "+pages)
+    .setFooter("Page "+args[0]+" of "+Math.ceil(array.length/pagenum))
     if (array.length === 0) {message.channel.send("``No commands made``");return}
     for (var i = x; i < y; i++) {
       listEmbed.addField("!"+array[i],client.commands.get(array[i]));
