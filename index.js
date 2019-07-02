@@ -89,7 +89,7 @@ client.on("message", (message) => {
     if (!message.member.permissions.has('MANAGE_MESSAGES')) {msg.send("``Moderators only``");return}
     const array = client.commands.keyArray();
     const pagenum = 10;
-     if (((args[0]*10))>(array.length+pagenum)) {message.channel.send("``There aren't that many pages``");return;}
+    if (((args[0]*pagenum))>(array.length+pagenum)) {message.channel.send("``There aren't that many pages``");return;}
     if (!isNaN(args[0])) {
       var x = (args[0]*pagenum)-pagenum;
       var y = ((array.length)>(x+pagenum)) ? (x+pagenum) : array.length;
@@ -225,10 +225,7 @@ client.on("message", (message) => {
   */
   var serverList = {ss1:["Kurva Gaming Dedicated Server #1","7777","192.223.31.157","Server 1"],
                     ss2:["Kurva Gaming Dedicated Server #2","7778","192.223.31.157","Server 2"],
-                    ss3:["Kurva Gaming Dedicated Server #3","7779","192.223.31.157","Server 3"],
-                    ss4:["Kurva Gaming Dedicated Server #4","7780","192.223.31.157","Server 4"],
-                    ss5:["Kurva Gaming Dedicated Server #5","7781","192.223.31.157","Server 5"],
-                    ss0:["Official SCP: Secret Laboratory Server","7777","192.223.27.212","Official Server"]
+                    ss3:["Kurva Gaming Dedicated Server #3","7779","192.223.31.157","Server 3"]
                    }
   if (message.channel.id != "442739266909503489" && message.channel.id != "486892954297040896" && message.channel.id != "464091801331040297") return;
   var theip; var title; var portEnd;
