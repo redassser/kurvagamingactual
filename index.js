@@ -39,7 +39,6 @@ client.on("message", (message) => {
   //this is to heck the bots and non-prefixes
   if (!message.content.startsWith(prefix) || message.author.bot || msg.id === "490675505968840714") return;
   if (!client.commands.has(command)) return;
-
   try {
 	  client.commands.get(command).execute(message, args);
   } catch (error) {
