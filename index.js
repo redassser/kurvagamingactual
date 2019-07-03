@@ -7,6 +7,13 @@ const request = require('request');
 const cheerio = require('cheerio');
 const Enmap = require('enmap');
 const EnmapMongo = require("enmap-mongo");
+const fs = require("fs");
+client.cmds = new.Discord.Collection();
+const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
+for (const file of commandFiles) {
+	const command = require(`./commands/${file}`);
+	client.cmds.set(command.name, command);
+}
 client.commands = new Enmap({ provider: new EnmapMongo({
   name: `commands`,
   dbName: `commands`,
@@ -31,6 +38,14 @@ client.on("message", (message) => {
   }
   //this is to heck the bots and non-prefixes
   if (!message.content.startsWith(prefix) || message.author.bot || msg.id === "490675505968840714") return;
+  if (!client.commands.has(command)) return;
+
+  try {
+	  client.commands.get(command).execute(message, args);
+  } catch (error) {
+	  console.error(error);
+	  message.reply('there was an error trying to execute that command!');
+  }
   //mute command
   if (command === "mute") {
     if (!message.member.permissions.has("MANAGE_MESSAGES")) {msg.send("``Moderators only``");return}
@@ -119,11 +134,6 @@ client.on("message", (message) => {
     }
     if(!command.endsWith("-j")) {message.channel.send(`http://www.scp-wiki.net/scp-${scp}`);return}
     msg.send(`http://www.scp-wiki.net/scp-${scp}-j`);
-  }
-  if (command === "hug") {
-    var mention = message.mentions.members.first();
-    if (!message.isMentioned(mention)) {msg.send(`(>^_^)> ${message.author} <(^.^<)`);return}
-    msg.send(`(>^_^)> ${mention} <(^.^<)`)
   }
   if (command === "donate") {
     msg.send("Donate here: https://www.paypal.com/pools/c/839i9RcUvF")
