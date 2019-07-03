@@ -7,19 +7,6 @@ const request = require('request');
 const cheerio = require('cheerio');
 const Enmap = require('enmap');
 const EnmapMongo = require("enmap-mongo");
-<<<<<<< HEAD
-<<<<<<< HEAD
-const fs = require("fs");
-client.cmds = new Discord.Collection();
-const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
-for (const file of commandFiles) {
-	const command = require(`./commands/${file}`);
-	client.cmds.set(command.name, command);
-}
-=======
->>>>>>> parent of 24d08b6... Update index.js
-=======
->>>>>>> parent of 24d08b6... Update index.js
 client.commands = new Enmap({ provider: new EnmapMongo({
   name: `commands`,
   dbName: `commands`,
@@ -44,19 +31,6 @@ client.on("message", (message) => {
   }
   //this is to heck the bots and non-prefixes
   if (!message.content.startsWith(prefix) || message.author.bot || msg.id === "490675505968840714") return;
-<<<<<<< HEAD
-<<<<<<< HEAD
-  if (!client.commands.has(command)) return;
-  try {
-	  client.commands.get(command).execute(message, args);
-  } catch (error) {
-	  console.error(error);
-	  message.reply('there was an error trying to execute that command!');
-  }
-=======
->>>>>>> parent of 24d08b6... Update index.js
-=======
->>>>>>> parent of 24d08b6... Update index.js
   //mute command
   if (command === "mute") {
     if (!message.member.permissions.has("MANAGE_MESSAGES")) {msg.send("``Moderators only``");return}
