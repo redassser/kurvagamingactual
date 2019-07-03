@@ -3,7 +3,7 @@
 	description: 'Get hugs!',
 	execute(message, args) {
 		var mention = message.mentions.members.first();
-        	if (!message.isMentioned(mention)) {msg.send(`(>^_^)> ${message.author} <(^.^<)`);return}
-        	msg.send(`(>^_^)> ${mention} <(^.^<)`);
+        	if (!message.isMentioned(mention)) {message.channel.send(`(>^_^)> ${message.author} <(^.^<)`);return}
+        	message.channel.send(`(>^_^)> ${mention} <(^.^<)`);
 	},
 };
