@@ -3,12 +3,13 @@ module.exports = {
 	description: 'Cards Against Humanity',
 	execute(message, args) {
 		const config = require("./config.json");
+		const Discord = require("discord.js");
 		var randomCAH = config.whiteCard[Math.floor(Math.random()*config.whiteCard.length)];
 		let cah = new Discord.RichEmbed()
-		.setTitle(argu+"\n"+randomCAH)
+		.setTitle(args.join(" ")+"\n"+randomCAH)
 		.setColor("RANDOM")
 		.setAuthor(message.author.username+" says...", message.author.avatarURL);
-		msg.send(cah)
+		message.channel.send(cah)
 		message.delete();
 	},
 };
