@@ -292,9 +292,4 @@ client.on("message", (message) => {
       }
     });
 });
-client.on('guildMemberAdd', (member) => {
-  if (member.guild.id === "432332961057079297") {
-    member.guild.channels.get('490679880460140564').send(`${member} welcome :)`); 
-  }
-});
 client.login(process.env.BOT_TOKEN);
