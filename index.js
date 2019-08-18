@@ -247,8 +247,6 @@ client.on("message", (message) => {
           for (i=0;i<Object.keys(serverList).length;i++) {
             var now = Object.keys(serverList)[i]
             let ser = json.find(o => o.ip === serverList[now][2] && o.port == serverList[now][1])
-            console.log(serverList[now][1])
-            console.log(json[0].port)
             if (!ser) {playerList.addField(serverList[now][3],"Offline", true)}
             else {playerList.addField(serverList[now][3],ser.players, true)}
           };
@@ -270,7 +268,7 @@ client.on("message", (message) => {
           if ("error" in json) {
             console.log("Someone help me!");
           } else {
-            var obj = json.find(o => o.ip === theip && o.port === portEnd);
+            var obj = json.find(o => o.ip === theip && o.port == portEnd);
             if(!obj) {
               let serverstatusoff = new Discord.RichEmbed()
                 .setColor("#e51c1c")
