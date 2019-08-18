@@ -227,7 +227,6 @@ client.on("message", (message) => {
                     ss2:["Kurva Gaming Dedicated Server #2","7778","147.135.30.221","Server 2"],
                     ss3:["Kurva Gaming Dedicated Server #3","7779","147.135.30.221","Server 3"],
                     ss4:["Kurva Gaming Dedicated Server #4","7781","147.135.30.221","Server 4"],
-                    ss0:["Official SCP:SL NA East Server","7780","192.223.31.157","Official Server"]
                    }
   if (message.channel.id != "442739266909503489" && message.channel.id != "486892954297040896" && message.channel.id != "464091801331040297") return;
   var theip; var title; var portEnd;
