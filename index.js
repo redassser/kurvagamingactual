@@ -244,9 +244,9 @@ client.on("message", (message) => {
             .setColor("#4286f4")
             .setAuthor("SCP Secret Laboratory, Players","http://scp-sl.wdfiles.com/local--files/nav:side/scp-sl-logo.png")
           for (i=0;i<Object.keys(serverList).length;i++) {
-            console.log(Object.keys(serverList))
+            console.log(serverList[Object.keys(serverList)[i]][2])
             let ser = json.find(o => o.ip === serverList[Object.keys(serverList)[i]][2] && o.port === serverList[Object.keys(serverList)[i]][1])
-            console.log(ser)
+            console.log(json)
             if (!ser) {playerList.addField(serverList[Object.keys(serverList)[i]][3],"Offline", true)}
             else {playerList.addField(serverList[Object.keys(serverList)[i]][3],ser.players, true)}
           };
