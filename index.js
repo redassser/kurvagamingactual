@@ -246,7 +246,7 @@ client.on("message", (message) => {
             .setAuthor("SCP Secret Laboratory, Players","http://scp-sl.wdfiles.com/local--files/nav:side/scp-sl-logo.png")
           for (i=0;i<Object.keys(serverList).length;i++) {
             var now = Object.keys(serverList)[i]
-            let ser = json.find(o => o.ip === serverList[now][2] && o.port === serverList[now][1])
+            let ser = json.find(o => o.ip === serverList[now][2] && o.port == serverList[now][1])
             console.log(serverList[now][1])
             console.log(json[0].port)
             if (!ser) {playerList.addField(serverList[now][3],"Offline", true)}
