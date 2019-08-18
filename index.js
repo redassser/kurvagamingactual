@@ -227,6 +227,7 @@ client.on("message", (message) => {
                     ss2:["Kurva Gaming Dedicated Server #2","7778","147.135.30.221","Server 2"],
                     ss3:["Kurva Gaming Dedicated Server #3","7779","147.135.30.221","Server 3"],
                     ss4:["Kurva Gaming Dedicated Server #4","7781","147.135.30.221","Server 4"],
+                    ss0:["Official Server","7780","147.135.30.221","Offical Server"]
                    }
   if (message.channel.id != "442739266909503489" && message.channel.id != "486892954297040896" && message.channel.id != "464091801331040297") return;
   var theip; var title; var portEnd;
@@ -245,7 +246,7 @@ client.on("message", (message) => {
             .setAuthor("SCP Secret Laboratory, Players","http://scp-sl.wdfiles.com/local--files/nav:side/scp-sl-logo.png")
           for (i=0;i<Object.keys(serverList).length;i++) {
             var now = Object.keys(serverList)[i]
-            let ser = json.find(o => o.ip === serverList[now][2] )
+            let ser = json.find(o => o.ip === serverList[now][2] && o.port === serverList[now][1])
             console.log(ser)
             if (!ser) {playerList.addField(serverList[now][3],"Offline", true)}
             else {playerList.addField(serverList[now][3],ser.players, true)}
